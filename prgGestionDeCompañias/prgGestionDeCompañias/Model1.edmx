@@ -1,0 +1,3189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDPortafolioUcrModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tbArchivos">
+          <Key>
+            <PropertyRef Name="idArchivo" />
+          </Key>
+          <Property Name="idArchivo" Type="int" Nullable="false" />
+          <Property Name="archivo" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbArchivosMateDida">
+          <Key>
+            <PropertyRef Name="idMaterialDida" />
+            <PropertyRef Name="idArchivo" />
+          </Key>
+          <Property Name="idMaterialDida" Type="int" Nullable="false" />
+          <Property Name="idArchivo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbAutores">
+          <Key>
+            <PropertyRef Name="idAutor" />
+          </Key>
+          <Property Name="idAutor" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbAutoresMateDida">
+          <Key>
+            <PropertyRef Name="idMaterialDida" />
+            <PropertyRef Name="idAutor" />
+          </Key>
+          <Property Name="idMaterialDida" Type="int" Nullable="false" />
+          <Property Name="idAutor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbBolsasEmpl">
+          <Key>
+            <PropertyRef Name="idBolsaEmpleo" />
+          </Key>
+          <Property Name="idBolsaEmpleo" Type="int" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="perfilRequerido" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="tipoBolsa" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbCapacitaciones">
+          <Key>
+            <PropertyRef Name="idCapacitacion" />
+          </Key>
+          <Property Name="idCapacitacion" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ubicacion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="idPersona" Type="nchar" MaxLength="10" />
+          <Property Name="fechaInic" Type="date" Nullable="false" />
+          <Property Name="fechaFin" Type="date" Nullable="false" />
+          <Property Name="inversion" Type="int" Nullable="false" />
+          <Property Name="tipoCertificado" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbCapacitacionesEmpr">
+          <Key>
+            <PropertyRef Name="idCapacitacion" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idCapacitacion" Type="int" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbConvenios">
+          <Key>
+            <PropertyRef Name="idConvenio" />
+          </Key>
+          <Property Name="idConvenio" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="fechaCrea" Type="date" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbConveniosEmpr">
+          <Key>
+            <PropertyRef Name="idConvenio" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idConvenio" Type="int" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbCoordinadoresProy">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+            <PropertyRef Name="idProfesor" />
+          </Key>
+          <Property Name="idProyecto" Type="int" Nullable="false" />
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbCorreos">
+          <Key>
+            <PropertyRef Name="idCorreo" />
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idCorreo" Type="int" Nullable="false" />
+          <Property Name="idPersona" Type="int" Nullable="false" />
+          <Property Name="tipoPersona" Type="nvarchar" MaxLength="50" />
+          <Property Name="correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbCorrequisitosCurs">
+          <Key>
+            <PropertyRef Name="idCurso" />
+            <PropertyRef Name="idCursoCorr" />
+          </Key>
+          <Property Name="idCurso" Type="int" Nullable="false" />
+          <Property Name="idCursoCorr" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbCurriculums">
+          <Key>
+            <PropertyRef Name="idEstudiante" />
+          </Key>
+          <Property Name="idEstudiante" Type="int" Nullable="false" />
+          <Property Name="curriculum" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbCursos">
+          <Key>
+            <PropertyRef Name="idCurso" />
+          </Key>
+          <Property Name="idCurso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sigla" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="lugar" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ciclo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="creditos" Type="int" Nullable="false" />
+          <Property Name="programa" Type="varbinary(max)" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="totalHoras" Type="int" Nullable="false" />
+          <Property Name="modalidad" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbCursosLibr">
+          <Key>
+            <PropertyRef Name="idCursosLibres" />
+          </Key>
+          <Property Name="idCursosLibres" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="lugar" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="cupo" Type="int" Nullable="false" />
+          <Property Name="programa" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbDirecciones">
+          <Key>
+            <PropertyRef Name="idDireccion" />
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idDireccion" Type="int" Nullable="false" />
+          <Property Name="tipoPersona" Type="nvarchar" MaxLength="50" />
+          <Property Name="idPersona" Type="int" Nullable="false" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="provincia" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="canton" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="distrito" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbEmpresas">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="descripcionGene" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="foto" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbEmpresasMateDida">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+            <PropertyRef Name="idMaterialDida" />
+          </Key>
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="idMaterialDida" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbEspecialidadesPorExpe">
+          <Key>
+            <PropertyRef Name="idEspecialidad" />
+          </Key>
+          <Property Name="idEspecialidad" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="tiempoExpe" Type="int" Nullable="false" />
+          <Property Name="area" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="puesto" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="tipoEmpresa" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbEspecialidadesProf">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+            <PropertyRef Name="idEspecialidad" />
+          </Key>
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+          <Property Name="idEspecialidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbEspecialidadesTitu">
+          <Key>
+            <PropertyRef Name="idEspecialidad" />
+          </Key>
+          <Property Name="idEspecialidad" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="institucion" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbEstudiantes">
+          <Key>
+            <PropertyRef Name="idEstudiante" />
+          </Key>
+          <Property Name="idEstudiante" Type="int" Nullable="false" />
+          <Property Name="carnet" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellido1" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellido2" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="cedula" Type="int" Nullable="false" />
+          <Property Name="fechaNaci" Type="date" Nullable="false" />
+          <Property Name="genero" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="institucion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="carrera" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="foto" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbEstudiosProf">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+            <PropertyRef Name="idTitulo" />
+          </Key>
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+          <Property Name="idTitulo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbExperienciasAcad">
+          <Key>
+            <PropertyRef Name="idExperienciaLabo" />
+          </Key>
+          <Property Name="idExperienciaLabo" Type="int" Nullable="false" />
+          <Property Name="tiempo" Type="int" />
+          <Property Name="tipoCarg" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbExperienciasProf">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+            <PropertyRef Name="idExperienciaLabo" />
+          </Key>
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+          <Property Name="idExperienciaLabo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbGruposCurs">
+          <Key>
+            <PropertyRef Name="idGrupo" />
+          </Key>
+          <Property Name="idGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCurso" Type="int" Nullable="false" />
+          <Property Name="numeroGrup" Type="int" Nullable="false" />
+          <Property Name="cupoMaximo" Type="int" Nullable="false" />
+          <Property Name="cupoMinimo" Type="int" Nullable="false" />
+          <Property Name="cupoActual" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbHerramientas">
+          <Key>
+            <PropertyRef Name="idHerramienta" />
+          </Key>
+          <Property Name="idHerramienta" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbHerramientasProy">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+            <PropertyRef Name="idHerramienta" />
+          </Key>
+          <Property Name="idProyecto" Type="int" Nullable="false" />
+          <Property Name="idHerramienta" Type="int" Nullable="false" />
+          <Property Name="horasInvertidas" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbHorarios">
+          <Key>
+            <PropertyRef Name="idHorario" />
+          </Key>
+          <Property Name="idHorario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dia" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="horaInic" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="horaSali" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbHorariosCapa">
+          <Key>
+            <PropertyRef Name="idHorario" />
+            <PropertyRef Name="idCapacitacion" />
+          </Key>
+          <Property Name="idHorario" Type="int" Nullable="false" />
+          <Property Name="idCapacitacion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbHorariosCursLibr">
+          <Key>
+            <PropertyRef Name="idCursosLibres" />
+            <PropertyRef Name="idHorario" />
+          </Key>
+          <Property Name="idCursosLibres" Type="int" Nullable="false" />
+          <Property Name="idHorario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbHorariosGrupCurs">
+          <Key>
+            <PropertyRef Name="idHorario" />
+            <PropertyRef Name="idGrupo" />
+          </Key>
+          <Property Name="idHorario" Type="int" Nullable="false" />
+          <Property Name="idGrupo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbMaterialesDida">
+          <Key>
+            <PropertyRef Name="idMaterialDida" />
+          </Key>
+          <Property Name="idMaterialDida" Type="int" Nullable="false" />
+          <Property Name="nombreArch" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="titulo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="fechaPubl" Type="date" Nullable="false" />
+          <Property Name="ciudad" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="pais" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbMiembros">
+          <Key>
+            <PropertyRef Name="idMiembro" />
+          </Key>
+          <Property Name="tipo" Type="nvarchar" MaxLength="4" />
+          <Property Name="idMiembro" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellido1" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellido2" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="carrera" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbMiembrosProy">
+          <Key>
+            <PropertyRef Name="idMiembro" />
+            <PropertyRef Name="idProyecto" />
+          </Key>
+          <Property Name="idMiembro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProyecto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbObservacionesProf">
+          <Key>
+            <PropertyRef Name="idObservacion" />
+            <PropertyRef Name="idProfesor" />
+          </Key>
+          <Property Name="idObservacion" Type="int" Nullable="false" />
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="observador" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbPeriodosLaboProf">
+          <Key>
+            <PropertyRef Name="idPeriodo" />
+            <PropertyRef Name="idProfesor" />
+          </Key>
+          <Property Name="idPeriodo" Type="int" Nullable="false" />
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+          <Property Name="fechaIngr" Type="date" Nullable="false" />
+          <Property Name="fechaSali" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbProfesores">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+          </Key>
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="apaellido1" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellido2" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="usuario" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="genero" Type="nchar" MaxLength="9" Nullable="false" />
+          <Property Name="fechaNaci" Type="date" Nullable="false" />
+          <Property Name="jornada" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="estado" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="identificacion" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="tipoIden" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="foto" Type="varbinary(max)" Nullable="false" />
+          <Property Name="curriculum" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbProfesoresGrupCurs">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+            <PropertyRef Name="idGrupo" />
+          </Key>
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+          <Property Name="idGrupo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbProyectos">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+          </Key>
+          <Property Name="idProyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="informacion" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbProyectosEmpresa">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+            <PropertyRef Name="idProyecto" />
+          </Key>
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="idProyecto" Type="int" Nullable="false" />
+          <Property Name="horasInvertidas" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbProyectosEstu">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+            <PropertyRef Name="idEstudiante" />
+          </Key>
+          <Property Name="idProyecto" Type="int" Nullable="false" />
+          <Property Name="idEstudiante" Type="int" Nullable="false" />
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+          <Property Name="horasInve" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbProyectosProf">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+            <PropertyRef Name="idProfesor" />
+          </Key>
+          <Property Name="idProyecto" Type="int" Nullable="false" />
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+          <Property Name="horasInvertidas" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbPuestosProf">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="puesto" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="tiempoLabo" Type="nchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbRequisitosCurs">
+          <Key>
+            <PropertyRef Name="idCurso" />
+            <PropertyRef Name="idCursoRequ" />
+          </Key>
+          <Property Name="idCurso" Type="int" Nullable="false" />
+          <Property Name="idCursoRequ" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbResponsablesProy">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+            <PropertyRef Name="idProfesor" />
+          </Key>
+          <Property Name="idProyecto" Type="int" Nullable="false" />
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbTelefonos">
+          <Key>
+            <PropertyRef Name="idTelefono" />
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idTelefono" Type="int" Nullable="false" />
+          <Property Name="telefono" Type="int" Nullable="false" />
+          <Property Name="idPersona" Type="int" Nullable="false" />
+          <Property Name="tipoPers" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbTitulosProf">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+            <PropertyRef Name="idTitulo" />
+          </Key>
+          <Property Name="idProfesor" Type="int" Nullable="false" />
+          <Property Name="idTitulo" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tbAportesProf_tbAportes">
+          <End Role="tbHerramientas" Type="Self.tbHerramientas" Multiplicity="1" />
+          <End Role="tbHerramientasProy" Type="Self.tbHerramientasProy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbHerramientas">
+              <PropertyRef Name="idHerramienta" />
+            </Principal>
+            <Dependent Role="tbHerramientasProy">
+              <PropertyRef Name="idHerramienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbArchivoRecurso_tbRecurso">
+          <End Role="tbMaterialesDida" Type="Self.tbMaterialesDida" Multiplicity="1" />
+          <End Role="tbArchivosMateDida" Type="Self.tbArchivosMateDida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMaterialesDida">
+              <PropertyRef Name="idMaterialDida" />
+            </Principal>
+            <Dependent Role="tbArchivosMateDida">
+              <PropertyRef Name="idMaterialDida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbArchivosMateDida_tbArchivos">
+          <End Role="tbArchivos" Type="Self.tbArchivos" Multiplicity="1" />
+          <End Role="tbArchivosMateDida" Type="Self.tbArchivosMateDida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbArchivos">
+              <PropertyRef Name="idArchivo" />
+            </Principal>
+            <Dependent Role="tbArchivosMateDida">
+              <PropertyRef Name="idArchivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbAutoresMateDida_tbAutores">
+          <End Role="tbAutores" Type="Self.tbAutores" Multiplicity="1" />
+          <End Role="tbAutoresMateDida" Type="Self.tbAutoresMateDida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbAutores">
+              <PropertyRef Name="idAutor" />
+            </Principal>
+            <Dependent Role="tbAutoresMateDida">
+              <PropertyRef Name="idAutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbAutorRecurso_tbRecurso">
+          <End Role="tbMaterialesDida" Type="Self.tbMaterialesDida" Multiplicity="1" />
+          <End Role="tbAutoresMateDida" Type="Self.tbAutoresMateDida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMaterialesDida">
+              <PropertyRef Name="idMaterialDida" />
+            </Principal>
+            <Dependent Role="tbAutoresMateDida">
+              <PropertyRef Name="idMaterialDida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbBolsasEmpl_tbEmpresas">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbBolsasEmpl" Type="Self.tbBolsasEmpl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbBolsasEmpl">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCapacitacionesEmpr_tbCapacitaciones">
+          <End Role="tbCapacitaciones" Type="Self.tbCapacitaciones" Multiplicity="1" />
+          <End Role="tbCapacitacionesEmpr" Type="Self.tbCapacitacionesEmpr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCapacitaciones">
+              <PropertyRef Name="idCapacitacion" />
+            </Principal>
+            <Dependent Role="tbCapacitacionesEmpr">
+              <PropertyRef Name="idCapacitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCapacitacionesEmpr_tbEmpresa">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbCapacitacionesEmpr" Type="Self.tbCapacitacionesEmpr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbCapacitacionesEmpr">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbConveniosEmpresa_tbConvenios">
+          <End Role="tbConvenios" Type="Self.tbConvenios" Multiplicity="1" />
+          <End Role="tbConveniosEmpr" Type="Self.tbConveniosEmpr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbConvenios">
+              <PropertyRef Name="idConvenio" />
+            </Principal>
+            <Dependent Role="tbConveniosEmpr">
+              <PropertyRef Name="idConvenio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbConveniosEmpresa_tbEmpresa">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbConveniosEmpr" Type="Self.tbConveniosEmpr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbConveniosEmpr">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCoordinadoresProy_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbCoordinadoresProy" Type="Self.tbCoordinadoresProy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbCoordinadoresProy">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCoordinadoresProy_tbProyectos">
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
+          <End Role="tbCoordinadoresProy" Type="Self.tbCoordinadoresProy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="tbCoordinadoresProy">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCorreos_tbCapacitaciones">
+          <End Role="tbCapacitaciones" Type="Self.tbCapacitaciones" Multiplicity="1" />
+          <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCapacitaciones">
+              <PropertyRef Name="idCapacitacion" />
+            </Principal>
+            <Dependent Role="tbCorreos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCorreos_tbEmpresas">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbCorreos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCorreos_tbEstudiantes">
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEstudiantes">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="tbCorreos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCorreos_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbCorreos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCorrequisitosCurs_tbCursos">
+          <End Role="tbCursos" Type="Self.tbCursos" Multiplicity="1" />
+          <End Role="tbCorrequisitosCurs" Type="Self.tbCorrequisitosCurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCursos">
+              <PropertyRef Name="idCurso" />
+            </Principal>
+            <Dependent Role="tbCorrequisitosCurs">
+              <PropertyRef Name="idCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCorrequisitosCurs_tbCursos1">
+          <End Role="tbCursos" Type="Self.tbCursos" Multiplicity="1" />
+          <End Role="tbCorrequisitosCurs" Type="Self.tbCorrequisitosCurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCursos">
+              <PropertyRef Name="idCurso" />
+            </Principal>
+            <Dependent Role="tbCorrequisitosCurs">
+              <PropertyRef Name="idCursoCorr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCurriculum_tbEstudiantes">
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbCurriculums" Type="Self.tbCurriculums" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbEstudiantes">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="tbCurriculums">
+              <PropertyRef Name="idEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCursosLibr_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbCursosLibr" Type="Self.tbCursosLibr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbCursosLibr">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbDirecciones_tbEmpresas">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbDirecciones" Type="Self.tbDirecciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbDirecciones">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbDirecciones_tbEstudiantes">
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbDirecciones" Type="Self.tbDirecciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEstudiantes">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="tbDirecciones">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbDirecciones_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbDirecciones" Type="Self.tbDirecciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbDirecciones">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbEmpresaRecurso_tbEmpresa">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbEmpresasMateDida" Type="Self.tbEmpresasMateDida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbEmpresasMateDida">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbEmpresaRecurso_tbRecurso">
+          <End Role="tbMaterialesDida" Type="Self.tbMaterialesDida" Multiplicity="1" />
+          <End Role="tbEmpresasMateDida" Type="Self.tbEmpresasMateDida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMaterialesDida">
+              <PropertyRef Name="idMaterialDida" />
+            </Principal>
+            <Dependent Role="tbEmpresasMateDida">
+              <PropertyRef Name="idMaterialDida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbEspecialidadesProf_tbEspecialidades">
+          <End Role="tbEspecialidadesTitu" Type="Self.tbEspecialidadesTitu" Multiplicity="1" />
+          <End Role="tbEspecialidadesProf" Type="Self.tbEspecialidadesProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEspecialidadesTitu">
+              <PropertyRef Name="idEspecialidad" />
+            </Principal>
+            <Dependent Role="tbEspecialidadesProf">
+              <PropertyRef Name="idEspecialidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbEspecialidadesProf_tbEspecialidadesPorExpe">
+          <End Role="tbEspecialidadesPorExpe" Type="Self.tbEspecialidadesPorExpe" Multiplicity="1" />
+          <End Role="tbEspecialidadesProf" Type="Self.tbEspecialidadesProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEspecialidadesPorExpe">
+              <PropertyRef Name="idEspecialidad" />
+            </Principal>
+            <Dependent Role="tbEspecialidadesProf">
+              <PropertyRef Name="idEspecialidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbEspecialidadesProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbEspecialidadesProf" Type="Self.tbEspecialidadesProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbEspecialidadesProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbEstudiosProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbEstudiosProf" Type="Self.tbEstudiosProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbEstudiosProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbExperienciaProf_tbExperienciaLabo">
+          <End Role="tbExperienciasAcad" Type="Self.tbExperienciasAcad" Multiplicity="1" />
+          <End Role="tbExperienciasProf" Type="Self.tbExperienciasProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbExperienciasAcad">
+              <PropertyRef Name="idExperienciaLabo" />
+            </Principal>
+            <Dependent Role="tbExperienciasProf">
+              <PropertyRef Name="idExperienciaLabo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbExperienciaProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbExperienciasProf" Type="Self.tbExperienciasProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbExperienciasProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbGruposCurs_tbCursos">
+          <End Role="tbCursos" Type="Self.tbCursos" Multiplicity="1" />
+          <End Role="tbGruposCurs" Type="Self.tbGruposCurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCursos">
+              <PropertyRef Name="idCurso" />
+            </Principal>
+            <Dependent Role="tbGruposCurs">
+              <PropertyRef Name="idCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbHerramientasProy_tbProyectos">
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
+          <End Role="tbHerramientasProy" Type="Self.tbHerramientasProy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="tbHerramientasProy">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbHorarioCursLibr_tbCursosLibr">
+          <End Role="tbCursosLibr" Type="Self.tbCursosLibr" Multiplicity="1" />
+          <End Role="tbHorariosCursLibr" Type="Self.tbHorariosCursLibr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCursosLibr">
+              <PropertyRef Name="idCursosLibres" />
+            </Principal>
+            <Dependent Role="tbHorariosCursLibr">
+              <PropertyRef Name="idCursosLibres" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbHorarioCursLibr_tbHorario">
+          <End Role="tbHorarios" Type="Self.tbHorarios" Multiplicity="1" />
+          <End Role="tbHorariosCursLibr" Type="Self.tbHorariosCursLibr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbHorarios">
+              <PropertyRef Name="idHorario" />
+            </Principal>
+            <Dependent Role="tbHorariosCursLibr">
+              <PropertyRef Name="idHorario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbHorarioGrupCurs_tbGruposCurs">
+          <End Role="tbGruposCurs" Type="Self.tbGruposCurs" Multiplicity="1" />
+          <End Role="tbHorariosGrupCurs" Type="Self.tbHorariosGrupCurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbGruposCurs">
+              <PropertyRef Name="idGrupo" />
+            </Principal>
+            <Dependent Role="tbHorariosGrupCurs">
+              <PropertyRef Name="idGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbHorarioGrupCurs_tbHorario1">
+          <End Role="tbHorarios" Type="Self.tbHorarios" Multiplicity="1" />
+          <End Role="tbHorariosGrupCurs" Type="Self.tbHorariosGrupCurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbHorarios">
+              <PropertyRef Name="idHorario" />
+            </Principal>
+            <Dependent Role="tbHorariosGrupCurs">
+              <PropertyRef Name="idHorario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbHorariosCapa_tbCapacitaciones">
+          <End Role="tbCapacitaciones" Type="Self.tbCapacitaciones" Multiplicity="1" />
+          <End Role="tbHorariosCapa" Type="Self.tbHorariosCapa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCapacitaciones">
+              <PropertyRef Name="idCapacitacion" />
+            </Principal>
+            <Dependent Role="tbHorariosCapa">
+              <PropertyRef Name="idCapacitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbHorariosCapa_tbHorario">
+          <End Role="tbHorarios" Type="Self.tbHorarios" Multiplicity="1" />
+          <End Role="tbHorariosCapa" Type="Self.tbHorariosCapa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbHorarios">
+              <PropertyRef Name="idHorario" />
+            </Principal>
+            <Dependent Role="tbHorariosCapa">
+              <PropertyRef Name="idHorario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbMiembrosProy_tbMiembros">
+          <End Role="tbMiembros" Type="Self.tbMiembros" Multiplicity="1" />
+          <End Role="tbMiembrosProy" Type="Self.tbMiembrosProy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMiembros">
+              <PropertyRef Name="idMiembro" />
+            </Principal>
+            <Dependent Role="tbMiembrosProy">
+              <PropertyRef Name="idMiembro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbMiembrosProy_tbProyectos">
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
+          <End Role="tbMiembrosProy" Type="Self.tbMiembrosProy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="tbMiembrosProy">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbObservacionesProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbObservacionesProf" Type="Self.tbObservacionesProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbObservacionesProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbPeriodoLaboProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbPeriodosLaboProf" Type="Self.tbPeriodosLaboProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbPeriodosLaboProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProfesoresGrupCurs_tbGruposCurs">
+          <End Role="tbGruposCurs" Type="Self.tbGruposCurs" Multiplicity="1" />
+          <End Role="tbProfesoresGrupCurs" Type="Self.tbProfesoresGrupCurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbGruposCurs">
+              <PropertyRef Name="idGrupo" />
+            </Principal>
+            <Dependent Role="tbProfesoresGrupCurs">
+              <PropertyRef Name="idGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProfesoresGrupCurs_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbProfesoresGrupCurs" Type="Self.tbProfesoresGrupCurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbProfesoresGrupCurs">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosEmpresa_tbEmpresa">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbProyectosEmpresa" Type="Self.tbProyectosEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbProyectosEmpresa">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosEmpresa_tbProyectos">
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
+          <End Role="tbProyectosEmpresa" Type="Self.tbProyectosEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="tbProyectosEmpresa">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosEstu_tbEstudiantes">
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbProyectosEstu" Type="Self.tbProyectosEstu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEstudiantes">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="tbProyectosEstu">
+              <PropertyRef Name="idEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosEstu_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbProyectosEstu" Type="Self.tbProyectosEstu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbProyectosEstu">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosEstu_tbProyectos">
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
+          <End Role="tbProyectosEstu" Type="Self.tbProyectosEstu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="tbProyectosEstu">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbProyectosProf" Type="Self.tbProyectosProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbProyectosProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosProf_tbProyectos">
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
+          <End Role="tbProyectosProf" Type="Self.tbProyectosProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="tbProyectosProf">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbPuestosProf_tbEmpresa">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbPuestosProf" Type="Self.tbPuestosProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbPuestosProf">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbPuestosProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbPuestosProf" Type="Self.tbPuestosProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbPuestosProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbRequisitosCurs_tbCursos">
+          <End Role="tbCursos" Type="Self.tbCursos" Multiplicity="1" />
+          <End Role="tbRequisitosCurs" Type="Self.tbRequisitosCurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCursos">
+              <PropertyRef Name="idCurso" />
+            </Principal>
+            <Dependent Role="tbRequisitosCurs">
+              <PropertyRef Name="idCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbRequisitosCurs_tbCursos1">
+          <End Role="tbCursos" Type="Self.tbCursos" Multiplicity="1" />
+          <End Role="tbRequisitosCurs" Type="Self.tbRequisitosCurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCursos">
+              <PropertyRef Name="idCurso" />
+            </Principal>
+            <Dependent Role="tbRequisitosCurs">
+              <PropertyRef Name="idCursoRequ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbResponsablesProy_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbResponsablesProy" Type="Self.tbResponsablesProy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbResponsablesProy">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbResponsablesProy_tbProyectos">
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
+          <End Role="tbResponsablesProy" Type="Self.tbResponsablesProy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="tbResponsablesProy">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbTelefonos_tbCapacitaciones">
+          <End Role="tbCapacitaciones" Type="Self.tbCapacitaciones" Multiplicity="1" />
+          <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCapacitaciones">
+              <PropertyRef Name="idCapacitacion" />
+            </Principal>
+            <Dependent Role="tbTelefonos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbTelefonos_tbEmpresas">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbTelefonos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbTelefonos_tbEstudiantes">
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEstudiantes">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="tbTelefonos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbTelefonos_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbTelefonos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbTituloProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbTitulosProf" Type="Self.tbTitulosProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbTitulosProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDPortafolioUcrModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbArchivos" EntityType="Self.tbArchivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbArchivosMateDida" EntityType="Self.tbArchivosMateDida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbAutores" EntityType="Self.tbAutores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbAutoresMateDida" EntityType="Self.tbAutoresMateDida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbBolsasEmpl" EntityType="Self.tbBolsasEmpl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCapacitaciones" EntityType="Self.tbCapacitaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCapacitacionesEmpr" EntityType="Self.tbCapacitacionesEmpr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbConvenios" EntityType="Self.tbConvenios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbConveniosEmpr" EntityType="Self.tbConveniosEmpr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCoordinadoresProy" EntityType="Self.tbCoordinadoresProy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCorreos" EntityType="Self.tbCorreos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCorrequisitosCurs" EntityType="Self.tbCorrequisitosCurs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCurriculums" EntityType="Self.tbCurriculums" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCursos" EntityType="Self.tbCursos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCursosLibr" EntityType="Self.tbCursosLibr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbDirecciones" EntityType="Self.tbDirecciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbEmpresas" EntityType="Self.tbEmpresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbEmpresasMateDida" EntityType="Self.tbEmpresasMateDida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbEspecialidadesPorExpe" EntityType="Self.tbEspecialidadesPorExpe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbEspecialidadesProf" EntityType="Self.tbEspecialidadesProf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbEspecialidadesTitu" EntityType="Self.tbEspecialidadesTitu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbEstudiantes" EntityType="Self.tbEstudiantes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbEstudiosProf" EntityType="Self.tbEstudiosProf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbExperienciasAcad" EntityType="Self.tbExperienciasAcad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbExperienciasProf" EntityType="Self.tbExperienciasProf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbGruposCurs" EntityType="Self.tbGruposCurs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbHerramientas" EntityType="Self.tbHerramientas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbHerramientasProy" EntityType="Self.tbHerramientasProy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbHorarios" EntityType="Self.tbHorarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbHorariosCapa" EntityType="Self.tbHorariosCapa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbHorariosCursLibr" EntityType="Self.tbHorariosCursLibr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbHorariosGrupCurs" EntityType="Self.tbHorariosGrupCurs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbMaterialesDida" EntityType="Self.tbMaterialesDida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbMiembros" EntityType="Self.tbMiembros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbMiembrosProy" EntityType="Self.tbMiembrosProy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbObservacionesProf" EntityType="Self.tbObservacionesProf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbPeriodosLaboProf" EntityType="Self.tbPeriodosLaboProf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbProfesores" EntityType="Self.tbProfesores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbProfesoresGrupCurs" EntityType="Self.tbProfesoresGrupCurs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbProyectos" EntityType="Self.tbProyectos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbProyectosEmpresa" EntityType="Self.tbProyectosEmpresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbProyectosEstu" EntityType="Self.tbProyectosEstu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbProyectosProf" EntityType="Self.tbProyectosProf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbPuestosProf" EntityType="Self.tbPuestosProf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbRequisitosCurs" EntityType="Self.tbRequisitosCurs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbResponsablesProy" EntityType="Self.tbResponsablesProy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbTelefonos" EntityType="Self.tbTelefonos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbTitulosProf" EntityType="Self.tbTitulosProf" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbAportesProf_tbAportes" Association="Self.FK_tbAportesProf_tbAportes">
+            <End Role="tbHerramientas" EntitySet="tbHerramientas" />
+            <End Role="tbHerramientasProy" EntitySet="tbHerramientasProy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbArchivoRecurso_tbRecurso" Association="Self.FK_tbArchivoRecurso_tbRecurso">
+            <End Role="tbMaterialesDida" EntitySet="tbMaterialesDida" />
+            <End Role="tbArchivosMateDida" EntitySet="tbArchivosMateDida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbArchivosMateDida_tbArchivos" Association="Self.FK_tbArchivosMateDida_tbArchivos">
+            <End Role="tbArchivos" EntitySet="tbArchivos" />
+            <End Role="tbArchivosMateDida" EntitySet="tbArchivosMateDida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbAutoresMateDida_tbAutores" Association="Self.FK_tbAutoresMateDida_tbAutores">
+            <End Role="tbAutores" EntitySet="tbAutores" />
+            <End Role="tbAutoresMateDida" EntitySet="tbAutoresMateDida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbAutorRecurso_tbRecurso" Association="Self.FK_tbAutorRecurso_tbRecurso">
+            <End Role="tbMaterialesDida" EntitySet="tbMaterialesDida" />
+            <End Role="tbAutoresMateDida" EntitySet="tbAutoresMateDida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbBolsasEmpl_tbEmpresas" Association="Self.FK_tbBolsasEmpl_tbEmpresas">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbBolsasEmpl" EntitySet="tbBolsasEmpl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCapacitacionesEmpr_tbCapacitaciones" Association="Self.FK_tbCapacitacionesEmpr_tbCapacitaciones">
+            <End Role="tbCapacitaciones" EntitySet="tbCapacitaciones" />
+            <End Role="tbCapacitacionesEmpr" EntitySet="tbCapacitacionesEmpr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCapacitacionesEmpr_tbEmpresa" Association="Self.FK_tbCapacitacionesEmpr_tbEmpresa">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbCapacitacionesEmpr" EntitySet="tbCapacitacionesEmpr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbConveniosEmpresa_tbConvenios" Association="Self.FK_tbConveniosEmpresa_tbConvenios">
+            <End Role="tbConvenios" EntitySet="tbConvenios" />
+            <End Role="tbConveniosEmpr" EntitySet="tbConveniosEmpr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbConveniosEmpresa_tbEmpresa" Association="Self.FK_tbConveniosEmpresa_tbEmpresa">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbConveniosEmpr" EntitySet="tbConveniosEmpr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCoordinadoresProy_tbProfesores" Association="Self.FK_tbCoordinadoresProy_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbCoordinadoresProy" EntitySet="tbCoordinadoresProy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCoordinadoresProy_tbProyectos" Association="Self.FK_tbCoordinadoresProy_tbProyectos">
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+            <End Role="tbCoordinadoresProy" EntitySet="tbCoordinadoresProy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCorreos_tbCapacitaciones" Association="Self.FK_tbCorreos_tbCapacitaciones">
+            <End Role="tbCapacitaciones" EntitySet="tbCapacitaciones" />
+            <End Role="tbCorreos" EntitySet="tbCorreos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCorreos_tbEmpresas" Association="Self.FK_tbCorreos_tbEmpresas">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbCorreos" EntitySet="tbCorreos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCorreos_tbEstudiantes" Association="Self.FK_tbCorreos_tbEstudiantes">
+            <End Role="tbEstudiantes" EntitySet="tbEstudiantes" />
+            <End Role="tbCorreos" EntitySet="tbCorreos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCorreos_tbProfesores" Association="Self.FK_tbCorreos_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbCorreos" EntitySet="tbCorreos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCorrequisitosCurs_tbCursos" Association="Self.FK_tbCorrequisitosCurs_tbCursos">
+            <End Role="tbCursos" EntitySet="tbCursos" />
+            <End Role="tbCorrequisitosCurs" EntitySet="tbCorrequisitosCurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCorrequisitosCurs_tbCursos1" Association="Self.FK_tbCorrequisitosCurs_tbCursos1">
+            <End Role="tbCursos" EntitySet="tbCursos" />
+            <End Role="tbCorrequisitosCurs" EntitySet="tbCorrequisitosCurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCurriculum_tbEstudiantes" Association="Self.FK_tbCurriculum_tbEstudiantes">
+            <End Role="tbEstudiantes" EntitySet="tbEstudiantes" />
+            <End Role="tbCurriculums" EntitySet="tbCurriculums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCursosLibr_tbProfesores" Association="Self.FK_tbCursosLibr_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbCursosLibr" EntitySet="tbCursosLibr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbDirecciones_tbEmpresas" Association="Self.FK_tbDirecciones_tbEmpresas">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbDirecciones" EntitySet="tbDirecciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbDirecciones_tbEstudiantes" Association="Self.FK_tbDirecciones_tbEstudiantes">
+            <End Role="tbEstudiantes" EntitySet="tbEstudiantes" />
+            <End Role="tbDirecciones" EntitySet="tbDirecciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbDirecciones_tbProfesores" Association="Self.FK_tbDirecciones_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbDirecciones" EntitySet="tbDirecciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbEmpresaRecurso_tbEmpresa" Association="Self.FK_tbEmpresaRecurso_tbEmpresa">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbEmpresasMateDida" EntitySet="tbEmpresasMateDida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbEmpresaRecurso_tbRecurso" Association="Self.FK_tbEmpresaRecurso_tbRecurso">
+            <End Role="tbMaterialesDida" EntitySet="tbMaterialesDida" />
+            <End Role="tbEmpresasMateDida" EntitySet="tbEmpresasMateDida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbEspecialidadesProf_tbEspecialidades" Association="Self.FK_tbEspecialidadesProf_tbEspecialidades">
+            <End Role="tbEspecialidadesTitu" EntitySet="tbEspecialidadesTitu" />
+            <End Role="tbEspecialidadesProf" EntitySet="tbEspecialidadesProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbEspecialidadesProf_tbEspecialidadesPorExpe" Association="Self.FK_tbEspecialidadesProf_tbEspecialidadesPorExpe">
+            <End Role="tbEspecialidadesPorExpe" EntitySet="tbEspecialidadesPorExpe" />
+            <End Role="tbEspecialidadesProf" EntitySet="tbEspecialidadesProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbEspecialidadesProf_tbProfesores" Association="Self.FK_tbEspecialidadesProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbEspecialidadesProf" EntitySet="tbEspecialidadesProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbEstudiosProf_tbProfesores" Association="Self.FK_tbEstudiosProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbEstudiosProf" EntitySet="tbEstudiosProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbExperienciaProf_tbExperienciaLabo" Association="Self.FK_tbExperienciaProf_tbExperienciaLabo">
+            <End Role="tbExperienciasAcad" EntitySet="tbExperienciasAcad" />
+            <End Role="tbExperienciasProf" EntitySet="tbExperienciasProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbExperienciaProf_tbProfesores" Association="Self.FK_tbExperienciaProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbExperienciasProf" EntitySet="tbExperienciasProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbGruposCurs_tbCursos" Association="Self.FK_tbGruposCurs_tbCursos">
+            <End Role="tbCursos" EntitySet="tbCursos" />
+            <End Role="tbGruposCurs" EntitySet="tbGruposCurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbHerramientasProy_tbProyectos" Association="Self.FK_tbHerramientasProy_tbProyectos">
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+            <End Role="tbHerramientasProy" EntitySet="tbHerramientasProy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbHorarioCursLibr_tbCursosLibr" Association="Self.FK_tbHorarioCursLibr_tbCursosLibr">
+            <End Role="tbCursosLibr" EntitySet="tbCursosLibr" />
+            <End Role="tbHorariosCursLibr" EntitySet="tbHorariosCursLibr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbHorarioCursLibr_tbHorario" Association="Self.FK_tbHorarioCursLibr_tbHorario">
+            <End Role="tbHorarios" EntitySet="tbHorarios" />
+            <End Role="tbHorariosCursLibr" EntitySet="tbHorariosCursLibr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbHorarioGrupCurs_tbGruposCurs" Association="Self.FK_tbHorarioGrupCurs_tbGruposCurs">
+            <End Role="tbGruposCurs" EntitySet="tbGruposCurs" />
+            <End Role="tbHorariosGrupCurs" EntitySet="tbHorariosGrupCurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbHorarioGrupCurs_tbHorario1" Association="Self.FK_tbHorarioGrupCurs_tbHorario1">
+            <End Role="tbHorarios" EntitySet="tbHorarios" />
+            <End Role="tbHorariosGrupCurs" EntitySet="tbHorariosGrupCurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbHorariosCapa_tbCapacitaciones" Association="Self.FK_tbHorariosCapa_tbCapacitaciones">
+            <End Role="tbCapacitaciones" EntitySet="tbCapacitaciones" />
+            <End Role="tbHorariosCapa" EntitySet="tbHorariosCapa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbHorariosCapa_tbHorario" Association="Self.FK_tbHorariosCapa_tbHorario">
+            <End Role="tbHorarios" EntitySet="tbHorarios" />
+            <End Role="tbHorariosCapa" EntitySet="tbHorariosCapa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbMiembrosProy_tbMiembros" Association="Self.FK_tbMiembrosProy_tbMiembros">
+            <End Role="tbMiembros" EntitySet="tbMiembros" />
+            <End Role="tbMiembrosProy" EntitySet="tbMiembrosProy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbMiembrosProy_tbProyectos" Association="Self.FK_tbMiembrosProy_tbProyectos">
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+            <End Role="tbMiembrosProy" EntitySet="tbMiembrosProy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbObservacionesProf_tbProfesores" Association="Self.FK_tbObservacionesProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbObservacionesProf" EntitySet="tbObservacionesProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbPeriodoLaboProf_tbProfesores" Association="Self.FK_tbPeriodoLaboProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbPeriodosLaboProf" EntitySet="tbPeriodosLaboProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProfesoresGrupCurs_tbGruposCurs" Association="Self.FK_tbProfesoresGrupCurs_tbGruposCurs">
+            <End Role="tbGruposCurs" EntitySet="tbGruposCurs" />
+            <End Role="tbProfesoresGrupCurs" EntitySet="tbProfesoresGrupCurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProfesoresGrupCurs_tbProfesores" Association="Self.FK_tbProfesoresGrupCurs_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbProfesoresGrupCurs" EntitySet="tbProfesoresGrupCurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosEmpresa_tbEmpresa" Association="Self.FK_tbProyectosEmpresa_tbEmpresa">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbProyectosEmpresa" EntitySet="tbProyectosEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosEmpresa_tbProyectos" Association="Self.FK_tbProyectosEmpresa_tbProyectos">
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+            <End Role="tbProyectosEmpresa" EntitySet="tbProyectosEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosEstu_tbEstudiantes" Association="Self.FK_tbProyectosEstu_tbEstudiantes">
+            <End Role="tbEstudiantes" EntitySet="tbEstudiantes" />
+            <End Role="tbProyectosEstu" EntitySet="tbProyectosEstu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosEstu_tbProfesores" Association="Self.FK_tbProyectosEstu_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbProyectosEstu" EntitySet="tbProyectosEstu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosEstu_tbProyectos" Association="Self.FK_tbProyectosEstu_tbProyectos">
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+            <End Role="tbProyectosEstu" EntitySet="tbProyectosEstu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosProf_tbProfesores" Association="Self.FK_tbProyectosProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbProyectosProf" EntitySet="tbProyectosProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosProf_tbProyectos" Association="Self.FK_tbProyectosProf_tbProyectos">
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+            <End Role="tbProyectosProf" EntitySet="tbProyectosProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbPuestosProf_tbEmpresa" Association="Self.FK_tbPuestosProf_tbEmpresa">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbPuestosProf" EntitySet="tbPuestosProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbPuestosProf_tbProfesores" Association="Self.FK_tbPuestosProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbPuestosProf" EntitySet="tbPuestosProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbRequisitosCurs_tbCursos" Association="Self.FK_tbRequisitosCurs_tbCursos">
+            <End Role="tbCursos" EntitySet="tbCursos" />
+            <End Role="tbRequisitosCurs" EntitySet="tbRequisitosCurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbRequisitosCurs_tbCursos1" Association="Self.FK_tbRequisitosCurs_tbCursos1">
+            <End Role="tbCursos" EntitySet="tbCursos" />
+            <End Role="tbRequisitosCurs" EntitySet="tbRequisitosCurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbResponsablesProy_tbProfesores" Association="Self.FK_tbResponsablesProy_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbResponsablesProy" EntitySet="tbResponsablesProy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbResponsablesProy_tbProyectos" Association="Self.FK_tbResponsablesProy_tbProyectos">
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+            <End Role="tbResponsablesProy" EntitySet="tbResponsablesProy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbTelefonos_tbCapacitaciones" Association="Self.FK_tbTelefonos_tbCapacitaciones">
+            <End Role="tbCapacitaciones" EntitySet="tbCapacitaciones" />
+            <End Role="tbTelefonos" EntitySet="tbTelefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbTelefonos_tbEmpresas" Association="Self.FK_tbTelefonos_tbEmpresas">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbTelefonos" EntitySet="tbTelefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbTelefonos_tbEstudiantes" Association="Self.FK_tbTelefonos_tbEstudiantes">
+            <End Role="tbEstudiantes" EntitySet="tbEstudiantes" />
+            <End Role="tbTelefonos" EntitySet="tbTelefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbTelefonos_tbProfesores" Association="Self.FK_tbTelefonos_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbTelefonos" EntitySet="tbTelefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbTituloProf_tbProfesores" Association="Self.FK_tbTituloProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbTitulosProf" EntitySet="tbTitulosProf" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDPortafolioUcrModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbArchivos">
+          <Key>
+            <PropertyRef Name="idArchivo" />
+          </Key>
+          <Property Name="idArchivo" Type="Int32" Nullable="false" />
+          <Property Name="archivo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="tbMaterialesDida" Relationship="Self.tbArchivosMateDida" FromRole="tbArchivos" ToRole="tbMaterialesDida" />
+        </EntityType>
+        <EntityType Name="tbAutores">
+          <Key>
+            <PropertyRef Name="idAutor" />
+          </Key>
+          <Property Name="idAutor" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbMaterialesDida" Relationship="Self.tbAutoresMateDida" FromRole="tbAutores" ToRole="tbMaterialesDida" />
+        </EntityType>
+        <EntityType Name="tbBolsasEmpl">
+          <Key>
+            <PropertyRef Name="idBolsaEmpleo" />
+          </Key>
+          <Property Name="idBolsaEmpleo" Type="Int32" Nullable="false" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="perfilRequerido" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tipoBolsa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.FK_tbBolsasEmpl_tbEmpresas" FromRole="tbBolsasEmpl" ToRole="tbEmpresas" />
+        </EntityType>
+        <EntityType Name="tbCapacitaciones">
+          <Key>
+            <PropertyRef Name="idCapacitacion" />
+          </Key>
+          <Property Name="idCapacitacion" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ubicacion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="idPersona" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fechaInic" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="inversion" Type="Int32" Nullable="false" />
+          <Property Name="tipoCertificado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbCorreos" Relationship="Self.FK_tbCorreos_tbCapacitaciones" FromRole="tbCapacitaciones" ToRole="tbCorreos" />
+          <NavigationProperty Name="tbTelefonos" Relationship="Self.FK_tbTelefonos_tbCapacitaciones" FromRole="tbCapacitaciones" ToRole="tbTelefonos" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.tbCapacitacionesEmpr" FromRole="tbCapacitaciones" ToRole="tbEmpresas" />
+          <NavigationProperty Name="tbHorarios" Relationship="Self.tbHorariosCapa" FromRole="tbCapacitaciones" ToRole="tbHorarios" />
+        </EntityType>
+        <EntityType Name="tbConvenios">
+          <Key>
+            <PropertyRef Name="idConvenio" />
+          </Key>
+          <Property Name="idConvenio" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fechaCrea" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.tbConveniosEmpr" FromRole="tbConvenios" ToRole="tbEmpresas" />
+        </EntityType>
+        <EntityType Name="tbCorreos">
+          <Key>
+            <PropertyRef Name="idCorreo" />
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idCorreo" Type="Int32" Nullable="false" />
+          <Property Name="idPersona" Type="Int32" Nullable="false" />
+          <Property Name="tipoPersona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbCapacitaciones" Relationship="Self.FK_tbCorreos_tbCapacitaciones" FromRole="tbCorreos" ToRole="tbCapacitaciones" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.FK_tbCorreos_tbEmpresas" FromRole="tbCorreos" ToRole="tbEmpresas" />
+          <NavigationProperty Name="tbEstudiantes" Relationship="Self.FK_tbCorreos_tbEstudiantes" FromRole="tbCorreos" ToRole="tbEstudiantes" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbCorreos_tbProfesores" FromRole="tbCorreos" ToRole="tbProfesores" />
+        </EntityType>
+        <EntityType Name="tbCurriculums">
+          <Key>
+            <PropertyRef Name="idEstudiante" />
+          </Key>
+          <Property Name="idEstudiante" Type="Int32" Nullable="false" />
+          <Property Name="curriculum" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="tbEstudiantes" Relationship="Self.FK_tbCurriculum_tbEstudiantes" FromRole="tbCurriculums" ToRole="tbEstudiantes" />
+        </EntityType>
+        <EntityType Name="tbCursos">
+          <Key>
+            <PropertyRef Name="idCurso" />
+          </Key>
+          <Property Name="idCurso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sigla" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lugar" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ciclo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="creditos" Type="Int32" Nullable="false" />
+          <Property Name="programa" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="totalHoras" Type="Int32" Nullable="false" />
+          <Property Name="modalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbGruposCurs" Relationship="Self.FK_tbGruposCurs_tbCursos" FromRole="tbCursos" ToRole="tbGruposCurs" />
+          <NavigationProperty Name="tbCursos1" Relationship="Self.tbCorrequisitosCurs" FromRole="tbCursos" ToRole="tbCursos1" />
+          <NavigationProperty Name="tbCursos2" Relationship="Self.tbCorrequisitosCurs" FromRole="tbCursos1" ToRole="tbCursos" />
+          <NavigationProperty Name="tbCursos11" Relationship="Self.tbRequisitosCurs" FromRole="tbCursos" ToRole="tbCursos1" />
+          <NavigationProperty Name="tbCursos3" Relationship="Self.tbRequisitosCurs" FromRole="tbCursos1" ToRole="tbCursos" />
+        </EntityType>
+        <EntityType Name="tbCursosLibr">
+          <Key>
+            <PropertyRef Name="idCursosLibres" />
+          </Key>
+          <Property Name="idCursosLibres" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProfesor" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lugar" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cupo" Type="Int32" Nullable="false" />
+          <Property Name="programa" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbCursosLibr_tbProfesores" FromRole="tbCursosLibr" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbHorarios" Relationship="Self.tbHorariosCursLibr" FromRole="tbCursosLibr" ToRole="tbHorarios" />
+        </EntityType>
+        <EntityType Name="tbDirecciones">
+          <Key>
+            <PropertyRef Name="idDireccion" />
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idDireccion" Type="Int32" Nullable="false" />
+          <Property Name="tipoPersona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idPersona" Type="Int32" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="provincia" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="canton" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="distrito" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.FK_tbDirecciones_tbEmpresas" FromRole="tbDirecciones" ToRole="tbEmpresas" />
+          <NavigationProperty Name="tbEstudiantes" Relationship="Self.FK_tbDirecciones_tbEstudiantes" FromRole="tbDirecciones" ToRole="tbEstudiantes" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbDirecciones_tbProfesores" FromRole="tbDirecciones" ToRole="tbProfesores" />
+        </EntityType>
+        <EntityType Name="tbEmpresas">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcionGene" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="tbBolsasEmpl" Relationship="Self.FK_tbBolsasEmpl_tbEmpresas" FromRole="tbEmpresas" ToRole="tbBolsasEmpl" />
+          <NavigationProperty Name="tbCorreos" Relationship="Self.FK_tbCorreos_tbEmpresas" FromRole="tbEmpresas" ToRole="tbCorreos" />
+          <NavigationProperty Name="tbDirecciones" Relationship="Self.FK_tbDirecciones_tbEmpresas" FromRole="tbEmpresas" ToRole="tbDirecciones" />
+          <NavigationProperty Name="tbProyectosEmpresa" Relationship="Self.FK_tbProyectosEmpresa_tbEmpresa" FromRole="tbEmpresas" ToRole="tbProyectosEmpresa" />
+          <NavigationProperty Name="tbPuestosProf" Relationship="Self.FK_tbPuestosProf_tbEmpresa" FromRole="tbEmpresas" ToRole="tbPuestosProf" />
+          <NavigationProperty Name="tbTelefonos" Relationship="Self.FK_tbTelefonos_tbEmpresas" FromRole="tbEmpresas" ToRole="tbTelefonos" />
+          <NavigationProperty Name="tbCapacitaciones" Relationship="Self.tbCapacitacionesEmpr" FromRole="tbEmpresas" ToRole="tbCapacitaciones" />
+          <NavigationProperty Name="tbConvenios" Relationship="Self.tbConveniosEmpr" FromRole="tbEmpresas" ToRole="tbConvenios" />
+          <NavigationProperty Name="tbMaterialesDida" Relationship="Self.tbEmpresasMateDida" FromRole="tbEmpresas" ToRole="tbMaterialesDida" />
+        </EntityType>
+        <EntityType Name="tbEspecialidadesPorExpe">
+          <Key>
+            <PropertyRef Name="idEspecialidad" />
+          </Key>
+          <Property Name="idEspecialidad" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tiempoExpe" Type="Int32" Nullable="false" />
+          <Property Name="area" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="puesto" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tipoEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbEspecialidadesProf" Relationship="Self.FK_tbEspecialidadesProf_tbEspecialidadesPorExpe" FromRole="tbEspecialidadesPorExpe" ToRole="tbEspecialidadesProf" />
+        </EntityType>
+        <EntityType Name="tbEspecialidadesProf">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+            <PropertyRef Name="idEspecialidad" />
+          </Key>
+          <Property Name="idProfesor" Type="Int32" Nullable="false" />
+          <Property Name="idEspecialidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbEspecialidadesPorExpe" Relationship="Self.FK_tbEspecialidadesProf_tbEspecialidadesPorExpe" FromRole="tbEspecialidadesProf" ToRole="tbEspecialidadesPorExpe" />
+          <NavigationProperty Name="tbEspecialidadesTitu" Relationship="Self.FK_tbEspecialidadesProf_tbEspecialidades" FromRole="tbEspecialidadesProf" ToRole="tbEspecialidadesTitu" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbEspecialidadesProf_tbProfesores" FromRole="tbEspecialidadesProf" ToRole="tbProfesores" />
+        </EntityType>
+        <EntityType Name="tbEspecialidadesTitu">
+          <Key>
+            <PropertyRef Name="idEspecialidad" />
+          </Key>
+          <Property Name="idEspecialidad" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="institucion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbEspecialidadesProf" Relationship="Self.FK_tbEspecialidadesProf_tbEspecialidades" FromRole="tbEspecialidadesTitu" ToRole="tbEspecialidadesProf" />
+        </EntityType>
+        <EntityType Name="tbEstudiantes">
+          <Key>
+            <PropertyRef Name="idEstudiante" />
+          </Key>
+          <Property Name="idEstudiante" Type="Int32" Nullable="false" />
+          <Property Name="carnet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cedula" Type="Int32" Nullable="false" />
+          <Property Name="fechaNaci" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="genero" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="institucion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="carrera" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="tbCorreos" Relationship="Self.FK_tbCorreos_tbEstudiantes" FromRole="tbEstudiantes" ToRole="tbCorreos" />
+          <NavigationProperty Name="tbCurriculums" Relationship="Self.FK_tbCurriculum_tbEstudiantes" FromRole="tbEstudiantes" ToRole="tbCurriculums" />
+          <NavigationProperty Name="tbDirecciones" Relationship="Self.FK_tbDirecciones_tbEstudiantes" FromRole="tbEstudiantes" ToRole="tbDirecciones" />
+          <NavigationProperty Name="tbProyectosEstu" Relationship="Self.FK_tbProyectosEstu_tbEstudiantes" FromRole="tbEstudiantes" ToRole="tbProyectosEstu" />
+          <NavigationProperty Name="tbTelefonos" Relationship="Self.FK_tbTelefonos_tbEstudiantes" FromRole="tbEstudiantes" ToRole="tbTelefonos" />
+        </EntityType>
+        <EntityType Name="tbEstudiosProf">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+            <PropertyRef Name="idTitulo" />
+          </Key>
+          <Property Name="idProfesor" Type="Int32" Nullable="false" />
+          <Property Name="idTitulo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbEstudiosProf_tbProfesores" FromRole="tbEstudiosProf" ToRole="tbProfesores" />
+        </EntityType>
+        <EntityType Name="tbExperienciasAcad">
+          <Key>
+            <PropertyRef Name="idExperienciaLabo" />
+          </Key>
+          <Property Name="idExperienciaLabo" Type="Int32" Nullable="false" />
+          <Property Name="tiempo" Type="Int32" />
+          <Property Name="tipoCarg" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.tbExperienciasProf" FromRole="tbExperienciasAcad" ToRole="tbProfesores" />
+        </EntityType>
+        <EntityType Name="tbGruposCurs">
+          <Key>
+            <PropertyRef Name="idGrupo" />
+          </Key>
+          <Property Name="idGrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCurso" Type="Int32" Nullable="false" />
+          <Property Name="numeroGrup" Type="Int32" Nullable="false" />
+          <Property Name="cupoMaximo" Type="Int32" Nullable="false" />
+          <Property Name="cupoMinimo" Type="Int32" Nullable="false" />
+          <Property Name="cupoActual" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbCursos" Relationship="Self.FK_tbGruposCurs_tbCursos" FromRole="tbGruposCurs" ToRole="tbCursos" />
+          <NavigationProperty Name="tbHorarios" Relationship="Self.tbHorariosGrupCurs" FromRole="tbGruposCurs" ToRole="tbHorarios" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.tbProfesoresGrupCurs" FromRole="tbGruposCurs" ToRole="tbProfesores" />
+        </EntityType>
+        <EntityType Name="tbHerramientas">
+          <Key>
+            <PropertyRef Name="idHerramienta" />
+          </Key>
+          <Property Name="idHerramienta" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbHerramientasProy" Relationship="Self.FK_tbAportesProf_tbAportes" FromRole="tbHerramientas" ToRole="tbHerramientasProy" />
+        </EntityType>
+        <EntityType Name="tbHerramientasProy">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+            <PropertyRef Name="idHerramienta" />
+          </Key>
+          <Property Name="idProyecto" Type="Int32" Nullable="false" />
+          <Property Name="idHerramienta" Type="Int32" Nullable="false" />
+          <Property Name="horasInvertidas" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbHerramientas" Relationship="Self.FK_tbAportesProf_tbAportes" FromRole="tbHerramientasProy" ToRole="tbHerramientas" />
+          <NavigationProperty Name="tbProyectos" Relationship="Self.FK_tbHerramientasProy_tbProyectos" FromRole="tbHerramientasProy" ToRole="tbProyectos" />
+        </EntityType>
+        <EntityType Name="tbHorarios">
+          <Key>
+            <PropertyRef Name="idHorario" />
+          </Key>
+          <Property Name="idHorario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dia" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="horaInic" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="horaSali" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbCapacitaciones" Relationship="Self.tbHorariosCapa" FromRole="tbHorarios" ToRole="tbCapacitaciones" />
+          <NavigationProperty Name="tbCursosLibr" Relationship="Self.tbHorariosCursLibr" FromRole="tbHorarios" ToRole="tbCursosLibr" />
+          <NavigationProperty Name="tbGruposCurs" Relationship="Self.tbHorariosGrupCurs" FromRole="tbHorarios" ToRole="tbGruposCurs" />
+        </EntityType>
+        <EntityType Name="tbMaterialesDida">
+          <Key>
+            <PropertyRef Name="idMaterialDida" />
+          </Key>
+          <Property Name="idMaterialDida" Type="Int32" Nullable="false" />
+          <Property Name="nombreArch" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fechaPubl" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pais" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbArchivos" Relationship="Self.tbArchivosMateDida" FromRole="tbMaterialesDida" ToRole="tbArchivos" />
+          <NavigationProperty Name="tbAutores" Relationship="Self.tbAutoresMateDida" FromRole="tbMaterialesDida" ToRole="tbAutores" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.tbEmpresasMateDida" FromRole="tbMaterialesDida" ToRole="tbEmpresas" />
+        </EntityType>
+        <EntityType Name="tbMiembros">
+          <Key>
+            <PropertyRef Name="idMiembro" />
+          </Key>
+          <Property Name="tipo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="idMiembro" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="carrera" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbProyectos" Relationship="Self.tbMiembrosProy" FromRole="tbMiembros" ToRole="tbProyectos" />
+        </EntityType>
+        <EntityType Name="tbObservacionesProf">
+          <Key>
+            <PropertyRef Name="idObservacion" />
+            <PropertyRef Name="idProfesor" />
+          </Key>
+          <Property Name="idObservacion" Type="Int32" Nullable="false" />
+          <Property Name="idProfesor" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="observador" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbObservacionesProf_tbProfesores" FromRole="tbObservacionesProf" ToRole="tbProfesores" />
+        </EntityType>
+        <EntityType Name="tbPeriodosLaboProf">
+          <Key>
+            <PropertyRef Name="idPeriodo" />
+            <PropertyRef Name="idProfesor" />
+          </Key>
+          <Property Name="idPeriodo" Type="Int32" Nullable="false" />
+          <Property Name="idProfesor" Type="Int32" Nullable="false" />
+          <Property Name="fechaIngr" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaSali" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbPeriodoLaboProf_tbProfesores" FromRole="tbPeriodosLaboProf" ToRole="tbProfesores" />
+        </EntityType>
+        <EntityType Name="tbProfesores">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+          </Key>
+          <Property Name="idProfesor" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="apaellido1" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="apellido2" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="genero" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fechaNaci" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="jornada" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="identificacion" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tipoIden" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="curriculum" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="tbCorreos" Relationship="Self.FK_tbCorreos_tbProfesores" FromRole="tbProfesores" ToRole="tbCorreos" />
+          <NavigationProperty Name="tbCursosLibr" Relationship="Self.FK_tbCursosLibr_tbProfesores" FromRole="tbProfesores" ToRole="tbCursosLibr" />
+          <NavigationProperty Name="tbDirecciones" Relationship="Self.FK_tbDirecciones_tbProfesores" FromRole="tbProfesores" ToRole="tbDirecciones" />
+          <NavigationProperty Name="tbEspecialidadesProf" Relationship="Self.FK_tbEspecialidadesProf_tbProfesores" FromRole="tbProfesores" ToRole="tbEspecialidadesProf" />
+          <NavigationProperty Name="tbEstudiosProf" Relationship="Self.FK_tbEstudiosProf_tbProfesores" FromRole="tbProfesores" ToRole="tbEstudiosProf" />
+          <NavigationProperty Name="tbObservacionesProf" Relationship="Self.FK_tbObservacionesProf_tbProfesores" FromRole="tbProfesores" ToRole="tbObservacionesProf" />
+          <NavigationProperty Name="tbPeriodosLaboProf" Relationship="Self.FK_tbPeriodoLaboProf_tbProfesores" FromRole="tbProfesores" ToRole="tbPeriodosLaboProf" />
+          <NavigationProperty Name="tbProyectosEstu" Relationship="Self.FK_tbProyectosEstu_tbProfesores" FromRole="tbProfesores" ToRole="tbProyectosEstu" />
+          <NavigationProperty Name="tbProyectosProf" Relationship="Self.FK_tbProyectosProf_tbProfesores" FromRole="tbProfesores" ToRole="tbProyectosProf" />
+          <NavigationProperty Name="tbPuestosProf" Relationship="Self.FK_tbPuestosProf_tbProfesores" FromRole="tbProfesores" ToRole="tbPuestosProf" />
+          <NavigationProperty Name="tbTelefonos" Relationship="Self.FK_tbTelefonos_tbProfesores" FromRole="tbProfesores" ToRole="tbTelefonos" />
+          <NavigationProperty Name="tbTitulosProf" Relationship="Self.FK_tbTituloProf_tbProfesores" FromRole="tbProfesores" ToRole="tbTitulosProf" />
+          <NavigationProperty Name="tbProyectos" Relationship="Self.tbCoordinadoresProy" FromRole="tbProfesores" ToRole="tbProyectos" />
+          <NavigationProperty Name="tbExperienciasAcad" Relationship="Self.tbExperienciasProf" FromRole="tbProfesores" ToRole="tbExperienciasAcad" />
+          <NavigationProperty Name="tbGruposCurs" Relationship="Self.tbProfesoresGrupCurs" FromRole="tbProfesores" ToRole="tbGruposCurs" />
+          <NavigationProperty Name="tbProyectos1" Relationship="Self.tbResponsablesProy" FromRole="tbProfesores" ToRole="tbProyectos" />
+        </EntityType>
+        <EntityType Name="tbProyectos">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+          </Key>
+          <Property Name="idProyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="informacion" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="tbHerramientasProy" Relationship="Self.FK_tbHerramientasProy_tbProyectos" FromRole="tbProyectos" ToRole="tbHerramientasProy" />
+          <NavigationProperty Name="tbProyectosEmpresa" Relationship="Self.FK_tbProyectosEmpresa_tbProyectos" FromRole="tbProyectos" ToRole="tbProyectosEmpresa" />
+          <NavigationProperty Name="tbProyectosEstu" Relationship="Self.FK_tbProyectosEstu_tbProyectos" FromRole="tbProyectos" ToRole="tbProyectosEstu" />
+          <NavigationProperty Name="tbProyectosProf" Relationship="Self.FK_tbProyectosProf_tbProyectos" FromRole="tbProyectos" ToRole="tbProyectosProf" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.tbCoordinadoresProy" FromRole="tbProyectos" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbMiembros" Relationship="Self.tbMiembrosProy" FromRole="tbProyectos" ToRole="tbMiembros" />
+          <NavigationProperty Name="tbProfesores1" Relationship="Self.tbResponsablesProy" FromRole="tbProyectos" ToRole="tbProfesores" />
+        </EntityType>
+        <EntityType Name="tbProyectosEmpresa">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+            <PropertyRef Name="idProyecto" />
+          </Key>
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="idProyecto" Type="Int32" Nullable="false" />
+          <Property Name="horasInvertidas" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.FK_tbProyectosEmpresa_tbEmpresa" FromRole="tbProyectosEmpresa" ToRole="tbEmpresas" />
+          <NavigationProperty Name="tbProyectos" Relationship="Self.FK_tbProyectosEmpresa_tbProyectos" FromRole="tbProyectosEmpresa" ToRole="tbProyectos" />
+        </EntityType>
+        <EntityType Name="tbProyectosEstu">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+            <PropertyRef Name="idEstudiante" />
+          </Key>
+          <Property Name="idProyecto" Type="Int32" Nullable="false" />
+          <Property Name="idEstudiante" Type="Int32" Nullable="false" />
+          <Property Name="idProfesor" Type="Int32" Nullable="false" />
+          <Property Name="horasInve" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbEstudiantes" Relationship="Self.FK_tbProyectosEstu_tbEstudiantes" FromRole="tbProyectosEstu" ToRole="tbEstudiantes" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbProyectosEstu_tbProfesores" FromRole="tbProyectosEstu" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbProyectos" Relationship="Self.FK_tbProyectosEstu_tbProyectos" FromRole="tbProyectosEstu" ToRole="tbProyectos" />
+        </EntityType>
+        <EntityType Name="tbProyectosProf">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+            <PropertyRef Name="idProfesor" />
+          </Key>
+          <Property Name="idProyecto" Type="Int32" Nullable="false" />
+          <Property Name="idProfesor" Type="Int32" Nullable="false" />
+          <Property Name="horasInvertidas" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbProyectosProf_tbProfesores" FromRole="tbProyectosProf" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbProyectos" Relationship="Self.FK_tbProyectosProf_tbProyectos" FromRole="tbProyectosProf" ToRole="tbProyectos" />
+        </EntityType>
+        <EntityType Name="tbPuestosProf">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idProfesor" Type="Int32" Nullable="false" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="puesto" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tiempoLabo" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.FK_tbPuestosProf_tbEmpresa" FromRole="tbPuestosProf" ToRole="tbEmpresas" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbPuestosProf_tbProfesores" FromRole="tbPuestosProf" ToRole="tbProfesores" />
+        </EntityType>
+        <EntityType Name="tbTelefonos">
+          <Key>
+            <PropertyRef Name="idTelefono" />
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idTelefono" Type="Int32" Nullable="false" />
+          <Property Name="telefono" Type="Int32" Nullable="false" />
+          <Property Name="idPersona" Type="Int32" Nullable="false" />
+          <Property Name="tipoPers" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbCapacitaciones" Relationship="Self.FK_tbTelefonos_tbCapacitaciones" FromRole="tbTelefonos" ToRole="tbCapacitaciones" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.FK_tbTelefonos_tbEmpresas" FromRole="tbTelefonos" ToRole="tbEmpresas" />
+          <NavigationProperty Name="tbEstudiantes" Relationship="Self.FK_tbTelefonos_tbEstudiantes" FromRole="tbTelefonos" ToRole="tbEstudiantes" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbTelefonos_tbProfesores" FromRole="tbTelefonos" ToRole="tbProfesores" />
+        </EntityType>
+        <EntityType Name="tbTitulosProf">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+            <PropertyRef Name="idTitulo" />
+          </Key>
+          <Property Name="idProfesor" Type="Int32" Nullable="false" />
+          <Property Name="idTitulo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbTituloProf_tbProfesores" FromRole="tbTitulosProf" ToRole="tbProfesores" />
+        </EntityType>
+        <Association Name="FK_tbBolsasEmpl_tbEmpresas">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbBolsasEmpl" Type="Self.tbBolsasEmpl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbBolsasEmpl">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCorreos_tbCapacitaciones">
+          <End Role="tbCapacitaciones" Type="Self.tbCapacitaciones" Multiplicity="1" />
+          <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCapacitaciones">
+              <PropertyRef Name="idCapacitacion" />
+            </Principal>
+            <Dependent Role="tbCorreos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbTelefonos_tbCapacitaciones">
+          <End Role="tbCapacitaciones" Type="Self.tbCapacitaciones" Multiplicity="1" />
+          <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCapacitaciones">
+              <PropertyRef Name="idCapacitacion" />
+            </Principal>
+            <Dependent Role="tbTelefonos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCorreos_tbEmpresas">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbCorreos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCorreos_tbEstudiantes">
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEstudiantes">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="tbCorreos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCorreos_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbCorreos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCurriculum_tbEstudiantes">
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbCurriculums" Type="Self.tbCurriculums" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbEstudiantes">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="tbCurriculums">
+              <PropertyRef Name="idEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbGruposCurs_tbCursos">
+          <End Role="tbCursos" Type="Self.tbCursos" Multiplicity="1" />
+          <End Role="tbGruposCurs" Type="Self.tbGruposCurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCursos">
+              <PropertyRef Name="idCurso" />
+            </Principal>
+            <Dependent Role="tbGruposCurs">
+              <PropertyRef Name="idCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCursosLibr_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbCursosLibr" Type="Self.tbCursosLibr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbCursosLibr">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbDirecciones_tbEmpresas">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbDirecciones" Type="Self.tbDirecciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbDirecciones">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbDirecciones_tbEstudiantes">
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbDirecciones" Type="Self.tbDirecciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEstudiantes">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="tbDirecciones">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbDirecciones_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbDirecciones" Type="Self.tbDirecciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbDirecciones">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosEmpresa_tbEmpresa">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbProyectosEmpresa" Type="Self.tbProyectosEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbProyectosEmpresa">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbPuestosProf_tbEmpresa">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbPuestosProf" Type="Self.tbPuestosProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbPuestosProf">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbTelefonos_tbEmpresas">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="tbTelefonos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbEspecialidadesProf_tbEspecialidadesPorExpe">
+          <End Role="tbEspecialidadesPorExpe" Type="Self.tbEspecialidadesPorExpe" Multiplicity="1" />
+          <End Role="tbEspecialidadesProf" Type="Self.tbEspecialidadesProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEspecialidadesPorExpe">
+              <PropertyRef Name="idEspecialidad" />
+            </Principal>
+            <Dependent Role="tbEspecialidadesProf">
+              <PropertyRef Name="idEspecialidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbEspecialidadesProf_tbEspecialidades">
+          <End Role="tbEspecialidadesTitu" Type="Self.tbEspecialidadesTitu" Multiplicity="1" />
+          <End Role="tbEspecialidadesProf" Type="Self.tbEspecialidadesProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEspecialidadesTitu">
+              <PropertyRef Name="idEspecialidad" />
+            </Principal>
+            <Dependent Role="tbEspecialidadesProf">
+              <PropertyRef Name="idEspecialidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbEspecialidadesProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbEspecialidadesProf" Type="Self.tbEspecialidadesProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbEspecialidadesProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosEstu_tbEstudiantes">
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbProyectosEstu" Type="Self.tbProyectosEstu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEstudiantes">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="tbProyectosEstu">
+              <PropertyRef Name="idEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbTelefonos_tbEstudiantes">
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEstudiantes">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="tbTelefonos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbEstudiosProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbEstudiosProf" Type="Self.tbEstudiosProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbEstudiosProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbAportesProf_tbAportes">
+          <End Role="tbHerramientas" Type="Self.tbHerramientas" Multiplicity="1" />
+          <End Role="tbHerramientasProy" Type="Self.tbHerramientasProy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbHerramientas">
+              <PropertyRef Name="idHerramienta" />
+            </Principal>
+            <Dependent Role="tbHerramientasProy">
+              <PropertyRef Name="idHerramienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbHerramientasProy_tbProyectos">
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
+          <End Role="tbHerramientasProy" Type="Self.tbHerramientasProy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="tbHerramientasProy">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbObservacionesProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbObservacionesProf" Type="Self.tbObservacionesProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbObservacionesProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbPeriodoLaboProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbPeriodosLaboProf" Type="Self.tbPeriodosLaboProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbPeriodosLaboProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosEstu_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbProyectosEstu" Type="Self.tbProyectosEstu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbProyectosEstu">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbProyectosProf" Type="Self.tbProyectosProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbProyectosProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbPuestosProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbPuestosProf" Type="Self.tbPuestosProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbPuestosProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbTelefonos_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbTelefonos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbTituloProf_tbProfesores">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbTitulosProf" Type="Self.tbTitulosProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProfesores">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="tbTitulosProf">
+              <PropertyRef Name="idProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosEmpresa_tbProyectos">
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
+          <End Role="tbProyectosEmpresa" Type="Self.tbProyectosEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="tbProyectosEmpresa">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosEstu_tbProyectos">
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
+          <End Role="tbProyectosEstu" Type="Self.tbProyectosEstu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="tbProyectosEstu">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProyectosProf_tbProyectos">
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
+          <End Role="tbProyectosProf" Type="Self.tbProyectosProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="tbProyectosProf">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbArchivosMateDida">
+          <End Role="tbMaterialesDida" Type="Self.tbMaterialesDida" Multiplicity="*" />
+          <End Role="tbArchivos" Type="Self.tbArchivos" Multiplicity="*" />
+        </Association>
+        <Association Name="tbAutoresMateDida">
+          <End Role="tbAutores" Type="Self.tbAutores" Multiplicity="*" />
+          <End Role="tbMaterialesDida" Type="Self.tbMaterialesDida" Multiplicity="*" />
+        </Association>
+        <Association Name="tbCapacitacionesEmpr">
+          <End Role="tbCapacitaciones" Type="Self.tbCapacitaciones" Multiplicity="*" />
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="*" />
+        </Association>
+        <Association Name="tbConveniosEmpr">
+          <End Role="tbConvenios" Type="Self.tbConvenios" Multiplicity="*" />
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="*" />
+        </Association>
+        <Association Name="tbCoordinadoresProy">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="*" />
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="*" />
+        </Association>
+        <Association Name="tbCorrequisitosCurs">
+          <End Role="tbCursos" Type="Self.tbCursos" Multiplicity="*" />
+          <End Role="tbCursos1" Type="Self.tbCursos" Multiplicity="*" />
+        </Association>
+        <Association Name="tbEmpresasMateDida">
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="*" />
+          <End Role="tbMaterialesDida" Type="Self.tbMaterialesDida" Multiplicity="*" />
+        </Association>
+        <Association Name="tbExperienciasProf">
+          <End Role="tbExperienciasAcad" Type="Self.tbExperienciasAcad" Multiplicity="*" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="*" />
+        </Association>
+        <Association Name="tbHorariosCapa">
+          <End Role="tbCapacitaciones" Type="Self.tbCapacitaciones" Multiplicity="*" />
+          <End Role="tbHorarios" Type="Self.tbHorarios" Multiplicity="*" />
+        </Association>
+        <Association Name="tbHorariosCursLibr">
+          <End Role="tbCursosLibr" Type="Self.tbCursosLibr" Multiplicity="*" />
+          <End Role="tbHorarios" Type="Self.tbHorarios" Multiplicity="*" />
+        </Association>
+        <Association Name="tbHorariosGrupCurs">
+          <End Role="tbGruposCurs" Type="Self.tbGruposCurs" Multiplicity="*" />
+          <End Role="tbHorarios" Type="Self.tbHorarios" Multiplicity="*" />
+        </Association>
+        <Association Name="tbMiembrosProy">
+          <End Role="tbMiembros" Type="Self.tbMiembros" Multiplicity="*" />
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="*" />
+        </Association>
+        <Association Name="tbProfesoresGrupCurs">
+          <End Role="tbGruposCurs" Type="Self.tbGruposCurs" Multiplicity="*" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="*" />
+        </Association>
+        <Association Name="tbRequisitosCurs">
+          <End Role="tbCursos" Type="Self.tbCursos" Multiplicity="*" />
+          <End Role="tbCursos1" Type="Self.tbCursos" Multiplicity="*" />
+        </Association>
+        <Association Name="tbResponsablesProy">
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="*" />
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="BDPortafolioUcrContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tbArchivos" EntityType="Self.tbArchivos" />
+          <EntitySet Name="tbAutores" EntityType="Self.tbAutores" />
+          <EntitySet Name="tbBolsasEmpl" EntityType="Self.tbBolsasEmpl" />
+          <EntitySet Name="tbCapacitaciones" EntityType="Self.tbCapacitaciones" />
+          <EntitySet Name="tbConvenios" EntityType="Self.tbConvenios" />
+          <EntitySet Name="tbCorreos" EntityType="Self.tbCorreos" />
+          <EntitySet Name="tbCurriculums" EntityType="Self.tbCurriculums" />
+          <EntitySet Name="tbCursos" EntityType="Self.tbCursos" />
+          <EntitySet Name="tbCursosLibr" EntityType="Self.tbCursosLibr" />
+          <EntitySet Name="tbDirecciones" EntityType="Self.tbDirecciones" />
+          <EntitySet Name="tbEmpresas" EntityType="Self.tbEmpresas" />
+          <EntitySet Name="tbEspecialidadesPorExpe" EntityType="Self.tbEspecialidadesPorExpe" />
+          <EntitySet Name="tbEspecialidadesProf" EntityType="Self.tbEspecialidadesProf" />
+          <EntitySet Name="tbEspecialidadesTitu" EntityType="Self.tbEspecialidadesTitu" />
+          <EntitySet Name="tbEstudiantes" EntityType="Self.tbEstudiantes" />
+          <EntitySet Name="tbEstudiosProf" EntityType="Self.tbEstudiosProf" />
+          <EntitySet Name="tbExperienciasAcad" EntityType="Self.tbExperienciasAcad" />
+          <EntitySet Name="tbGruposCurs" EntityType="Self.tbGruposCurs" />
+          <EntitySet Name="tbHerramientas" EntityType="Self.tbHerramientas" />
+          <EntitySet Name="tbHerramientasProy" EntityType="Self.tbHerramientasProy" />
+          <EntitySet Name="tbHorarios" EntityType="Self.tbHorarios" />
+          <EntitySet Name="tbMaterialesDida" EntityType="Self.tbMaterialesDida" />
+          <EntitySet Name="tbMiembros" EntityType="Self.tbMiembros" />
+          <EntitySet Name="tbObservacionesProf" EntityType="Self.tbObservacionesProf" />
+          <EntitySet Name="tbPeriodosLaboProf" EntityType="Self.tbPeriodosLaboProf" />
+          <EntitySet Name="tbProfesores" EntityType="Self.tbProfesores" />
+          <EntitySet Name="tbProyectos" EntityType="Self.tbProyectos" />
+          <EntitySet Name="tbProyectosEmpresa" EntityType="Self.tbProyectosEmpresa" />
+          <EntitySet Name="tbProyectosEstu" EntityType="Self.tbProyectosEstu" />
+          <EntitySet Name="tbProyectosProf" EntityType="Self.tbProyectosProf" />
+          <EntitySet Name="tbPuestosProf" EntityType="Self.tbPuestosProf" />
+          <EntitySet Name="tbTelefonos" EntityType="Self.tbTelefonos" />
+          <EntitySet Name="tbTitulosProf" EntityType="Self.tbTitulosProf" />
+          <AssociationSet Name="FK_tbBolsasEmpl_tbEmpresas" Association="Self.FK_tbBolsasEmpl_tbEmpresas">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbBolsasEmpl" EntitySet="tbBolsasEmpl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCorreos_tbCapacitaciones" Association="Self.FK_tbCorreos_tbCapacitaciones">
+            <End Role="tbCapacitaciones" EntitySet="tbCapacitaciones" />
+            <End Role="tbCorreos" EntitySet="tbCorreos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbTelefonos_tbCapacitaciones" Association="Self.FK_tbTelefonos_tbCapacitaciones">
+            <End Role="tbCapacitaciones" EntitySet="tbCapacitaciones" />
+            <End Role="tbTelefonos" EntitySet="tbTelefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCorreos_tbEmpresas" Association="Self.FK_tbCorreos_tbEmpresas">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbCorreos" EntitySet="tbCorreos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCorreos_tbEstudiantes" Association="Self.FK_tbCorreos_tbEstudiantes">
+            <End Role="tbEstudiantes" EntitySet="tbEstudiantes" />
+            <End Role="tbCorreos" EntitySet="tbCorreos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCorreos_tbProfesores" Association="Self.FK_tbCorreos_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbCorreos" EntitySet="tbCorreos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCurriculum_tbEstudiantes" Association="Self.FK_tbCurriculum_tbEstudiantes">
+            <End Role="tbEstudiantes" EntitySet="tbEstudiantes" />
+            <End Role="tbCurriculums" EntitySet="tbCurriculums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbGruposCurs_tbCursos" Association="Self.FK_tbGruposCurs_tbCursos">
+            <End Role="tbCursos" EntitySet="tbCursos" />
+            <End Role="tbGruposCurs" EntitySet="tbGruposCurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCursosLibr_tbProfesores" Association="Self.FK_tbCursosLibr_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbCursosLibr" EntitySet="tbCursosLibr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbDirecciones_tbEmpresas" Association="Self.FK_tbDirecciones_tbEmpresas">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbDirecciones" EntitySet="tbDirecciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbDirecciones_tbEstudiantes" Association="Self.FK_tbDirecciones_tbEstudiantes">
+            <End Role="tbEstudiantes" EntitySet="tbEstudiantes" />
+            <End Role="tbDirecciones" EntitySet="tbDirecciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbDirecciones_tbProfesores" Association="Self.FK_tbDirecciones_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbDirecciones" EntitySet="tbDirecciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosEmpresa_tbEmpresa" Association="Self.FK_tbProyectosEmpresa_tbEmpresa">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbProyectosEmpresa" EntitySet="tbProyectosEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbPuestosProf_tbEmpresa" Association="Self.FK_tbPuestosProf_tbEmpresa">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbPuestosProf" EntitySet="tbPuestosProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbTelefonos_tbEmpresas" Association="Self.FK_tbTelefonos_tbEmpresas">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbTelefonos" EntitySet="tbTelefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbEspecialidadesProf_tbEspecialidadesPorExpe" Association="Self.FK_tbEspecialidadesProf_tbEspecialidadesPorExpe">
+            <End Role="tbEspecialidadesPorExpe" EntitySet="tbEspecialidadesPorExpe" />
+            <End Role="tbEspecialidadesProf" EntitySet="tbEspecialidadesProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbEspecialidadesProf_tbEspecialidades" Association="Self.FK_tbEspecialidadesProf_tbEspecialidades">
+            <End Role="tbEspecialidadesTitu" EntitySet="tbEspecialidadesTitu" />
+            <End Role="tbEspecialidadesProf" EntitySet="tbEspecialidadesProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbEspecialidadesProf_tbProfesores" Association="Self.FK_tbEspecialidadesProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbEspecialidadesProf" EntitySet="tbEspecialidadesProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosEstu_tbEstudiantes" Association="Self.FK_tbProyectosEstu_tbEstudiantes">
+            <End Role="tbEstudiantes" EntitySet="tbEstudiantes" />
+            <End Role="tbProyectosEstu" EntitySet="tbProyectosEstu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbTelefonos_tbEstudiantes" Association="Self.FK_tbTelefonos_tbEstudiantes">
+            <End Role="tbEstudiantes" EntitySet="tbEstudiantes" />
+            <End Role="tbTelefonos" EntitySet="tbTelefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbEstudiosProf_tbProfesores" Association="Self.FK_tbEstudiosProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbEstudiosProf" EntitySet="tbEstudiosProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbAportesProf_tbAportes" Association="Self.FK_tbAportesProf_tbAportes">
+            <End Role="tbHerramientas" EntitySet="tbHerramientas" />
+            <End Role="tbHerramientasProy" EntitySet="tbHerramientasProy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbHerramientasProy_tbProyectos" Association="Self.FK_tbHerramientasProy_tbProyectos">
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+            <End Role="tbHerramientasProy" EntitySet="tbHerramientasProy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbObservacionesProf_tbProfesores" Association="Self.FK_tbObservacionesProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbObservacionesProf" EntitySet="tbObservacionesProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbPeriodoLaboProf_tbProfesores" Association="Self.FK_tbPeriodoLaboProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbPeriodosLaboProf" EntitySet="tbPeriodosLaboProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosEstu_tbProfesores" Association="Self.FK_tbProyectosEstu_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbProyectosEstu" EntitySet="tbProyectosEstu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosProf_tbProfesores" Association="Self.FK_tbProyectosProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbProyectosProf" EntitySet="tbProyectosProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbPuestosProf_tbProfesores" Association="Self.FK_tbPuestosProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbPuestosProf" EntitySet="tbPuestosProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbTelefonos_tbProfesores" Association="Self.FK_tbTelefonos_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbTelefonos" EntitySet="tbTelefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbTituloProf_tbProfesores" Association="Self.FK_tbTituloProf_tbProfesores">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbTitulosProf" EntitySet="tbTitulosProf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosEmpresa_tbProyectos" Association="Self.FK_tbProyectosEmpresa_tbProyectos">
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+            <End Role="tbProyectosEmpresa" EntitySet="tbProyectosEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosEstu_tbProyectos" Association="Self.FK_tbProyectosEstu_tbProyectos">
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+            <End Role="tbProyectosEstu" EntitySet="tbProyectosEstu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProyectosProf_tbProyectos" Association="Self.FK_tbProyectosProf_tbProyectos">
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+            <End Role="tbProyectosProf" EntitySet="tbProyectosProf" />
+          </AssociationSet>
+          <AssociationSet Name="tbArchivosMateDida" Association="Self.tbArchivosMateDida">
+            <End Role="tbMaterialesDida" EntitySet="tbMaterialesDida" />
+            <End Role="tbArchivos" EntitySet="tbArchivos" />
+          </AssociationSet>
+          <AssociationSet Name="tbAutoresMateDida" Association="Self.tbAutoresMateDida">
+            <End Role="tbAutores" EntitySet="tbAutores" />
+            <End Role="tbMaterialesDida" EntitySet="tbMaterialesDida" />
+          </AssociationSet>
+          <AssociationSet Name="tbCapacitacionesEmpr" Association="Self.tbCapacitacionesEmpr">
+            <End Role="tbCapacitaciones" EntitySet="tbCapacitaciones" />
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+          </AssociationSet>
+          <AssociationSet Name="tbConveniosEmpr" Association="Self.tbConveniosEmpr">
+            <End Role="tbConvenios" EntitySet="tbConvenios" />
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+          </AssociationSet>
+          <AssociationSet Name="tbCoordinadoresProy" Association="Self.tbCoordinadoresProy">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+          </AssociationSet>
+          <AssociationSet Name="tbCorrequisitosCurs" Association="Self.tbCorrequisitosCurs">
+            <End Role="tbCursos" EntitySet="tbCursos" />
+            <End Role="tbCursos1" EntitySet="tbCursos" />
+          </AssociationSet>
+          <AssociationSet Name="tbEmpresasMateDida" Association="Self.tbEmpresasMateDida">
+            <End Role="tbEmpresas" EntitySet="tbEmpresas" />
+            <End Role="tbMaterialesDida" EntitySet="tbMaterialesDida" />
+          </AssociationSet>
+          <AssociationSet Name="tbExperienciasProf" Association="Self.tbExperienciasProf">
+            <End Role="tbExperienciasAcad" EntitySet="tbExperienciasAcad" />
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+          </AssociationSet>
+          <AssociationSet Name="tbHorariosCapa" Association="Self.tbHorariosCapa">
+            <End Role="tbCapacitaciones" EntitySet="tbCapacitaciones" />
+            <End Role="tbHorarios" EntitySet="tbHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="tbHorariosCursLibr" Association="Self.tbHorariosCursLibr">
+            <End Role="tbCursosLibr" EntitySet="tbCursosLibr" />
+            <End Role="tbHorarios" EntitySet="tbHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="tbHorariosGrupCurs" Association="Self.tbHorariosGrupCurs">
+            <End Role="tbGruposCurs" EntitySet="tbGruposCurs" />
+            <End Role="tbHorarios" EntitySet="tbHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="tbMiembrosProy" Association="Self.tbMiembrosProy">
+            <End Role="tbMiembros" EntitySet="tbMiembros" />
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+          </AssociationSet>
+          <AssociationSet Name="tbProfesoresGrupCurs" Association="Self.tbProfesoresGrupCurs">
+            <End Role="tbGruposCurs" EntitySet="tbGruposCurs" />
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+          </AssociationSet>
+          <AssociationSet Name="tbRequisitosCurs" Association="Self.tbRequisitosCurs">
+            <End Role="tbCursos" EntitySet="tbCursos" />
+            <End Role="tbCursos1" EntitySet="tbCursos" />
+          </AssociationSet>
+          <AssociationSet Name="tbResponsablesProy" Association="Self.tbResponsablesProy">
+            <End Role="tbProfesores" EntitySet="tbProfesores" />
+            <End Role="tbProyectos" EntitySet="tbProyectos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDPortafolioUcrModelStoreContainer" CdmEntityContainer="BDPortafolioUcrContext">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbArchivos">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbArchivos">
+              <MappingFragment StoreEntitySet="tbArchivos">
+                <ScalarProperty Name="idArchivo" ColumnName="idArchivo" />
+                <ScalarProperty Name="archivo" ColumnName="archivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbAutores">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbAutores">
+              <MappingFragment StoreEntitySet="tbAutores">
+                <ScalarProperty Name="idAutor" ColumnName="idAutor" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbBolsasEmpl">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbBolsasEmpl">
+              <MappingFragment StoreEntitySet="tbBolsasEmpl">
+                <ScalarProperty Name="idBolsaEmpleo" ColumnName="idBolsaEmpleo" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="perfilRequerido" ColumnName="perfilRequerido" />
+                <ScalarProperty Name="tipoBolsa" ColumnName="tipoBolsa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCapacitaciones">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCapacitaciones">
+              <MappingFragment StoreEntitySet="tbCapacitaciones">
+                <ScalarProperty Name="idCapacitacion" ColumnName="idCapacitacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="fechaInic" ColumnName="fechaInic" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="inversion" ColumnName="inversion" />
+                <ScalarProperty Name="tipoCertificado" ColumnName="tipoCertificado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbConvenios">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbConvenios">
+              <MappingFragment StoreEntitySet="tbConvenios">
+                <ScalarProperty Name="idConvenio" ColumnName="idConvenio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaCrea" ColumnName="fechaCrea" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCorreos">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCorreos">
+              <MappingFragment StoreEntitySet="tbCorreos">
+                <ScalarProperty Name="idCorreo" ColumnName="idCorreo" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="tipoPersona" ColumnName="tipoPersona" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCurriculums">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCurriculums">
+              <MappingFragment StoreEntitySet="tbCurriculums">
+                <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
+                <ScalarProperty Name="curriculum" ColumnName="curriculum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCursos">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCursos">
+              <MappingFragment StoreEntitySet="tbCursos">
+                <ScalarProperty Name="idCurso" ColumnName="idCurso" />
+                <ScalarProperty Name="sigla" ColumnName="sigla" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="lugar" ColumnName="lugar" />
+                <ScalarProperty Name="ciclo" ColumnName="ciclo" />
+                <ScalarProperty Name="creditos" ColumnName="creditos" />
+                <ScalarProperty Name="programa" ColumnName="programa" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="totalHoras" ColumnName="totalHoras" />
+                <ScalarProperty Name="modalidad" ColumnName="modalidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCursosLibr">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCursosLibr">
+              <MappingFragment StoreEntitySet="tbCursosLibr">
+                <ScalarProperty Name="idCursosLibres" ColumnName="idCursosLibres" />
+                <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="lugar" ColumnName="lugar" />
+                <ScalarProperty Name="cupo" ColumnName="cupo" />
+                <ScalarProperty Name="programa" ColumnName="programa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbDirecciones">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbDirecciones">
+              <MappingFragment StoreEntitySet="tbDirecciones">
+                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+                <ScalarProperty Name="tipoPersona" ColumnName="tipoPersona" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="provincia" ColumnName="provincia" />
+                <ScalarProperty Name="canton" ColumnName="canton" />
+                <ScalarProperty Name="distrito" ColumnName="distrito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbEmpresas">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbEmpresas">
+              <MappingFragment StoreEntitySet="tbEmpresas">
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcionGene" ColumnName="descripcionGene" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbEspecialidadesPorExpe">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbEspecialidadesPorExpe">
+              <MappingFragment StoreEntitySet="tbEspecialidadesPorExpe">
+                <ScalarProperty Name="idEspecialidad" ColumnName="idEspecialidad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tiempoExpe" ColumnName="tiempoExpe" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="tipoEmpresa" ColumnName="tipoEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbEspecialidadesProf">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbEspecialidadesProf">
+              <MappingFragment StoreEntitySet="tbEspecialidadesProf">
+                <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+                <ScalarProperty Name="idEspecialidad" ColumnName="idEspecialidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbEspecialidadesTitu">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbEspecialidadesTitu">
+              <MappingFragment StoreEntitySet="tbEspecialidadesTitu">
+                <ScalarProperty Name="idEspecialidad" ColumnName="idEspecialidad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="institucion" ColumnName="institucion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbEstudiantes">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbEstudiantes">
+              <MappingFragment StoreEntitySet="tbEstudiantes">
+                <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
+                <ScalarProperty Name="carnet" ColumnName="carnet" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="fechaNaci" ColumnName="fechaNaci" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="institucion" ColumnName="institucion" />
+                <ScalarProperty Name="carrera" ColumnName="carrera" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbEstudiosProf">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbEstudiosProf">
+              <MappingFragment StoreEntitySet="tbEstudiosProf">
+                <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+                <ScalarProperty Name="idTitulo" ColumnName="idTitulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbExperienciasAcad">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbExperienciasAcad">
+              <MappingFragment StoreEntitySet="tbExperienciasAcad">
+                <ScalarProperty Name="idExperienciaLabo" ColumnName="idExperienciaLabo" />
+                <ScalarProperty Name="tiempo" ColumnName="tiempo" />
+                <ScalarProperty Name="tipoCarg" ColumnName="tipoCarg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbGruposCurs">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbGruposCurs">
+              <MappingFragment StoreEntitySet="tbGruposCurs">
+                <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
+                <ScalarProperty Name="idCurso" ColumnName="idCurso" />
+                <ScalarProperty Name="numeroGrup" ColumnName="numeroGrup" />
+                <ScalarProperty Name="cupoMaximo" ColumnName="cupoMaximo" />
+                <ScalarProperty Name="cupoMinimo" ColumnName="cupoMinimo" />
+                <ScalarProperty Name="cupoActual" ColumnName="cupoActual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbHerramientas">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbHerramientas">
+              <MappingFragment StoreEntitySet="tbHerramientas">
+                <ScalarProperty Name="idHerramienta" ColumnName="idHerramienta" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbHerramientasProy">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbHerramientasProy">
+              <MappingFragment StoreEntitySet="tbHerramientasProy">
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="idHerramienta" ColumnName="idHerramienta" />
+                <ScalarProperty Name="horasInvertidas" ColumnName="horasInvertidas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbHorarios">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbHorarios">
+              <MappingFragment StoreEntitySet="tbHorarios">
+                <ScalarProperty Name="idHorario" ColumnName="idHorario" />
+                <ScalarProperty Name="dia" ColumnName="dia" />
+                <ScalarProperty Name="horaInic" ColumnName="horaInic" />
+                <ScalarProperty Name="horaSali" ColumnName="horaSali" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbMaterialesDida">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbMaterialesDida">
+              <MappingFragment StoreEntitySet="tbMaterialesDida">
+                <ScalarProperty Name="idMaterialDida" ColumnName="idMaterialDida" />
+                <ScalarProperty Name="nombreArch" ColumnName="nombreArch" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="fechaPubl" ColumnName="fechaPubl" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbMiembros">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbMiembros">
+              <MappingFragment StoreEntitySet="tbMiembros">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="idMiembro" ColumnName="idMiembro" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="carrera" ColumnName="carrera" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbObservacionesProf">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbObservacionesProf">
+              <MappingFragment StoreEntitySet="tbObservacionesProf">
+                <ScalarProperty Name="idObservacion" ColumnName="idObservacion" />
+                <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="observador" ColumnName="observador" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbPeriodosLaboProf">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbPeriodosLaboProf">
+              <MappingFragment StoreEntitySet="tbPeriodosLaboProf">
+                <ScalarProperty Name="idPeriodo" ColumnName="idPeriodo" />
+                <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+                <ScalarProperty Name="fechaIngr" ColumnName="fechaIngr" />
+                <ScalarProperty Name="fechaSali" ColumnName="fechaSali" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbProfesores">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbProfesores">
+              <MappingFragment StoreEntitySet="tbProfesores">
+                <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apaellido1" ColumnName="apaellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="fechaNaci" ColumnName="fechaNaci" />
+                <ScalarProperty Name="jornada" ColumnName="jornada" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="tipoIden" ColumnName="tipoIden" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="curriculum" ColumnName="curriculum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbProyectos">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbProyectos">
+              <MappingFragment StoreEntitySet="tbProyectos">
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="informacion" ColumnName="informacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbProyectosEmpresa">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbProyectosEmpresa">
+              <MappingFragment StoreEntitySet="tbProyectosEmpresa">
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="horasInvertidas" ColumnName="horasInvertidas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbProyectosEstu">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbProyectosEstu">
+              <MappingFragment StoreEntitySet="tbProyectosEstu">
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
+                <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+                <ScalarProperty Name="horasInve" ColumnName="horasInve" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbProyectosProf">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbProyectosProf">
+              <MappingFragment StoreEntitySet="tbProyectosProf">
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+                <ScalarProperty Name="horasInvertidas" ColumnName="horasInvertidas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbPuestosProf">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbPuestosProf">
+              <MappingFragment StoreEntitySet="tbPuestosProf">
+                <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="tiempoLabo" ColumnName="tiempoLabo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTelefonos">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbTelefonos">
+              <MappingFragment StoreEntitySet="tbTelefonos">
+                <ScalarProperty Name="idTelefono" ColumnName="idTelefono" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="tipoPers" ColumnName="tipoPers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTitulosProf">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbTitulosProf">
+              <MappingFragment StoreEntitySet="tbTitulosProf">
+                <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+                <ScalarProperty Name="idTitulo" ColumnName="idTitulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tbArchivosMateDida" TypeName="BDPortafolioUcrModel.tbArchivosMateDida" StoreEntitySet="tbArchivosMateDida">
+            <EndProperty Name="tbMaterialesDida">
+              <ScalarProperty Name="idMaterialDida" ColumnName="idMaterialDida" />
+            </EndProperty>
+            <EndProperty Name="tbArchivos">
+              <ScalarProperty Name="idArchivo" ColumnName="idArchivo" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbAutoresMateDida" TypeName="BDPortafolioUcrModel.tbAutoresMateDida" StoreEntitySet="tbAutoresMateDida">
+            <EndProperty Name="tbAutores">
+              <ScalarProperty Name="idAutor" ColumnName="idAutor" />
+            </EndProperty>
+            <EndProperty Name="tbMaterialesDida">
+              <ScalarProperty Name="idMaterialDida" ColumnName="idMaterialDida" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbCapacitacionesEmpr" TypeName="BDPortafolioUcrModel.tbCapacitacionesEmpr" StoreEntitySet="tbCapacitacionesEmpr">
+            <EndProperty Name="tbCapacitaciones">
+              <ScalarProperty Name="idCapacitacion" ColumnName="idCapacitacion" />
+            </EndProperty>
+            <EndProperty Name="tbEmpresas">
+              <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbConveniosEmpr" TypeName="BDPortafolioUcrModel.tbConveniosEmpr" StoreEntitySet="tbConveniosEmpr">
+            <EndProperty Name="tbConvenios">
+              <ScalarProperty Name="idConvenio" ColumnName="idConvenio" />
+            </EndProperty>
+            <EndProperty Name="tbEmpresas">
+              <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbCoordinadoresProy" TypeName="BDPortafolioUcrModel.tbCoordinadoresProy" StoreEntitySet="tbCoordinadoresProy">
+            <EndProperty Name="tbProfesores">
+              <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+            </EndProperty>
+            <EndProperty Name="tbProyectos">
+              <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbCorrequisitosCurs" TypeName="BDPortafolioUcrModel.tbCorrequisitosCurs" StoreEntitySet="tbCorrequisitosCurs">
+            <EndProperty Name="tbCursos">
+              <ScalarProperty Name="idCurso" ColumnName="idCurso" />
+            </EndProperty>
+            <EndProperty Name="tbCursos1">
+              <ScalarProperty Name="idCurso" ColumnName="idCursoCorr" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbEmpresasMateDida" TypeName="BDPortafolioUcrModel.tbEmpresasMateDida" StoreEntitySet="tbEmpresasMateDida">
+            <EndProperty Name="tbEmpresas">
+              <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+            </EndProperty>
+            <EndProperty Name="tbMaterialesDida">
+              <ScalarProperty Name="idMaterialDida" ColumnName="idMaterialDida" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbExperienciasProf" TypeName="BDPortafolioUcrModel.tbExperienciasProf" StoreEntitySet="tbExperienciasProf">
+            <EndProperty Name="tbExperienciasAcad">
+              <ScalarProperty Name="idExperienciaLabo" ColumnName="idExperienciaLabo" />
+            </EndProperty>
+            <EndProperty Name="tbProfesores">
+              <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbHorariosCapa" TypeName="BDPortafolioUcrModel.tbHorariosCapa" StoreEntitySet="tbHorariosCapa">
+            <EndProperty Name="tbCapacitaciones">
+              <ScalarProperty Name="idCapacitacion" ColumnName="idCapacitacion" />
+            </EndProperty>
+            <EndProperty Name="tbHorarios">
+              <ScalarProperty Name="idHorario" ColumnName="idHorario" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbHorariosCursLibr" TypeName="BDPortafolioUcrModel.tbHorariosCursLibr" StoreEntitySet="tbHorariosCursLibr">
+            <EndProperty Name="tbCursosLibr">
+              <ScalarProperty Name="idCursosLibres" ColumnName="idCursosLibres" />
+            </EndProperty>
+            <EndProperty Name="tbHorarios">
+              <ScalarProperty Name="idHorario" ColumnName="idHorario" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbHorariosGrupCurs" TypeName="BDPortafolioUcrModel.tbHorariosGrupCurs" StoreEntitySet="tbHorariosGrupCurs">
+            <EndProperty Name="tbGruposCurs">
+              <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
+            </EndProperty>
+            <EndProperty Name="tbHorarios">
+              <ScalarProperty Name="idHorario" ColumnName="idHorario" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbMiembrosProy" TypeName="BDPortafolioUcrModel.tbMiembrosProy" StoreEntitySet="tbMiembrosProy">
+            <EndProperty Name="tbMiembros">
+              <ScalarProperty Name="idMiembro" ColumnName="idMiembro" />
+            </EndProperty>
+            <EndProperty Name="tbProyectos">
+              <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbProfesoresGrupCurs" TypeName="BDPortafolioUcrModel.tbProfesoresGrupCurs" StoreEntitySet="tbProfesoresGrupCurs">
+            <EndProperty Name="tbGruposCurs">
+              <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
+            </EndProperty>
+            <EndProperty Name="tbProfesores">
+              <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbRequisitosCurs" TypeName="BDPortafolioUcrModel.tbRequisitosCurs" StoreEntitySet="tbRequisitosCurs">
+            <EndProperty Name="tbCursos">
+              <ScalarProperty Name="idCurso" ColumnName="idCurso" />
+            </EndProperty>
+            <EndProperty Name="tbCursos1">
+              <ScalarProperty Name="idCurso" ColumnName="idCursoRequ" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbResponsablesProy" TypeName="BDPortafolioUcrModel.tbResponsablesProy" StoreEntitySet="tbResponsablesProy">
+            <EndProperty Name="tbProfesores">
+              <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+            </EndProperty>
+            <EndProperty Name="tbProyectos">
+              <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
