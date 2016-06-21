@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations; //Permite realizar validaciones a nuestra clase a nivel del models.
-using System.Globalization; //Biblioteca de configuracion del uso de varios idiomas.
+using System.ComponentModel.DataAnnotations; 
+using System.Globalization;
 
 namespace prgGestionDeCompañias.Models
 {
