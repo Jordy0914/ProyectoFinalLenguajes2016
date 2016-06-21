@@ -10,18 +10,18 @@ using prgGestionDeCompañias;
 
 namespace prgGestionDeCompañias.Controllers
 {
-    public class tbProyectosEmpresasController : Controller
+    public class ProyectosEmpresasController : Controller
     {
         private BDPortafolioUcrContext db = new BDPortafolioUcrContext();
 
-        // GET: tbProyectosEmpresas
+        // GET: ProyectosEmpresas
         public ActionResult Index()
         {
             var tbProyectosEmpresa = db.tbProyectosEmpresa.Include(t => t.tbEmpresas).Include(t => t.tbProyectos);
             return View(tbProyectosEmpresa.ToList());
         }
 
-        // GET: tbProyectosEmpresas/Details/5
+        // GET: ProyectosEmpresas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +36,7 @@ namespace prgGestionDeCompañias.Controllers
             return View(tbProyectosEmpresa);
         }
 
-        // GET: tbProyectosEmpresas/Create
+        // GET: ProyectosEmpresas/Create
         public ActionResult Create()
         {
             ViewBag.idEmpresa = new SelectList(db.tbEmpresas, "idEmpresa", "nombre");
@@ -44,7 +44,7 @@ namespace prgGestionDeCompañias.Controllers
             return View();
         }
 
-        // POST: tbProyectosEmpresas/Create
+        // POST: ProyectosEmpresas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -63,7 +63,7 @@ namespace prgGestionDeCompañias.Controllers
             return View(tbProyectosEmpresa);
         }
 
-        // GET: tbProyectosEmpresas/Edit/5
+        // GET: ProyectosEmpresas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,7 +80,7 @@ namespace prgGestionDeCompañias.Controllers
             return View(tbProyectosEmpresa);
         }
 
-        // POST: tbProyectosEmpresas/Edit/5
+        // POST: ProyectosEmpresas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -98,7 +98,7 @@ namespace prgGestionDeCompañias.Controllers
             return View(tbProyectosEmpresa);
         }
 
-        // GET: tbProyectosEmpresas/Delete/5
+        // GET: ProyectosEmpresas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +113,7 @@ namespace prgGestionDeCompañias.Controllers
             return View(tbProyectosEmpresa);
         }
 
-        // POST: tbProyectosEmpresas/Delete/5
+        // POST: ProyectosEmpresas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

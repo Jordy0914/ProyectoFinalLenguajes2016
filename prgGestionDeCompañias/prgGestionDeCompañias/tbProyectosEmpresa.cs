@@ -6,7 +6,7 @@
 //     Los cambios manuales en este archivo se sobrescribirán si se regenera el código.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace prgGestionDeCompañias
 {
     using System;
@@ -14,10 +14,20 @@ namespace prgGestionDeCompañias
     
     public partial class tbProyectosEmpresa
     {
+        [Required]
+        [StringLength(5)]
+        [Display(Name = "Identificación de la Empresa:")]
         public int idEmpresa { get; set; }
+
+        [Required]
+        [StringLength(5)]
+        [Display(Name = "Identificación del Proyecto:")]
         public int idProyecto { get; set; }
+
+        [Required]
+        [Display(Name = "Horas Invertidas:")]
         public int horasInvertidas { get; set; }
-    
+
         public virtual tbEmpresas tbEmpresas { get; set; }
         public virtual tbProyectos tbProyectos { get; set; }
     }

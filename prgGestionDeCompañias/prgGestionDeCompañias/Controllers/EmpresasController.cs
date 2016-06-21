@@ -10,17 +10,17 @@ using prgGestionDeCompañias;
 
 namespace prgGestionDeCompañias.Controllers
 {
-    public class tbEmpresasController : Controller
+    public class EmpresasController : Controller
     {
         private BDPortafolioUcrContext db = new BDPortafolioUcrContext();
 
-        // GET: tbEmpresas
+        // GET: Empresas
         public ActionResult Index()
         {
             return View(db.tbEmpresas.ToList());
         }
 
-        // GET: tbEmpresas/Details/5
+        // GET: Empresas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,13 +35,13 @@ namespace prgGestionDeCompañias.Controllers
             return View(tbEmpresas);
         }
 
-        // GET: tbEmpresas/Create
+        // GET: Empresas/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: tbEmpresas/Create
+        // POST: Empresas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -58,7 +58,7 @@ namespace prgGestionDeCompañias.Controllers
             return View(tbEmpresas);
         }
 
-        // GET: tbEmpresas/Edit/5
+        // GET: Empresas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace prgGestionDeCompañias.Controllers
             return View(tbEmpresas);
         }
 
-        // POST: tbEmpresas/Edit/5
+        // POST: Empresas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -89,7 +89,7 @@ namespace prgGestionDeCompañias.Controllers
             return View(tbEmpresas);
         }
 
-        // GET: tbEmpresas/Delete/5
+        // GET: Empresas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +104,7 @@ namespace prgGestionDeCompañias.Controllers
             return View(tbEmpresas);
         }
 
-        // POST: tbEmpresas/Delete/5
+        // POST: Empresas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

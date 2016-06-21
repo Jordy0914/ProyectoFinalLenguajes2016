@@ -27,6 +27,7 @@ namespace prgGestionDeCompañias.Models
         [Display(Name = "Descripción General:")]
         public string descripcionGene { get; set; }
 
+        [Display(Name = "Foto/Logo:")]
         public byte[] foto { get; set; }
     }
 }
