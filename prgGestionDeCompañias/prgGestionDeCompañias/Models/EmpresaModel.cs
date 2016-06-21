@@ -10,8 +10,8 @@ namespace prgGestionDeCompañias.Models
 {
     public class EmpresaModel
     {
-        [Required] //Valida la entrada de datos al campo
-        [StringLength(5)]//Tamaño de la cadena
+        [Required] 
+        [StringLength(5)]
         [Display(Name = "Identificación de la Empresa")]
         public int idEmpresa { get; set; }
 
@@ -20,7 +20,13 @@ namespace prgGestionDeCompañias.Models
         [RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracteres inválidos.")]
         [Display(Name = "Nombre de la Empresa:")]
         public string nombre { get; set; }
+
+        [Required]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracteres inválidos.")]
+        [StringLength(100)]
+        [Display(Name = "Descripción General:")]
         public string descripcionGene { get; set; }
+
         public byte[] foto { get; set; }
     }
 }
