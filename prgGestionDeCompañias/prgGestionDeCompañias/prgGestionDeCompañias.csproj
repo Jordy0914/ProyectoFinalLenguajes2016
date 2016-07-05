@@ -173,6 +173,8 @@
     <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProyectosController.cs" />
+    <Compile Include="Controllers\ProyectosEmpresasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -376,6 +378,16 @@
     <Content Include="Views\Empresas\Details.cshtml" />
     <Content Include="Views\Empresas\Edit.cshtml" />
     <Content Include="Views\Empresas\Index.cshtml" />
+    <Content Include="Views\Proyectos\Create.cshtml" />
+    <Content Include="Views\Proyectos\Delete.cshtml" />
+    <Content Include="Views\Proyectos\Details.cshtml" />
+    <Content Include="Views\Proyectos\Edit.cshtml" />
+    <Content Include="Views\Proyectos\Index.cshtml" />
+    <Content Include="Views\ProyectosEmpresas\Create.cshtml" />
+    <Content Include="Views\ProyectosEmpresas\Delete.cshtml" />
+    <Content Include="Views\ProyectosEmpresas\Details.cshtml" />
+    <Content Include="Views\ProyectosEmpresas\Edit.cshtml" />
+    <Content Include="Views\ProyectosEmpresas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
