@@ -8,7 +8,7 @@ using System.Globalization;
 
 namespace prgGestionDeCompañias.Models
 {
-    public class ProyectoEmpresasModel
+    public class RegistrarProyectoEmpresa
     {
         [Required] 
         [StringLength(5)]
