@@ -13,9 +13,10 @@ namespace prgGestionDeCompañias.Models
     {
 
         [Required]//valida la entrada de datos al campo
-      //  [RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracter invalido")]
-       // [StringLength(5)]
-        [Display(Name = "Codigo")]
+         //  [RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracter invalido")]
+         // [StringLength(5)]
+        [Editable(allowEdit: false)]
+        [Display(Name = "Codigo del Material")]
         public int idMaterialDidactico { get; set; }
 
 
@@ -57,7 +58,12 @@ namespace prgGestionDeCompañias.Models
         public byte[] manual { get; set; }
         public string contenido { get; set; }
 
-        
+        [Display(Name = "Codigo del Autor")]
+        public int idAutor{ get; set; }
+
+        [Display(Name = "Codigo del Archivo")]
+        public int idArchivo { get; set; }
+
 
     }//fin de la clase Registrar Material Didactico
 
@@ -65,6 +71,11 @@ namespace prgGestionDeCompañias.Models
 
     public class ModificarMaterialDidactico
     {
+        [Required]//valida la entrada de datos al campo
+                  //  [RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracter invalido")]
+                  // [StringLength(5)]
+        [Display(Name = "Codigo")]
+        public int idMaterialDidactico { get; set; }
 
         [Required]
         [StringLength(100)]

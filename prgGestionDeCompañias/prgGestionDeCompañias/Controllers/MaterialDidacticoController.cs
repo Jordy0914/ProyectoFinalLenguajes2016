@@ -22,9 +22,16 @@ namespace prgGestionDeCompañias.Controllers
                            select datos;
             //se crea la una coleccion de elementos
 
-            IEnumerable<tbArchivos> archivos = consulta.ToList();
+            var consultaAutor = from datos in dbContext.tbAutores
+                                orderby datos.idAutor ascending
+                                select datos;
 
-            return View(archivos);         
+            IEnumerable < tbArchivos > archivos = consulta.ToList();
+            IEnumerable < tbAutores> autores = consultaAutor.ToList();
+
+
+
+            return View(archivos);      
         }
 
         // GET: MaterialDidactico/Details/5
@@ -34,29 +41,41 @@ namespace prgGestionDeCompañias.Controllers
         }
 
         // GET: MaterialDidactico/Create
+        [HttpGet]
         public ActionResult AgregarMaterial()
         {
             BDPortafolioUcrContext db = new BDPortafolioUcrContext();
             Models.AgregarMaterialDidactico datos = new Models.AgregarMaterialDidactico();
-            //obtengo el ultimo numero del id de la tabla y le sumo 1
-            //para hacer un consecutivo
+            
+            //obtengo el ultimo numero del id de la tabla y le sumo 1 para hacer un consecutivo
 
             var maximo = ((from codigo in db.tbMaterialesDida select (int?)codigo.idMaterialDida).Max()) + 1;
 
-            //lo convietro en string y se lo asigno al al id de la tabla
-            //del modelo creado por nosotros
-            if (maximo == 0)
+            var maximoAutores = ((from codAutor in db.tbAutores select (int?)codAutor.idAutor).Max()) + 1;
+
+            var maximoArchivo = ((from codArchivo in db.tbArchivos select (int?) codArchivo.idArchivo).Max()) + 1;
+          
+            
+            if ((maximo == 0) && (maximoAutores == 0)&& (maximoArchivo==0))
             {
                 maximo = 1;
                 datos.idMaterialDidactico = Convert.ToInt32(1);
+
+                maximoAutores = 1;
+                datos.idAutor = Convert.ToInt32(1);
+
+                maximoArchivo = 1;
+                datos.idArchivo = Convert.ToInt32(1);
+
                 return View(datos);
             }
             else
             {
                 datos.idMaterialDidactico = Convert.ToInt32(maximo);
+                datos.idAutor = Convert.ToInt32(maximoAutores);
+                datos.idArchivo = Convert.ToInt32(maximoArchivo);
                 return View(datos);
             }
-
         }
 
         // POST: MaterialDidactico/Create
@@ -67,7 +86,6 @@ namespace prgGestionDeCompañias.Controllers
         {
            
                 // TODO: Add insert logic here
-               
 
                 if (ModelState.IsValid)
                 {
@@ -77,32 +95,38 @@ namespace prgGestionDeCompañias.Controllers
                     var materiales = db.tbMaterialesDida.Create();
                     var archivos = db.tbArchivos.Create();
                     var autores = db.tbAutores.Create();
+                   // var archivoMaterial = db.tbArchivosMateDida;
+                   // var autoresArchivo = db.tbAutoresMateDida;
 
                     byte[] data = new byte[material.archivo.ContentLength];
                     material.archivo.InputStream.Read(data, 0, material.archivo.ContentLength);
 
                 
-                    archivos.idArchivo = Convert.ToInt32(4);//
+                    archivos.idArchivo = Convert.ToInt32(material.idArchivo);
                     archivos.archivo = data;
 
 
                     // material.contenido = material.archivo.ContentType;
                     // archivos.archivo = material.archivo.ContentType;
 
+             //////////////////////  Nombre del Archivo ///////////////////////////////////
+
                     materiales.nombreArch = material.archivo.FileName;
-                    int cod = Convert.ToInt32(materiales.idMaterialDida);
-                   // materiales.idMaterialDida = Convert.ToInt32(material.idMaterialDidactico);
+
+           ////////////////////// Datos del material didactico /////////////////////////
+                    int cod = Convert.ToInt32(material.idMaterialDidactico);
+                    materiales.idMaterialDida = cod;
                     materiales.titulo = material.titulo;
                     materiales.fechaPubl = Convert.ToDateTime( material.fechaPublicacion);
                     materiales.ciudad = material.cuidad;
                     materiales.pais = material.pais;
 
 
-                   
+         ////////////////// Datos del el autor//////////////////////////////////////////////////////
                     autores.nombre = material.autor;
-                    autores.idAutor = Convert.ToInt32(3);
+                    autores.idAutor = Convert.ToInt32(material.idAutor);
                     
-
+        /////////////////////////// agrega la informacion a las tablas ////////////////////////////
                     db.tbMaterialesDida.Add(materiales);
                     db.tbArchivos.Add(archivos);
                     db.tbAutores.Add(autores);
