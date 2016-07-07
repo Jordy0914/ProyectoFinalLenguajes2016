@@ -12,14 +12,14 @@ namespace prgGestionDeCompañias
     using System;
     using System.Collections.Generic;
     
-    public partial class tbHorario
+    public partial class tbHorarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbHorario()
+        public tbHorarios()
         {
-            this.tbCapacitaciones = new HashSet<tbCapacitacione>();
-            this.tbCursosLibrs = new HashSet<tbCursosLibr>();
-            this.tbGruposCurs = new HashSet<tbGruposCur>();
+            this.tbCapacitaciones = new HashSet<tbCapacitaciones>();
+            this.tbCursosLibr = new HashSet<tbCursosLibr>();
+            this.tbGruposCurs = new HashSet<tbGruposCurs>();
         }
     
         public int idHorario { get; set; }
@@ -28,10 +28,10 @@ namespace prgGestionDeCompañias
         public System.TimeSpan horaSali { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCapacitacione> tbCapacitaciones { get; set; }
+        public virtual ICollection<tbCapacitaciones> tbCapacitaciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCursosLibr> tbCursosLibrs { get; set; }
+        public virtual ICollection<tbCursosLibr> tbCursosLibr { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbGruposCur> tbGruposCurs { get; set; }
+        public virtual ICollection<tbGruposCurs> tbGruposCurs { get; set; }
     }
 }

@@ -12,15 +12,15 @@ namespace prgGestionDeCompañias
     using System;
     using System.Collections.Generic;
     
-    public partial class tbEstudiante
+    public partial class tbEstudiantes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbEstudiante()
+        public tbEstudiantes()
         {
-            this.tbCorreos = new HashSet<tbCorreo>();
-            this.tbDirecciones = new HashSet<tbDireccione>();
-            this.tbProyectosEstus = new HashSet<tbProyectosEstu>();
-            this.tbTelefonos = new HashSet<tbTelefono>();
+            this.tbCorreos = new HashSet<tbCorreos>();
+            this.tbDirecciones = new HashSet<tbDirecciones>();
+            this.tbProyectosEstu = new HashSet<tbProyectosEstu>();
+            this.tbTelefonos = new HashSet<tbTelefonos>();
         }
     
         public int idEstudiante { get; set; }
@@ -36,13 +36,13 @@ namespace prgGestionDeCompañias
         public byte[] foto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCorreo> tbCorreos { get; set; }
-        public virtual tbCurriculum tbCurriculum { get; set; }
+        public virtual ICollection<tbCorreos> tbCorreos { get; set; }
+        public virtual tbCurriculums tbCurriculums { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbDireccione> tbDirecciones { get; set; }
+        public virtual ICollection<tbDirecciones> tbDirecciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProyectosEstu> tbProyectosEstus { get; set; }
+        public virtual ICollection<tbProyectosEstu> tbProyectosEstu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbTelefono> tbTelefonos { get; set; }
+        public virtual ICollection<tbTelefonos> tbTelefonos { get; set; }
     }
 }

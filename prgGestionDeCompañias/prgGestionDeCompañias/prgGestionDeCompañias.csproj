@@ -169,21 +169,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="BDPortafolioUcr.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BDPortafolioUcr.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BDPortafolioUcr.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BDPortafolioUcr.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BDPortafolioUcr.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -195,6 +180,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ModeloBDPortafolioUcr.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloBDPortafolioUcr.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloBDPortafolioUcr.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloBDPortafolioUcr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloBDPortafolioUcr.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\empresasModel.cs" />
     <Compile Include="Models\materialDidacticoModel.cs" />
@@ -202,128 +202,131 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="tbArchivo.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbAutore.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbArchivos.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbAutores.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbBolsasEmpl.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbCapacitacione.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbCapacitaciones.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbConvenio.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbConvenios.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbCorreo.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbCorreos.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbCurriculum.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbCurriculums.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbCurso.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbCursos.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbCursosLibr.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbDireccione.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbDirecciones.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbEmpresa.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbEmpresas.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbEspecialidadesPorExpe.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbEspecialidadesTitu.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbEstudiante.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbEstudiantes.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbExperienciasAcad.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbGruposCur.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbGruposCurs.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbHerramienta.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbHerramientas.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbHerramientasProy.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbHorario.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbHorarios.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbMaterialesDida.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbMiembro.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbMiembros.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbObservacionesProf.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbPeriodosLaboProf.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbProfesore.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbProfesores.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbProyecto.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbProyectos.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbProyectosEmpresa.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbProyectosEstu.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbProyectosProf.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbPuestosProf.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbTelefono.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbTelefonos.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbTitulo.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+    <Compile Include="tbTitulos.cs">
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
     <Compile Include="tbTitulosProf.cs">
-      <DependentUpon>BDPortafolioUcr.tt</DependentUpon>
+      <DependentUpon>ModeloBDPortafolioUcr.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BDPortafolioUcr.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BDPortafolioUcr.edmx</DependentUpon>
-      <LastGenOutput>BDPortafolioUcr.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="BDPortafolioUcr.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BDPortafolioUcr.edmx</DependentUpon>
-      <LastGenOutput>BDPortafolioUcr.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ModeloBDPortafolioUcr.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloBDPortafolioUcr.edmx</DependentUpon>
+      <LastGenOutput>ModeloBDPortafolioUcr.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModeloBDPortafolioUcr.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloBDPortafolioUcr.edmx</DependentUpon>
+      <LastGenOutput>ModeloBDPortafolioUcr.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="BDPortafolioUcr.edmx">
+    <EntityDeploy Include="ModeloBDPortafolioUcr.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BDPortafolioUcr.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModeloBDPortafolioUcr.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="BDPortafolioUcr.edmx.diagram">
-      <DependentUpon>BDPortafolioUcr.edmx</DependentUpon>
+    <Content Include="ModeloBDPortafolioUcr.edmx.diagram">
+      <DependentUpon>ModeloBDPortafolioUcr.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

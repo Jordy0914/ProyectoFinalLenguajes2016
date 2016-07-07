@@ -19,6 +19,6 @@ namespace prgGestionDeCompañias
         public string perfilRequerido { get; set; }
         public string tipoBolsa { get; set; }
     
-        public virtual tbEmpresa tbEmpresa { get; set; }
+        public virtual tbEmpresas tbEmpresas { get; set; }
     }
 }

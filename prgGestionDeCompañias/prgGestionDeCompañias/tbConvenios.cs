@@ -12,18 +12,20 @@ namespace prgGestionDeCompañias
     using System;
     using System.Collections.Generic;
     
-    public partial class tbArchivo
+    public partial class tbConvenios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbArchivo()
+        public tbConvenios()
         {
-            this.tbMaterialesDidas = new HashSet<tbMaterialesDida>();
+            this.tbEmpresas = new HashSet<tbEmpresas>();
         }
     
-        public int idArchivo { get; set; }
-        public byte[] archivo { get; set; }
+        public int idConvenio { get; set; }
+        public string descripcion { get; set; }
+        public System.DateTime fechaCrea { get; set; }
+        public string estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbMaterialesDida> tbMaterialesDidas { get; set; }
+        public virtual ICollection<tbEmpresas> tbEmpresas { get; set; }
     }
 }

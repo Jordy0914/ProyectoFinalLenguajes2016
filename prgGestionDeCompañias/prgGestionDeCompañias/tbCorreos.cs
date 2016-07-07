@@ -12,11 +12,16 @@ namespace prgGestionDeCompañias
     using System;
     using System.Collections.Generic;
     
-    public partial class tbCurriculum
+    public partial class tbCorreos
     {
-        public int idEstudiante { get; set; }
-        public byte[] curriculum { get; set; }
+        public int idCorreo { get; set; }
+        public int idPersona { get; set; }
+        public string tipoPersona { get; set; }
+        public string correo { get; set; }
     
-        public virtual tbEstudiante tbEstudiante { get; set; }
+        public virtual tbCapacitaciones tbCapacitaciones { get; set; }
+        public virtual tbEmpresas tbEmpresas { get; set; }
+        public virtual tbEstudiantes tbEstudiantes { get; set; }
+        public virtual tbProfesores tbProfesores { get; set; }
     }
 }

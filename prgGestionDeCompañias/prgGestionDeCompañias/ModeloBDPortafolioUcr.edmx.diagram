@@ -4,38 +4,39 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e85e6bf3fc9d4b8cad9d03aed7b39b68" Name="Diagram1">
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbArchivo" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbAutore" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
+      <Diagram DiagramId="780490b305dc460aad608c1c432431d2" Name="Diagram1" ZoomLevel="26">
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbArchivos" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbAutores" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbBolsasEmpl" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbCapacitacione" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbConvenio" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbCorreo" Width="1.5" PointX="8.25" PointY="19.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbCurriculum" Width="1.5" PointX="5.25" PointY="37.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbCurso" Width="1.5" PointX="1.5" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbCapacitaciones" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbConvenios" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbCorreos" Width="1.5" PointX="8.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbCurriculums" Width="1.5" PointX="5.25" PointY="37.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbCursos" Width="1.5" PointX="1.5" PointY="30.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbCursosLibr" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbDireccione" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbEmpresa" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbDirecciones" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbEmpresas" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbEspecialidadesPorExpe" Width="1.5" PointX="0.75" PointY="19.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbEspecialidadesTitu" Width="1.5" PointX="0.75" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbEstudiante" Width="1.5" PointX="3" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbEstudiantes" Width="1.5" PointX="3" PointY="25" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbExperienciasAcad" Width="1.5" PointX="0.75" PointY="22.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbGruposCur" Width="1.5" PointX="0.75" PointY="25.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbHerramienta" Width="1.5" PointX="11.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbGruposCurs" Width="1.5" PointX="0.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbHerramientas" Width="1.5" PointX="11.25" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbHerramientasProy" Width="1.5" PointX="13.5" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbHorario" Width="1.5" PointX="7.5" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbHorarios" Width="1.5" PointX="7.5" PointY="22.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbMaterialesDida" Width="1.5" PointX="8.25" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbMiembro" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbMiembros" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbObservacionesProf" Width="1.5" PointX="5.25" PointY="27" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbPeriodosLaboProf" Width="1.5" PointX="5.25" PointY="30" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbProfesore" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbProyecto" Width="1.5" PointX="8.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbProfesores" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbProyectos" Width="1.5" PointX="8.25" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbProyectosEmpresa" Width="1.5" PointX="13.5" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbProyectosEstu" Width="1.5" PointX="10.5" PointY="18" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbProyectosProf" Width="1.5" PointX="10.5" PointY="15.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbPuestosProf" Width="1.5" PointX="5.25" PointY="23.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbTelefono" Width="1.5" PointX="10.25" PointY="23.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbTitulo" Width="1.5" PointX="6" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbTelefonos" Width="1.5" PointX="10.25" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbTitulos" Width="1.5" PointX="6" PointY="33.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbTitulosProf" Width="1.5" PointX="8.25" PointY="26.625" IsExpanded="true" />
         <AssociationConnector Association="BDPortafolioUcrModel.FK_tbBolsasEmpl_tbEmpresas" ManuallyRouted="false" />
         <AssociationConnector Association="BDPortafolioUcrModel.FK_tbCorreos_tbCapacitaciones" ManuallyRouted="false" />

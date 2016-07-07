@@ -12,13 +12,13 @@ namespace prgGestionDeCompañias
     using System;
     using System.Collections.Generic;
     
-    public partial class tbGruposCur
+    public partial class tbGruposCurs
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbGruposCur()
+        public tbGruposCurs()
         {
-            this.tbHorarios = new HashSet<tbHorario>();
-            this.tbProfesores = new HashSet<tbProfesore>();
+            this.tbHorarios = new HashSet<tbHorarios>();
+            this.tbProfesores = new HashSet<tbProfesores>();
         }
     
         public int idGrupo { get; set; }
@@ -28,10 +28,10 @@ namespace prgGestionDeCompañias
         public int cupoMinimo { get; set; }
         public int cupoActual { get; set; }
     
-        public virtual tbCurso tbCurso { get; set; }
+        public virtual tbCursos tbCursos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbHorario> tbHorarios { get; set; }
+        public virtual ICollection<tbHorarios> tbHorarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProfesore> tbProfesores { get; set; }
+        public virtual ICollection<tbProfesores> tbProfesores { get; set; }
     }
 }

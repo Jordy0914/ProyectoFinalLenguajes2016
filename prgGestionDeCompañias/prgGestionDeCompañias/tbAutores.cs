@@ -12,18 +12,18 @@ namespace prgGestionDeCompañias
     using System;
     using System.Collections.Generic;
     
-    public partial class tbAutore
+    public partial class tbAutores
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbAutore()
+        public tbAutores()
         {
-            this.tbMaterialesDidas = new HashSet<tbMaterialesDida>();
+            this.tbMaterialesDida = new HashSet<tbMaterialesDida>();
         }
     
         public int idAutor { get; set; }
         public string nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbMaterialesDida> tbMaterialesDidas { get; set; }
+        public virtual ICollection<tbMaterialesDida> tbMaterialesDida { get; set; }
     }
 }

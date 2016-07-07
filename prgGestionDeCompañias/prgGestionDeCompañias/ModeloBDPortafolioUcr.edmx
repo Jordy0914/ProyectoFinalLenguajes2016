@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="BDPortafolioUcrModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="tbArchivos">
           <Key>
             <PropertyRef Name="idArchivo" />
@@ -1246,6 +1256,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BDPortafolioUcrModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbArchivos" EntityType="Self.tbArchivos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbArchivosMateDida" EntityType="Self.tbArchivosMateDida" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbAutores" EntityType="Self.tbAutores" Schema="dbo" store:Type="Tables" />
@@ -1557,21 +1568,31 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BDPortafolioUcrModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="tbArchivo">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbArchivos">
           <Key>
             <PropertyRef Name="idArchivo" />
           </Key>
           <Property Name="idArchivo" Type="Int32" Nullable="false" />
           <Property Name="archivo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="tbMaterialesDidas" Relationship="Self.tbArchivosMateDida" FromRole="tbArchivos" ToRole="tbMaterialesDida" />
+          <NavigationProperty Name="tbMaterialesDida" Relationship="Self.tbArchivosMateDida" FromRole="tbArchivos" ToRole="tbMaterialesDida" />
         </EntityType>
-        <EntityType Name="tbAutore">
+        <EntityType Name="tbAutores">
           <Key>
             <PropertyRef Name="idAutor" />
           </Key>
           <Property Name="idAutor" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tbMaterialesDidas" Relationship="Self.tbAutoresMateDida" FromRole="tbAutores" ToRole="tbMaterialesDida" />
+          <NavigationProperty Name="tbMaterialesDida" Relationship="Self.tbAutoresMateDida" FromRole="tbAutores" ToRole="tbMaterialesDida" />
         </EntityType>
         <EntityType Name="tbBolsasEmpl">
           <Key>
@@ -1581,9 +1602,9 @@
           <Property Name="idEmpresa" Type="Int32" Nullable="false" />
           <Property Name="perfilRequerido" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="tipoBolsa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tbEmpresa" Relationship="Self.FK_tbBolsasEmpl_tbEmpresas" FromRole="tbBolsasEmpl" ToRole="tbEmpresas" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.FK_tbBolsasEmpl_tbEmpresas" FromRole="tbBolsasEmpl" ToRole="tbEmpresas" />
         </EntityType>
-        <EntityType Name="tbCapacitacione">
+        <EntityType Name="tbCapacitaciones">
           <Key>
             <PropertyRef Name="idCapacitacion" />
           </Key>
@@ -1601,7 +1622,7 @@
           <NavigationProperty Name="tbEmpresas" Relationship="Self.tbCapacitacionesEmpr" FromRole="tbCapacitaciones" ToRole="tbEmpresas" />
           <NavigationProperty Name="tbHorarios" Relationship="Self.tbHorariosCapa" FromRole="tbCapacitaciones" ToRole="tbHorarios" />
         </EntityType>
-        <EntityType Name="tbConvenio">
+        <EntityType Name="tbConvenios">
           <Key>
             <PropertyRef Name="idConvenio" />
           </Key>
@@ -1611,7 +1632,7 @@
           <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tbEmpresas" Relationship="Self.tbConveniosEmpr" FromRole="tbConvenios" ToRole="tbEmpresas" />
         </EntityType>
-        <EntityType Name="tbCorreo">
+        <EntityType Name="tbCorreos">
           <Key>
             <PropertyRef Name="idCorreo" />
             <PropertyRef Name="idPersona" />
@@ -1620,20 +1641,20 @@
           <Property Name="idPersona" Type="Int32" Nullable="false" />
           <Property Name="tipoPersona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tbCapacitacione" Relationship="Self.FK_tbCorreos_tbCapacitaciones" FromRole="tbCorreos" ToRole="tbCapacitaciones" />
-          <NavigationProperty Name="tbEmpresa" Relationship="Self.FK_tbCorreos_tbEmpresas" FromRole="tbCorreos" ToRole="tbEmpresas" />
-          <NavigationProperty Name="tbEstudiante" Relationship="Self.FK_tbCorreos_tbEstudiantes" FromRole="tbCorreos" ToRole="tbEstudiantes" />
-          <NavigationProperty Name="tbProfesore" Relationship="Self.FK_tbCorreos_tbProfesores" FromRole="tbCorreos" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbCapacitaciones" Relationship="Self.FK_tbCorreos_tbCapacitaciones" FromRole="tbCorreos" ToRole="tbCapacitaciones" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.FK_tbCorreos_tbEmpresas" FromRole="tbCorreos" ToRole="tbEmpresas" />
+          <NavigationProperty Name="tbEstudiantes" Relationship="Self.FK_tbCorreos_tbEstudiantes" FromRole="tbCorreos" ToRole="tbEstudiantes" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbCorreos_tbProfesores" FromRole="tbCorreos" ToRole="tbProfesores" />
         </EntityType>
-        <EntityType Name="tbCurriculum">
+        <EntityType Name="tbCurriculums">
           <Key>
             <PropertyRef Name="idEstudiante" />
           </Key>
           <Property Name="idEstudiante" Type="Int32" Nullable="false" />
           <Property Name="curriculum" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="tbEstudiante" Relationship="Self.FK_tbCurriculum_tbEstudiantes" FromRole="tbCurriculums" ToRole="tbEstudiantes" />
+          <NavigationProperty Name="tbEstudiantes" Relationship="Self.FK_tbCurriculum_tbEstudiantes" FromRole="tbCurriculums" ToRole="tbEstudiantes" />
         </EntityType>
-        <EntityType Name="tbCurso">
+        <EntityType Name="tbCursos">
           <Key>
             <PropertyRef Name="idCurso" />
           </Key>
@@ -1650,9 +1671,9 @@
           <Property Name="nombrePrograma" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tbGruposCurs" Relationship="Self.FK_tbGruposCurs_tbCursos" FromRole="tbCursos" ToRole="tbGruposCurs" />
           <NavigationProperty Name="tbCursos1" Relationship="Self.tbCorrequisitosCurs" FromRole="tbCursos" ToRole="tbCursos1" />
-          <NavigationProperty Name="tbCursos" Relationship="Self.tbCorrequisitosCurs" FromRole="tbCursos1" ToRole="tbCursos" />
+          <NavigationProperty Name="tbCursos2" Relationship="Self.tbCorrequisitosCurs" FromRole="tbCursos1" ToRole="tbCursos" />
           <NavigationProperty Name="tbCursos11" Relationship="Self.tbRequisitosCurs" FromRole="tbCursos" ToRole="tbCursos1" />
-          <NavigationProperty Name="tbCursos2" Relationship="Self.tbRequisitosCurs" FromRole="tbCursos1" ToRole="tbCursos" />
+          <NavigationProperty Name="tbCursos3" Relationship="Self.tbRequisitosCurs" FromRole="tbCursos1" ToRole="tbCursos" />
         </EntityType>
         <EntityType Name="tbCursosLibr">
           <Key>
@@ -1667,10 +1688,10 @@
           <Property Name="cupo" Type="Int32" Nullable="false" />
           <Property Name="programa" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="nombrePrograma" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tbProfesore" Relationship="Self.FK_tbCursosLibr_tbProfesores" FromRole="tbCursosLibr" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbCursosLibr_tbProfesores" FromRole="tbCursosLibr" ToRole="tbProfesores" />
           <NavigationProperty Name="tbHorarios" Relationship="Self.tbHorariosCursLibr" FromRole="tbCursosLibr" ToRole="tbHorarios" />
         </EntityType>
-        <EntityType Name="tbDireccione">
+        <EntityType Name="tbDirecciones">
           <Key>
             <PropertyRef Name="idDireccion" />
             <PropertyRef Name="idPersona" />
@@ -1682,11 +1703,11 @@
           <Property Name="provincia" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="canton" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="distrito" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tbEmpresa" Relationship="Self.FK_tbDirecciones_tbEmpresas" FromRole="tbDirecciones" ToRole="tbEmpresas" />
-          <NavigationProperty Name="tbEstudiante" Relationship="Self.FK_tbDirecciones_tbEstudiantes" FromRole="tbDirecciones" ToRole="tbEstudiantes" />
-          <NavigationProperty Name="tbProfesore" Relationship="Self.FK_tbDirecciones_tbProfesores" FromRole="tbDirecciones" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.FK_tbDirecciones_tbEmpresas" FromRole="tbDirecciones" ToRole="tbEmpresas" />
+          <NavigationProperty Name="tbEstudiantes" Relationship="Self.FK_tbDirecciones_tbEstudiantes" FromRole="tbDirecciones" ToRole="tbEstudiantes" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbDirecciones_tbProfesores" FromRole="tbDirecciones" ToRole="tbProfesores" />
         </EntityType>
-        <EntityType Name="tbEmpresa">
+        <EntityType Name="tbEmpresas">
           <Key>
             <PropertyRef Name="idEmpresa" />
           </Key>
@@ -1694,15 +1715,15 @@
           <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="descripcionGene" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="tbBolsasEmpls" Relationship="Self.FK_tbBolsasEmpl_tbEmpresas" FromRole="tbEmpresas" ToRole="tbBolsasEmpl" />
+          <NavigationProperty Name="tbBolsasEmpl" Relationship="Self.FK_tbBolsasEmpl_tbEmpresas" FromRole="tbEmpresas" ToRole="tbBolsasEmpl" />
           <NavigationProperty Name="tbCorreos" Relationship="Self.FK_tbCorreos_tbEmpresas" FromRole="tbEmpresas" ToRole="tbCorreos" />
           <NavigationProperty Name="tbDirecciones" Relationship="Self.FK_tbDirecciones_tbEmpresas" FromRole="tbEmpresas" ToRole="tbDirecciones" />
-          <NavigationProperty Name="tbProyectosEmpresas" Relationship="Self.FK_tbProyectosEmpresa_tbEmpresa" FromRole="tbEmpresas" ToRole="tbProyectosEmpresa" />
-          <NavigationProperty Name="tbPuestosProfs" Relationship="Self.FK_tbPuestosProf_tbEmpresa" FromRole="tbEmpresas" ToRole="tbPuestosProf" />
+          <NavigationProperty Name="tbProyectosEmpresa" Relationship="Self.FK_tbProyectosEmpresa_tbEmpresa" FromRole="tbEmpresas" ToRole="tbProyectosEmpresa" />
+          <NavigationProperty Name="tbPuestosProf" Relationship="Self.FK_tbPuestosProf_tbEmpresa" FromRole="tbEmpresas" ToRole="tbPuestosProf" />
           <NavigationProperty Name="tbTelefonos" Relationship="Self.FK_tbTelefonos_tbEmpresas" FromRole="tbEmpresas" ToRole="tbTelefonos" />
           <NavigationProperty Name="tbCapacitaciones" Relationship="Self.tbCapacitacionesEmpr" FromRole="tbEmpresas" ToRole="tbCapacitaciones" />
           <NavigationProperty Name="tbConvenios" Relationship="Self.tbConveniosEmpr" FromRole="tbEmpresas" ToRole="tbConvenios" />
-          <NavigationProperty Name="tbMaterialesDidas" Relationship="Self.tbEmpresasMateDida" FromRole="tbEmpresas" ToRole="tbMaterialesDida" />
+          <NavigationProperty Name="tbMaterialesDida" Relationship="Self.tbEmpresasMateDida" FromRole="tbEmpresas" ToRole="tbMaterialesDida" />
         </EntityType>
         <EntityType Name="tbEspecialidadesPorExpe">
           <Key>
@@ -1726,7 +1747,7 @@
           <Property Name="institucion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tbProfesores" Relationship="Self.tbEspecialidadTituloProfesor" FromRole="tbEspecialidadesTitu" ToRole="tbProfesores" />
         </EntityType>
-        <EntityType Name="tbEstudiante">
+        <EntityType Name="tbEstudiantes">
           <Key>
             <PropertyRef Name="idEstudiante" />
           </Key>
@@ -1742,9 +1763,9 @@
           <Property Name="carrera" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="tbCorreos" Relationship="Self.FK_tbCorreos_tbEstudiantes" FromRole="tbEstudiantes" ToRole="tbCorreos" />
-          <NavigationProperty Name="tbCurriculum" Relationship="Self.FK_tbCurriculum_tbEstudiantes" FromRole="tbEstudiantes" ToRole="tbCurriculums" />
+          <NavigationProperty Name="tbCurriculums" Relationship="Self.FK_tbCurriculum_tbEstudiantes" FromRole="tbEstudiantes" ToRole="tbCurriculums" />
           <NavigationProperty Name="tbDirecciones" Relationship="Self.FK_tbDirecciones_tbEstudiantes" FromRole="tbEstudiantes" ToRole="tbDirecciones" />
-          <NavigationProperty Name="tbProyectosEstus" Relationship="Self.FK_tbProyectosEstu_tbEstudiantes" FromRole="tbEstudiantes" ToRole="tbProyectosEstu" />
+          <NavigationProperty Name="tbProyectosEstu" Relationship="Self.FK_tbProyectosEstu_tbEstudiantes" FromRole="tbEstudiantes" ToRole="tbProyectosEstu" />
           <NavigationProperty Name="tbTelefonos" Relationship="Self.FK_tbTelefonos_tbEstudiantes" FromRole="tbEstudiantes" ToRole="tbTelefonos" />
         </EntityType>
         <EntityType Name="tbExperienciasAcad">
@@ -1756,7 +1777,7 @@
           <Property Name="tipoCarg" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tbProfesores" Relationship="Self.tbExperienciasProf" FromRole="tbExperienciasAcad" ToRole="tbProfesores" />
         </EntityType>
-        <EntityType Name="tbGruposCur">
+        <EntityType Name="tbGruposCurs">
           <Key>
             <PropertyRef Name="idGrupo" />
           </Key>
@@ -1766,11 +1787,11 @@
           <Property Name="cupoMaximo" Type="Int32" Nullable="false" />
           <Property Name="cupoMinimo" Type="Int32" Nullable="false" />
           <Property Name="cupoActual" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tbCurso" Relationship="Self.FK_tbGruposCurs_tbCursos" FromRole="tbGruposCurs" ToRole="tbCursos" />
+          <NavigationProperty Name="tbCursos" Relationship="Self.FK_tbGruposCurs_tbCursos" FromRole="tbGruposCurs" ToRole="tbCursos" />
           <NavigationProperty Name="tbHorarios" Relationship="Self.tbHorariosGrupCurs" FromRole="tbGruposCurs" ToRole="tbHorarios" />
           <NavigationProperty Name="tbProfesores" Relationship="Self.tbProfesoresGrupCurs" FromRole="tbGruposCurs" ToRole="tbProfesores" />
         </EntityType>
-        <EntityType Name="tbHerramienta">
+        <EntityType Name="tbHerramientas">
           <Key>
             <PropertyRef Name="idHerramienta" />
           </Key>
@@ -1778,7 +1799,7 @@
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tbHerramientasProys" Relationship="Self.FK_tbAportesProf_tbAportes" FromRole="tbHerramientas" ToRole="tbHerramientasProy" />
+          <NavigationProperty Name="tbHerramientasProy" Relationship="Self.FK_tbAportesProf_tbAportes" FromRole="tbHerramientas" ToRole="tbHerramientasProy" />
         </EntityType>
         <EntityType Name="tbHerramientasProy">
           <Key>
@@ -1788,10 +1809,10 @@
           <Property Name="idProyecto" Type="Int32" Nullable="false" />
           <Property Name="idHerramienta" Type="Int32" Nullable="false" />
           <Property Name="horasInvertidas" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tbHerramienta" Relationship="Self.FK_tbAportesProf_tbAportes" FromRole="tbHerramientasProy" ToRole="tbHerramientas" />
-          <NavigationProperty Name="tbProyecto" Relationship="Self.FK_tbHerramientasProy_tbProyectos" FromRole="tbHerramientasProy" ToRole="tbProyectos" />
+          <NavigationProperty Name="tbHerramientas" Relationship="Self.FK_tbAportesProf_tbAportes" FromRole="tbHerramientasProy" ToRole="tbHerramientas" />
+          <NavigationProperty Name="tbProyectos" Relationship="Self.FK_tbHerramientasProy_tbProyectos" FromRole="tbHerramientasProy" ToRole="tbProyectos" />
         </EntityType>
-        <EntityType Name="tbHorario">
+        <EntityType Name="tbHorarios">
           <Key>
             <PropertyRef Name="idHorario" />
           </Key>
@@ -1800,7 +1821,7 @@
           <Property Name="horaInic" Type="Time" Nullable="false" Precision="0" />
           <Property Name="horaSali" Type="Time" Nullable="false" Precision="0" />
           <NavigationProperty Name="tbCapacitaciones" Relationship="Self.tbHorariosCapa" FromRole="tbHorarios" ToRole="tbCapacitaciones" />
-          <NavigationProperty Name="tbCursosLibrs" Relationship="Self.tbHorariosCursLibr" FromRole="tbHorarios" ToRole="tbCursosLibr" />
+          <NavigationProperty Name="tbCursosLibr" Relationship="Self.tbHorariosCursLibr" FromRole="tbHorarios" ToRole="tbCursosLibr" />
           <NavigationProperty Name="tbGruposCurs" Relationship="Self.tbHorariosGrupCurs" FromRole="tbHorarios" ToRole="tbGruposCurs" />
         </EntityType>
         <EntityType Name="tbMaterialesDida">
@@ -1817,7 +1838,7 @@
           <NavigationProperty Name="tbAutores" Relationship="Self.tbAutoresMateDida" FromRole="tbMaterialesDida" ToRole="tbAutores" />
           <NavigationProperty Name="tbEmpresas" Relationship="Self.tbEmpresasMateDida" FromRole="tbMaterialesDida" ToRole="tbEmpresas" />
         </EntityType>
-        <EntityType Name="tbMiembro">
+        <EntityType Name="tbMiembros">
           <Key>
             <PropertyRef Name="idMiembro" />
           </Key>
@@ -1840,7 +1861,7 @@
           <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="observador" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="tbProfesore" Relationship="Self.FK_tbObservacionesProf_tbProfesores" FromRole="tbObservacionesProf" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbObservacionesProf_tbProfesores" FromRole="tbObservacionesProf" ToRole="tbProfesores" />
         </EntityType>
         <EntityType Name="tbPeriodosLaboProf">
           <Key>
@@ -1851,9 +1872,9 @@
           <Property Name="idProfesor" Type="Int32" Nullable="false" />
           <Property Name="fechaIngr" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="fechaSali" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="tbProfesore" Relationship="Self.FK_tbPeriodoLaboProf_tbProfesores" FromRole="tbPeriodosLaboProf" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbPeriodoLaboProf_tbProfesores" FromRole="tbPeriodosLaboProf" ToRole="tbProfesores" />
         </EntityType>
-        <EntityType Name="tbProfesore">
+        <EntityType Name="tbProfesores">
           <Key>
             <PropertyRef Name="idProfesor" />
           </Key>
@@ -1870,23 +1891,23 @@
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="curriculum" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="tbCorreos" Relationship="Self.FK_tbCorreos_tbProfesores" FromRole="tbProfesores" ToRole="tbCorreos" />
-          <NavigationProperty Name="tbCursosLibrs" Relationship="Self.FK_tbCursosLibr_tbProfesores" FromRole="tbProfesores" ToRole="tbCursosLibr" />
+          <NavigationProperty Name="tbCursosLibr" Relationship="Self.FK_tbCursosLibr_tbProfesores" FromRole="tbProfesores" ToRole="tbCursosLibr" />
           <NavigationProperty Name="tbDirecciones" Relationship="Self.FK_tbDirecciones_tbProfesores" FromRole="tbProfesores" ToRole="tbDirecciones" />
-          <NavigationProperty Name="tbObservacionesProfs" Relationship="Self.FK_tbObservacionesProf_tbProfesores" FromRole="tbProfesores" ToRole="tbObservacionesProf" />
-          <NavigationProperty Name="tbPeriodosLaboProfs" Relationship="Self.FK_tbPeriodoLaboProf_tbProfesores" FromRole="tbProfesores" ToRole="tbPeriodosLaboProf" />
-          <NavigationProperty Name="tbProyectosEstus" Relationship="Self.FK_tbProyectosEstu_tbProfesores" FromRole="tbProfesores" ToRole="tbProyectosEstu" />
-          <NavigationProperty Name="tbProyectosProfs" Relationship="Self.FK_tbProyectosProf_tbProfesores" FromRole="tbProfesores" ToRole="tbProyectosProf" />
-          <NavigationProperty Name="tbPuestosProfs" Relationship="Self.FK_tbPuestosProf_tbProfesores" FromRole="tbProfesores" ToRole="tbPuestosProf" />
+          <NavigationProperty Name="tbObservacionesProf" Relationship="Self.FK_tbObservacionesProf_tbProfesores" FromRole="tbProfesores" ToRole="tbObservacionesProf" />
+          <NavigationProperty Name="tbPeriodosLaboProf" Relationship="Self.FK_tbPeriodoLaboProf_tbProfesores" FromRole="tbProfesores" ToRole="tbPeriodosLaboProf" />
+          <NavigationProperty Name="tbProyectosEstu" Relationship="Self.FK_tbProyectosEstu_tbProfesores" FromRole="tbProfesores" ToRole="tbProyectosEstu" />
+          <NavigationProperty Name="tbProyectosProf" Relationship="Self.FK_tbProyectosProf_tbProfesores" FromRole="tbProfesores" ToRole="tbProyectosProf" />
+          <NavigationProperty Name="tbPuestosProf" Relationship="Self.FK_tbPuestosProf_tbProfesores" FromRole="tbProfesores" ToRole="tbPuestosProf" />
           <NavigationProperty Name="tbTelefonos" Relationship="Self.FK_tbTelefonos_tbProfesores" FromRole="tbProfesores" ToRole="tbTelefonos" />
-          <NavigationProperty Name="tbTitulosProfs" Relationship="Self.FK_tbTituloProf_tbProfesores" FromRole="tbProfesores" ToRole="tbTitulosProf" />
+          <NavigationProperty Name="tbTitulosProf" Relationship="Self.FK_tbTituloProf_tbProfesores" FromRole="tbProfesores" ToRole="tbTitulosProf" />
           <NavigationProperty Name="tbProyectos" Relationship="Self.tbCoordinadoresProy" FromRole="tbProfesores" ToRole="tbProyectos" />
-          <NavigationProperty Name="tbEspecialidadesPorExpes" Relationship="Self.tbEspecialidadExperienciaProfesor" FromRole="tbProfesores" ToRole="tbEspecialidadesPorExpe" />
-          <NavigationProperty Name="tbEspecialidadesTitus" Relationship="Self.tbEspecialidadTituloProfesor" FromRole="tbProfesores" ToRole="tbEspecialidadesTitu" />
-          <NavigationProperty Name="tbExperienciasAcads" Relationship="Self.tbExperienciasProf" FromRole="tbProfesores" ToRole="tbExperienciasAcad" />
+          <NavigationProperty Name="tbEspecialidadesPorExpe" Relationship="Self.tbEspecialidadExperienciaProfesor" FromRole="tbProfesores" ToRole="tbEspecialidadesPorExpe" />
+          <NavigationProperty Name="tbEspecialidadesTitu" Relationship="Self.tbEspecialidadTituloProfesor" FromRole="tbProfesores" ToRole="tbEspecialidadesTitu" />
+          <NavigationProperty Name="tbExperienciasAcad" Relationship="Self.tbExperienciasProf" FromRole="tbProfesores" ToRole="tbExperienciasAcad" />
           <NavigationProperty Name="tbGruposCurs" Relationship="Self.tbProfesoresGrupCurs" FromRole="tbProfesores" ToRole="tbGruposCurs" />
           <NavigationProperty Name="tbProyectos1" Relationship="Self.tbResponsablesProy" FromRole="tbProfesores" ToRole="tbProyectos" />
         </EntityType>
-        <EntityType Name="tbProyecto">
+        <EntityType Name="tbProyectos">
           <Key>
             <PropertyRef Name="idProyecto" />
           </Key>
@@ -1897,10 +1918,10 @@
           <Property Name="tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="informacion" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="nombreDocumento" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tbHerramientasProys" Relationship="Self.FK_tbHerramientasProy_tbProyectos" FromRole="tbProyectos" ToRole="tbHerramientasProy" />
-          <NavigationProperty Name="tbProyectosEmpresas" Relationship="Self.FK_tbProyectosEmpresa_tbProyectos" FromRole="tbProyectos" ToRole="tbProyectosEmpresa" />
-          <NavigationProperty Name="tbProyectosEstus" Relationship="Self.FK_tbProyectosEstu_tbProyectos" FromRole="tbProyectos" ToRole="tbProyectosEstu" />
-          <NavigationProperty Name="tbProyectosProfs" Relationship="Self.FK_tbProyectosProf_tbProyectos" FromRole="tbProyectos" ToRole="tbProyectosProf" />
+          <NavigationProperty Name="tbHerramientasProy" Relationship="Self.FK_tbHerramientasProy_tbProyectos" FromRole="tbProyectos" ToRole="tbHerramientasProy" />
+          <NavigationProperty Name="tbProyectosEmpresa" Relationship="Self.FK_tbProyectosEmpresa_tbProyectos" FromRole="tbProyectos" ToRole="tbProyectosEmpresa" />
+          <NavigationProperty Name="tbProyectosEstu" Relationship="Self.FK_tbProyectosEstu_tbProyectos" FromRole="tbProyectos" ToRole="tbProyectosEstu" />
+          <NavigationProperty Name="tbProyectosProf" Relationship="Self.FK_tbProyectosProf_tbProyectos" FromRole="tbProyectos" ToRole="tbProyectosProf" />
           <NavigationProperty Name="tbProfesores" Relationship="Self.tbCoordinadoresProy" FromRole="tbProyectos" ToRole="tbProfesores" />
           <NavigationProperty Name="tbMiembros" Relationship="Self.tbMiembrosProy" FromRole="tbProyectos" ToRole="tbMiembros" />
           <NavigationProperty Name="tbProfesores1" Relationship="Self.tbResponsablesProy" FromRole="tbProyectos" ToRole="tbProfesores" />
@@ -1913,8 +1934,8 @@
           <Property Name="idEmpresa" Type="Int32" Nullable="false" />
           <Property Name="idProyecto" Type="Int32" Nullable="false" />
           <Property Name="horasInvertidas" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tbEmpresa" Relationship="Self.FK_tbProyectosEmpresa_tbEmpresa" FromRole="tbProyectosEmpresa" ToRole="tbEmpresas" />
-          <NavigationProperty Name="tbProyecto" Relationship="Self.FK_tbProyectosEmpresa_tbProyectos" FromRole="tbProyectosEmpresa" ToRole="tbProyectos" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.FK_tbProyectosEmpresa_tbEmpresa" FromRole="tbProyectosEmpresa" ToRole="tbEmpresas" />
+          <NavigationProperty Name="tbProyectos" Relationship="Self.FK_tbProyectosEmpresa_tbProyectos" FromRole="tbProyectosEmpresa" ToRole="tbProyectos" />
         </EntityType>
         <EntityType Name="tbProyectosEstu">
           <Key>
@@ -1925,9 +1946,9 @@
           <Property Name="idEstudiante" Type="Int32" Nullable="false" />
           <Property Name="idProfesor" Type="Int32" Nullable="false" />
           <Property Name="horasInve" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tbEstudiante" Relationship="Self.FK_tbProyectosEstu_tbEstudiantes" FromRole="tbProyectosEstu" ToRole="tbEstudiantes" />
-          <NavigationProperty Name="tbProfesore" Relationship="Self.FK_tbProyectosEstu_tbProfesores" FromRole="tbProyectosEstu" ToRole="tbProfesores" />
-          <NavigationProperty Name="tbProyecto" Relationship="Self.FK_tbProyectosEstu_tbProyectos" FromRole="tbProyectosEstu" ToRole="tbProyectos" />
+          <NavigationProperty Name="tbEstudiantes" Relationship="Self.FK_tbProyectosEstu_tbEstudiantes" FromRole="tbProyectosEstu" ToRole="tbEstudiantes" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbProyectosEstu_tbProfesores" FromRole="tbProyectosEstu" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbProyectos" Relationship="Self.FK_tbProyectosEstu_tbProyectos" FromRole="tbProyectosEstu" ToRole="tbProyectos" />
         </EntityType>
         <EntityType Name="tbProyectosProf">
           <Key>
@@ -1937,8 +1958,8 @@
           <Property Name="idProyecto" Type="Int32" Nullable="false" />
           <Property Name="idProfesor" Type="Int32" Nullable="false" />
           <Property Name="horasInvertidas" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tbProfesore" Relationship="Self.FK_tbProyectosProf_tbProfesores" FromRole="tbProyectosProf" ToRole="tbProfesores" />
-          <NavigationProperty Name="tbProyecto" Relationship="Self.FK_tbProyectosProf_tbProyectos" FromRole="tbProyectosProf" ToRole="tbProyectos" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbProyectosProf_tbProfesores" FromRole="tbProyectosProf" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbProyectos" Relationship="Self.FK_tbProyectosProf_tbProyectos" FromRole="tbProyectosProf" ToRole="tbProyectos" />
         </EntityType>
         <EntityType Name="tbPuestosProf">
           <Key>
@@ -1949,10 +1970,10 @@
           <Property Name="idEmpresa" Type="Int32" Nullable="false" />
           <Property Name="puesto" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="tiempoLabo" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tbEmpresa" Relationship="Self.FK_tbPuestosProf_tbEmpresa" FromRole="tbPuestosProf" ToRole="tbEmpresas" />
-          <NavigationProperty Name="tbProfesore" Relationship="Self.FK_tbPuestosProf_tbProfesores" FromRole="tbPuestosProf" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.FK_tbPuestosProf_tbEmpresa" FromRole="tbPuestosProf" ToRole="tbEmpresas" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbPuestosProf_tbProfesores" FromRole="tbPuestosProf" ToRole="tbProfesores" />
         </EntityType>
-        <EntityType Name="tbTelefono">
+        <EntityType Name="tbTelefonos">
           <Key>
             <PropertyRef Name="idTelefono" />
             <PropertyRef Name="idPersona" />
@@ -1961,12 +1982,12 @@
           <Property Name="telefono" Type="Int32" Nullable="false" />
           <Property Name="idPersona" Type="Int32" Nullable="false" />
           <Property Name="tipoPers" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbCapacitacione" Relationship="Self.FK_tbTelefonos_tbCapacitaciones" FromRole="tbTelefonos" ToRole="tbCapacitaciones" />
-          <NavigationProperty Name="tbEmpresa" Relationship="Self.FK_tbTelefonos_tbEmpresas" FromRole="tbTelefonos" ToRole="tbEmpresas" />
-          <NavigationProperty Name="tbEstudiante" Relationship="Self.FK_tbTelefonos_tbEstudiantes" FromRole="tbTelefonos" ToRole="tbEstudiantes" />
-          <NavigationProperty Name="tbProfesore" Relationship="Self.FK_tbTelefonos_tbProfesores" FromRole="tbTelefonos" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbCapacitaciones" Relationship="Self.FK_tbTelefonos_tbCapacitaciones" FromRole="tbTelefonos" ToRole="tbCapacitaciones" />
+          <NavigationProperty Name="tbEmpresas" Relationship="Self.FK_tbTelefonos_tbEmpresas" FromRole="tbTelefonos" ToRole="tbEmpresas" />
+          <NavigationProperty Name="tbEstudiantes" Relationship="Self.FK_tbTelefonos_tbEstudiantes" FromRole="tbTelefonos" ToRole="tbEstudiantes" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbTelefonos_tbProfesores" FromRole="tbTelefonos" ToRole="tbProfesores" />
         </EntityType>
-        <EntityType Name="tbTitulo">
+        <EntityType Name="tbTitulos">
           <Key>
             <PropertyRef Name="idTitulo" />
           </Key>
@@ -1975,7 +1996,7 @@
           <Property Name="institucion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="tipo" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tbTitulosProfs" Relationship="Self.FK_tbTitulosProf_tbTitulos" FromRole="tbTitulos" ToRole="tbTitulosProf" />
+          <NavigationProperty Name="tbTitulosProf" Relationship="Self.FK_tbTitulosProf_tbTitulos" FromRole="tbTitulos" ToRole="tbTitulosProf" />
         </EntityType>
         <EntityType Name="tbTitulosProf">
           <Key>
@@ -1984,11 +2005,11 @@
           </Key>
           <Property Name="idProfesor" Type="Int32" Nullable="false" />
           <Property Name="idTitulo" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tbProfesore" Relationship="Self.FK_tbTituloProf_tbProfesores" FromRole="tbTitulosProf" ToRole="tbProfesores" />
-          <NavigationProperty Name="tbTitulo" Relationship="Self.FK_tbTitulosProf_tbTitulos" FromRole="tbTitulosProf" ToRole="tbTitulos" />
+          <NavigationProperty Name="tbProfesores" Relationship="Self.FK_tbTituloProf_tbProfesores" FromRole="tbTitulosProf" ToRole="tbProfesores" />
+          <NavigationProperty Name="tbTitulos" Relationship="Self.FK_tbTitulosProf_tbTitulos" FromRole="tbTitulosProf" ToRole="tbTitulos" />
         </EntityType>
         <Association Name="FK_tbBolsasEmpl_tbEmpresas">
-          <End Role="tbEmpresas" Type="Self.tbEmpresa" Multiplicity="1" />
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
           <End Role="tbBolsasEmpl" Type="Self.tbBolsasEmpl" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbEmpresas">
@@ -2000,8 +2021,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbCorreos_tbCapacitaciones">
-          <End Role="tbCapacitaciones" Type="Self.tbCapacitacione" Multiplicity="1" />
-          <End Role="tbCorreos" Type="Self.tbCorreo" Multiplicity="*" />
+          <End Role="tbCapacitaciones" Type="Self.tbCapacitaciones" Multiplicity="1" />
+          <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbCapacitaciones">
               <PropertyRef Name="idCapacitacion" />
@@ -2012,8 +2033,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbTelefonos_tbCapacitaciones">
-          <End Role="tbCapacitaciones" Type="Self.tbCapacitacione" Multiplicity="1" />
-          <End Role="tbTelefonos" Type="Self.tbTelefono" Multiplicity="*" />
+          <End Role="tbCapacitaciones" Type="Self.tbCapacitaciones" Multiplicity="1" />
+          <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbCapacitaciones">
               <PropertyRef Name="idCapacitacion" />
@@ -2024,8 +2045,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbCorreos_tbEmpresas">
-          <End Role="tbEmpresas" Type="Self.tbEmpresa" Multiplicity="1" />
-          <End Role="tbCorreos" Type="Self.tbCorreo" Multiplicity="*" />
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbEmpresas">
               <PropertyRef Name="idEmpresa" />
@@ -2036,8 +2057,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbCorreos_tbEstudiantes">
-          <End Role="tbEstudiantes" Type="Self.tbEstudiante" Multiplicity="1" />
-          <End Role="tbCorreos" Type="Self.tbCorreo" Multiplicity="*" />
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbEstudiantes">
               <PropertyRef Name="idEstudiante" />
@@ -2048,8 +2069,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbCorreos_tbProfesores">
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="1" />
-          <End Role="tbCorreos" Type="Self.tbCorreo" Multiplicity="*" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProfesores">
               <PropertyRef Name="idProfesor" />
@@ -2060,8 +2081,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbCurriculum_tbEstudiantes">
-          <End Role="tbEstudiantes" Type="Self.tbEstudiante" Multiplicity="1" />
-          <End Role="tbCurriculums" Type="Self.tbCurriculum" Multiplicity="0..1" />
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbCurriculums" Type="Self.tbCurriculums" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="tbEstudiantes">
               <PropertyRef Name="idEstudiante" />
@@ -2072,8 +2093,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbGruposCurs_tbCursos">
-          <End Role="tbCursos" Type="Self.tbCurso" Multiplicity="1" />
-          <End Role="tbGruposCurs" Type="Self.tbGruposCur" Multiplicity="*" />
+          <End Role="tbCursos" Type="Self.tbCursos" Multiplicity="1" />
+          <End Role="tbGruposCurs" Type="Self.tbGruposCurs" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbCursos">
               <PropertyRef Name="idCurso" />
@@ -2084,7 +2105,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbCursosLibr_tbProfesores">
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="1" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
           <End Role="tbCursosLibr" Type="Self.tbCursosLibr" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProfesores">
@@ -2096,8 +2117,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbDirecciones_tbEmpresas">
-          <End Role="tbEmpresas" Type="Self.tbEmpresa" Multiplicity="1" />
-          <End Role="tbDirecciones" Type="Self.tbDireccione" Multiplicity="*" />
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbDirecciones" Type="Self.tbDirecciones" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbEmpresas">
               <PropertyRef Name="idEmpresa" />
@@ -2108,8 +2129,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbDirecciones_tbEstudiantes">
-          <End Role="tbEstudiantes" Type="Self.tbEstudiante" Multiplicity="1" />
-          <End Role="tbDirecciones" Type="Self.tbDireccione" Multiplicity="*" />
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbDirecciones" Type="Self.tbDirecciones" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbEstudiantes">
               <PropertyRef Name="idEstudiante" />
@@ -2120,8 +2141,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbDirecciones_tbProfesores">
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="1" />
-          <End Role="tbDirecciones" Type="Self.tbDireccione" Multiplicity="*" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbDirecciones" Type="Self.tbDirecciones" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProfesores">
               <PropertyRef Name="idProfesor" />
@@ -2132,7 +2153,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbProyectosEmpresa_tbEmpresa">
-          <End Role="tbEmpresas" Type="Self.tbEmpresa" Multiplicity="1" />
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
           <End Role="tbProyectosEmpresa" Type="Self.tbProyectosEmpresa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbEmpresas">
@@ -2144,7 +2165,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbPuestosProf_tbEmpresa">
-          <End Role="tbEmpresas" Type="Self.tbEmpresa" Multiplicity="1" />
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
           <End Role="tbPuestosProf" Type="Self.tbPuestosProf" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbEmpresas">
@@ -2156,8 +2177,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbTelefonos_tbEmpresas">
-          <End Role="tbEmpresas" Type="Self.tbEmpresa" Multiplicity="1" />
-          <End Role="tbTelefonos" Type="Self.tbTelefono" Multiplicity="*" />
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="1" />
+          <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbEmpresas">
               <PropertyRef Name="idEmpresa" />
@@ -2168,7 +2189,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbProyectosEstu_tbEstudiantes">
-          <End Role="tbEstudiantes" Type="Self.tbEstudiante" Multiplicity="1" />
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
           <End Role="tbProyectosEstu" Type="Self.tbProyectosEstu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbEstudiantes">
@@ -2180,8 +2201,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbTelefonos_tbEstudiantes">
-          <End Role="tbEstudiantes" Type="Self.tbEstudiante" Multiplicity="1" />
-          <End Role="tbTelefonos" Type="Self.tbTelefono" Multiplicity="*" />
+          <End Role="tbEstudiantes" Type="Self.tbEstudiantes" Multiplicity="1" />
+          <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbEstudiantes">
               <PropertyRef Name="idEstudiante" />
@@ -2192,7 +2213,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbAportesProf_tbAportes">
-          <End Role="tbHerramientas" Type="Self.tbHerramienta" Multiplicity="1" />
+          <End Role="tbHerramientas" Type="Self.tbHerramientas" Multiplicity="1" />
           <End Role="tbHerramientasProy" Type="Self.tbHerramientasProy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbHerramientas">
@@ -2204,7 +2225,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbHerramientasProy_tbProyectos">
-          <End Role="tbProyectos" Type="Self.tbProyecto" Multiplicity="1" />
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
           <End Role="tbHerramientasProy" Type="Self.tbHerramientasProy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProyectos">
@@ -2216,7 +2237,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbObservacionesProf_tbProfesores">
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="1" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
           <End Role="tbObservacionesProf" Type="Self.tbObservacionesProf" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProfesores">
@@ -2228,7 +2249,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbPeriodoLaboProf_tbProfesores">
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="1" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
           <End Role="tbPeriodosLaboProf" Type="Self.tbPeriodosLaboProf" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProfesores">
@@ -2240,7 +2261,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbProyectosEstu_tbProfesores">
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="1" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
           <End Role="tbProyectosEstu" Type="Self.tbProyectosEstu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProfesores">
@@ -2252,7 +2273,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbProyectosProf_tbProfesores">
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="1" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
           <End Role="tbProyectosProf" Type="Self.tbProyectosProf" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProfesores">
@@ -2264,7 +2285,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbPuestosProf_tbProfesores">
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="1" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
           <End Role="tbPuestosProf" Type="Self.tbPuestosProf" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProfesores">
@@ -2276,8 +2297,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbTelefonos_tbProfesores">
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="1" />
-          <End Role="tbTelefonos" Type="Self.tbTelefono" Multiplicity="*" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
+          <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProfesores">
               <PropertyRef Name="idProfesor" />
@@ -2288,7 +2309,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbTituloProf_tbProfesores">
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="1" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="1" />
           <End Role="tbTitulosProf" Type="Self.tbTitulosProf" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProfesores">
@@ -2300,7 +2321,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbProyectosEmpresa_tbProyectos">
-          <End Role="tbProyectos" Type="Self.tbProyecto" Multiplicity="1" />
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
           <End Role="tbProyectosEmpresa" Type="Self.tbProyectosEmpresa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProyectos">
@@ -2312,7 +2333,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbProyectosEstu_tbProyectos">
-          <End Role="tbProyectos" Type="Self.tbProyecto" Multiplicity="1" />
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
           <End Role="tbProyectosEstu" Type="Self.tbProyectosEstu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProyectos">
@@ -2324,7 +2345,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbProyectosProf_tbProyectos">
-          <End Role="tbProyectos" Type="Self.tbProyecto" Multiplicity="1" />
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="1" />
           <End Role="tbProyectosProf" Type="Self.tbProyectosProf" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbProyectos">
@@ -2336,7 +2357,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbTitulosProf_tbTitulos">
-          <End Role="tbTitulos" Type="Self.tbTitulo" Multiplicity="1" />
+          <End Role="tbTitulos" Type="Self.tbTitulos" Multiplicity="1" />
           <End Role="tbTitulosProf" Type="Self.tbTitulosProf" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbTitulos">
@@ -2349,108 +2370,109 @@
         </Association>
         <Association Name="tbArchivosMateDida">
           <End Role="tbMaterialesDida" Type="Self.tbMaterialesDida" Multiplicity="*" />
-          <End Role="tbArchivos" Type="Self.tbArchivo" Multiplicity="*" />
+          <End Role="tbArchivos" Type="Self.tbArchivos" Multiplicity="*" />
         </Association>
         <Association Name="tbAutoresMateDida">
-          <End Role="tbAutores" Type="Self.tbAutore" Multiplicity="*" />
+          <End Role="tbAutores" Type="Self.tbAutores" Multiplicity="*" />
           <End Role="tbMaterialesDida" Type="Self.tbMaterialesDida" Multiplicity="*" />
         </Association>
         <Association Name="tbCapacitacionesEmpr">
-          <End Role="tbCapacitaciones" Type="Self.tbCapacitacione" Multiplicity="*" />
-          <End Role="tbEmpresas" Type="Self.tbEmpresa" Multiplicity="*" />
+          <End Role="tbCapacitaciones" Type="Self.tbCapacitaciones" Multiplicity="*" />
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="*" />
         </Association>
         <Association Name="tbConveniosEmpr">
-          <End Role="tbConvenios" Type="Self.tbConvenio" Multiplicity="*" />
-          <End Role="tbEmpresas" Type="Self.tbEmpresa" Multiplicity="*" />
+          <End Role="tbConvenios" Type="Self.tbConvenios" Multiplicity="*" />
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="*" />
         </Association>
         <Association Name="tbCoordinadoresProy">
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="*" />
-          <End Role="tbProyectos" Type="Self.tbProyecto" Multiplicity="*" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="*" />
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="*" />
         </Association>
         <Association Name="tbCorrequisitosCurs">
-          <End Role="tbCursos" Type="Self.tbCurso" Multiplicity="*" />
-          <End Role="tbCursos1" Type="Self.tbCurso" Multiplicity="*" />
+          <End Role="tbCursos" Type="Self.tbCursos" Multiplicity="*" />
+          <End Role="tbCursos1" Type="Self.tbCursos" Multiplicity="*" />
         </Association>
         <Association Name="tbEmpresasMateDida">
-          <End Role="tbEmpresas" Type="Self.tbEmpresa" Multiplicity="*" />
+          <End Role="tbEmpresas" Type="Self.tbEmpresas" Multiplicity="*" />
           <End Role="tbMaterialesDida" Type="Self.tbMaterialesDida" Multiplicity="*" />
         </Association>
         <Association Name="tbEspecialidadExperienciaProfesor">
           <End Role="tbEspecialidadesPorExpe" Type="Self.tbEspecialidadesPorExpe" Multiplicity="*" />
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="*" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="*" />
         </Association>
         <Association Name="tbEspecialidadTituloProfesor">
           <End Role="tbEspecialidadesTitu" Type="Self.tbEspecialidadesTitu" Multiplicity="*" />
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="*" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="*" />
         </Association>
         <Association Name="tbExperienciasProf">
           <End Role="tbExperienciasAcad" Type="Self.tbExperienciasAcad" Multiplicity="*" />
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="*" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="*" />
         </Association>
         <Association Name="tbHorariosCapa">
-          <End Role="tbCapacitaciones" Type="Self.tbCapacitacione" Multiplicity="*" />
-          <End Role="tbHorarios" Type="Self.tbHorario" Multiplicity="*" />
+          <End Role="tbCapacitaciones" Type="Self.tbCapacitaciones" Multiplicity="*" />
+          <End Role="tbHorarios" Type="Self.tbHorarios" Multiplicity="*" />
         </Association>
         <Association Name="tbHorariosCursLibr">
           <End Role="tbCursosLibr" Type="Self.tbCursosLibr" Multiplicity="*" />
-          <End Role="tbHorarios" Type="Self.tbHorario" Multiplicity="*" />
+          <End Role="tbHorarios" Type="Self.tbHorarios" Multiplicity="*" />
         </Association>
         <Association Name="tbHorariosGrupCurs">
-          <End Role="tbGruposCurs" Type="Self.tbGruposCur" Multiplicity="*" />
-          <End Role="tbHorarios" Type="Self.tbHorario" Multiplicity="*" />
+          <End Role="tbGruposCurs" Type="Self.tbGruposCurs" Multiplicity="*" />
+          <End Role="tbHorarios" Type="Self.tbHorarios" Multiplicity="*" />
         </Association>
         <Association Name="tbMiembrosProy">
-          <End Role="tbMiembros" Type="Self.tbMiembro" Multiplicity="*" />
-          <End Role="tbProyectos" Type="Self.tbProyecto" Multiplicity="*" />
+          <End Role="tbMiembros" Type="Self.tbMiembros" Multiplicity="*" />
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="*" />
         </Association>
         <Association Name="tbProfesoresGrupCurs">
-          <End Role="tbGruposCurs" Type="Self.tbGruposCur" Multiplicity="*" />
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="*" />
+          <End Role="tbGruposCurs" Type="Self.tbGruposCurs" Multiplicity="*" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="*" />
         </Association>
         <Association Name="tbRequisitosCurs">
-          <End Role="tbCursos" Type="Self.tbCurso" Multiplicity="*" />
-          <End Role="tbCursos1" Type="Self.tbCurso" Multiplicity="*" />
+          <End Role="tbCursos" Type="Self.tbCursos" Multiplicity="*" />
+          <End Role="tbCursos1" Type="Self.tbCursos" Multiplicity="*" />
         </Association>
         <Association Name="tbResponsablesProy">
-          <End Role="tbProfesores" Type="Self.tbProfesore" Multiplicity="*" />
-          <End Role="tbProyectos" Type="Self.tbProyecto" Multiplicity="*" />
+          <End Role="tbProfesores" Type="Self.tbProfesores" Multiplicity="*" />
+          <End Role="tbProyectos" Type="Self.tbProyectos" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="BDPortafolioUcrEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tbArchivos" EntityType="Self.tbArchivo" />
-          <EntitySet Name="tbAutores" EntityType="Self.tbAutore" />
-          <EntitySet Name="tbBolsasEmpls" EntityType="Self.tbBolsasEmpl" />
-          <EntitySet Name="tbCapacitaciones" EntityType="Self.tbCapacitacione" />
-          <EntitySet Name="tbConvenios" EntityType="Self.tbConvenio" />
-          <EntitySet Name="tbCorreos" EntityType="Self.tbCorreo" />
-          <EntitySet Name="tbCurriculums" EntityType="Self.tbCurriculum" />
-          <EntitySet Name="tbCursos" EntityType="Self.tbCurso" />
-          <EntitySet Name="tbCursosLibrs" EntityType="Self.tbCursosLibr" />
-          <EntitySet Name="tbDirecciones" EntityType="Self.tbDireccione" />
-          <EntitySet Name="tbEmpresas" EntityType="Self.tbEmpresa" />
-          <EntitySet Name="tbEspecialidadesPorExpes" EntityType="Self.tbEspecialidadesPorExpe" />
-          <EntitySet Name="tbEspecialidadesTitus" EntityType="Self.tbEspecialidadesTitu" />
-          <EntitySet Name="tbEstudiantes" EntityType="Self.tbEstudiante" />
-          <EntitySet Name="tbExperienciasAcads" EntityType="Self.tbExperienciasAcad" />
-          <EntitySet Name="tbGruposCurs" EntityType="Self.tbGruposCur" />
-          <EntitySet Name="tbHerramientas" EntityType="Self.tbHerramienta" />
-          <EntitySet Name="tbHerramientasProys" EntityType="Self.tbHerramientasProy" />
-          <EntitySet Name="tbHorarios" EntityType="Self.tbHorario" />
-          <EntitySet Name="tbMaterialesDidas" EntityType="Self.tbMaterialesDida" />
-          <EntitySet Name="tbMiembros" EntityType="Self.tbMiembro" />
-          <EntitySet Name="tbObservacionesProfs" EntityType="Self.tbObservacionesProf" />
-          <EntitySet Name="tbPeriodosLaboProfs" EntityType="Self.tbPeriodosLaboProf" />
-          <EntitySet Name="tbProfesores" EntityType="Self.tbProfesore" />
-          <EntitySet Name="tbProyectos" EntityType="Self.tbProyecto" />
-          <EntitySet Name="tbProyectosEmpresas" EntityType="Self.tbProyectosEmpresa" />
-          <EntitySet Name="tbProyectosEstus" EntityType="Self.tbProyectosEstu" />
-          <EntitySet Name="tbProyectosProfs" EntityType="Self.tbProyectosProf" />
-          <EntitySet Name="tbPuestosProfs" EntityType="Self.tbPuestosProf" />
-          <EntitySet Name="tbTelefonos" EntityType="Self.tbTelefono" />
-          <EntitySet Name="tbTitulos" EntityType="Self.tbTitulo" />
-          <EntitySet Name="tbTitulosProfs" EntityType="Self.tbTitulosProf" />
+        <EntityContainer Name="BDPortafolioUcrContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tbArchivos" EntityType="Self.tbArchivos" />
+          <EntitySet Name="tbAutores" EntityType="Self.tbAutores" />
+          <EntitySet Name="tbBolsasEmpl" EntityType="Self.tbBolsasEmpl" />
+          <EntitySet Name="tbCapacitaciones" EntityType="Self.tbCapacitaciones" />
+          <EntitySet Name="tbConvenios" EntityType="Self.tbConvenios" />
+          <EntitySet Name="tbCorreos" EntityType="Self.tbCorreos" />
+          <EntitySet Name="tbCurriculums" EntityType="Self.tbCurriculums" />
+          <EntitySet Name="tbCursos" EntityType="Self.tbCursos" />
+          <EntitySet Name="tbCursosLibr" EntityType="Self.tbCursosLibr" />
+          <EntitySet Name="tbDirecciones" EntityType="Self.tbDirecciones" />
+          <EntitySet Name="tbEmpresas" EntityType="Self.tbEmpresas" />
+          <EntitySet Name="tbEspecialidadesPorExpe" EntityType="Self.tbEspecialidadesPorExpe" />
+          <EntitySet Name="tbEspecialidadesTitu" EntityType="Self.tbEspecialidadesTitu" />
+          <EntitySet Name="tbEstudiantes" EntityType="Self.tbEstudiantes" />
+          <EntitySet Name="tbExperienciasAcad" EntityType="Self.tbExperienciasAcad" />
+          <EntitySet Name="tbGruposCurs" EntityType="Self.tbGruposCurs" />
+          <EntitySet Name="tbHerramientas" EntityType="Self.tbHerramientas" />
+          <EntitySet Name="tbHerramientasProy" EntityType="Self.tbHerramientasProy" />
+          <EntitySet Name="tbHorarios" EntityType="Self.tbHorarios" />
+          <EntitySet Name="tbMaterialesDida" EntityType="Self.tbMaterialesDida" />
+          <EntitySet Name="tbMiembros" EntityType="Self.tbMiembros" />
+          <EntitySet Name="tbObservacionesProf" EntityType="Self.tbObservacionesProf" />
+          <EntitySet Name="tbPeriodosLaboProf" EntityType="Self.tbPeriodosLaboProf" />
+          <EntitySet Name="tbProfesores" EntityType="Self.tbProfesores" />
+          <EntitySet Name="tbProyectos" EntityType="Self.tbProyectos" />
+          <EntitySet Name="tbProyectosEmpresa" EntityType="Self.tbProyectosEmpresa" />
+          <EntitySet Name="tbProyectosEstu" EntityType="Self.tbProyectosEstu" />
+          <EntitySet Name="tbProyectosProf" EntityType="Self.tbProyectosProf" />
+          <EntitySet Name="tbPuestosProf" EntityType="Self.tbPuestosProf" />
+          <EntitySet Name="tbTelefonos" EntityType="Self.tbTelefonos" />
+          <EntitySet Name="tbTitulos" EntityType="Self.tbTitulos" />
+          <EntitySet Name="tbTitulosProf" EntityType="Self.tbTitulosProf" />
           <AssociationSet Name="FK_tbBolsasEmpl_tbEmpresas" Association="Self.FK_tbBolsasEmpl_tbEmpresas">
             <End Role="tbEmpresas" EntitySet="tbEmpresas" />
-            <End Role="tbBolsasEmpl" EntitySet="tbBolsasEmpls" />
+            <End Role="tbBolsasEmpl" EntitySet="tbBolsasEmpl" />
           </AssociationSet>
           <AssociationSet Name="FK_tbCorreos_tbCapacitaciones" Association="Self.FK_tbCorreos_tbCapacitaciones">
             <End Role="tbCapacitaciones" EntitySet="tbCapacitaciones" />
@@ -2482,7 +2504,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_tbCursosLibr_tbProfesores" Association="Self.FK_tbCursosLibr_tbProfesores">
             <End Role="tbProfesores" EntitySet="tbProfesores" />
-            <End Role="tbCursosLibr" EntitySet="tbCursosLibrs" />
+            <End Role="tbCursosLibr" EntitySet="tbCursosLibr" />
           </AssociationSet>
           <AssociationSet Name="FK_tbDirecciones_tbEmpresas" Association="Self.FK_tbDirecciones_tbEmpresas">
             <End Role="tbEmpresas" EntitySet="tbEmpresas" />
@@ -2498,11 +2520,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_tbProyectosEmpresa_tbEmpresa" Association="Self.FK_tbProyectosEmpresa_tbEmpresa">
             <End Role="tbEmpresas" EntitySet="tbEmpresas" />
-            <End Role="tbProyectosEmpresa" EntitySet="tbProyectosEmpresas" />
+            <End Role="tbProyectosEmpresa" EntitySet="tbProyectosEmpresa" />
           </AssociationSet>
           <AssociationSet Name="FK_tbPuestosProf_tbEmpresa" Association="Self.FK_tbPuestosProf_tbEmpresa">
             <End Role="tbEmpresas" EntitySet="tbEmpresas" />
-            <End Role="tbPuestosProf" EntitySet="tbPuestosProfs" />
+            <End Role="tbPuestosProf" EntitySet="tbPuestosProf" />
           </AssociationSet>
           <AssociationSet Name="FK_tbTelefonos_tbEmpresas" Association="Self.FK_tbTelefonos_tbEmpresas">
             <End Role="tbEmpresas" EntitySet="tbEmpresas" />
@@ -2510,7 +2532,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_tbProyectosEstu_tbEstudiantes" Association="Self.FK_tbProyectosEstu_tbEstudiantes">
             <End Role="tbEstudiantes" EntitySet="tbEstudiantes" />
-            <End Role="tbProyectosEstu" EntitySet="tbProyectosEstus" />
+            <End Role="tbProyectosEstu" EntitySet="tbProyectosEstu" />
           </AssociationSet>
           <AssociationSet Name="FK_tbTelefonos_tbEstudiantes" Association="Self.FK_tbTelefonos_tbEstudiantes">
             <End Role="tbEstudiantes" EntitySet="tbEstudiantes" />
@@ -2518,31 +2540,31 @@
           </AssociationSet>
           <AssociationSet Name="FK_tbAportesProf_tbAportes" Association="Self.FK_tbAportesProf_tbAportes">
             <End Role="tbHerramientas" EntitySet="tbHerramientas" />
-            <End Role="tbHerramientasProy" EntitySet="tbHerramientasProys" />
+            <End Role="tbHerramientasProy" EntitySet="tbHerramientasProy" />
           </AssociationSet>
           <AssociationSet Name="FK_tbHerramientasProy_tbProyectos" Association="Self.FK_tbHerramientasProy_tbProyectos">
             <End Role="tbProyectos" EntitySet="tbProyectos" />
-            <End Role="tbHerramientasProy" EntitySet="tbHerramientasProys" />
+            <End Role="tbHerramientasProy" EntitySet="tbHerramientasProy" />
           </AssociationSet>
           <AssociationSet Name="FK_tbObservacionesProf_tbProfesores" Association="Self.FK_tbObservacionesProf_tbProfesores">
             <End Role="tbProfesores" EntitySet="tbProfesores" />
-            <End Role="tbObservacionesProf" EntitySet="tbObservacionesProfs" />
+            <End Role="tbObservacionesProf" EntitySet="tbObservacionesProf" />
           </AssociationSet>
           <AssociationSet Name="FK_tbPeriodoLaboProf_tbProfesores" Association="Self.FK_tbPeriodoLaboProf_tbProfesores">
             <End Role="tbProfesores" EntitySet="tbProfesores" />
-            <End Role="tbPeriodosLaboProf" EntitySet="tbPeriodosLaboProfs" />
+            <End Role="tbPeriodosLaboProf" EntitySet="tbPeriodosLaboProf" />
           </AssociationSet>
           <AssociationSet Name="FK_tbProyectosEstu_tbProfesores" Association="Self.FK_tbProyectosEstu_tbProfesores">
             <End Role="tbProfesores" EntitySet="tbProfesores" />
-            <End Role="tbProyectosEstu" EntitySet="tbProyectosEstus" />
+            <End Role="tbProyectosEstu" EntitySet="tbProyectosEstu" />
           </AssociationSet>
           <AssociationSet Name="FK_tbProyectosProf_tbProfesores" Association="Self.FK_tbProyectosProf_tbProfesores">
             <End Role="tbProfesores" EntitySet="tbProfesores" />
-            <End Role="tbProyectosProf" EntitySet="tbProyectosProfs" />
+            <End Role="tbProyectosProf" EntitySet="tbProyectosProf" />
           </AssociationSet>
           <AssociationSet Name="FK_tbPuestosProf_tbProfesores" Association="Self.FK_tbPuestosProf_tbProfesores">
             <End Role="tbProfesores" EntitySet="tbProfesores" />
-            <End Role="tbPuestosProf" EntitySet="tbPuestosProfs" />
+            <End Role="tbPuestosProf" EntitySet="tbPuestosProf" />
           </AssociationSet>
           <AssociationSet Name="FK_tbTelefonos_tbProfesores" Association="Self.FK_tbTelefonos_tbProfesores">
             <End Role="tbProfesores" EntitySet="tbProfesores" />
@@ -2550,31 +2572,31 @@
           </AssociationSet>
           <AssociationSet Name="FK_tbTituloProf_tbProfesores" Association="Self.FK_tbTituloProf_tbProfesores">
             <End Role="tbProfesores" EntitySet="tbProfesores" />
-            <End Role="tbTitulosProf" EntitySet="tbTitulosProfs" />
+            <End Role="tbTitulosProf" EntitySet="tbTitulosProf" />
           </AssociationSet>
           <AssociationSet Name="FK_tbProyectosEmpresa_tbProyectos" Association="Self.FK_tbProyectosEmpresa_tbProyectos">
             <End Role="tbProyectos" EntitySet="tbProyectos" />
-            <End Role="tbProyectosEmpresa" EntitySet="tbProyectosEmpresas" />
+            <End Role="tbProyectosEmpresa" EntitySet="tbProyectosEmpresa" />
           </AssociationSet>
           <AssociationSet Name="FK_tbProyectosEstu_tbProyectos" Association="Self.FK_tbProyectosEstu_tbProyectos">
             <End Role="tbProyectos" EntitySet="tbProyectos" />
-            <End Role="tbProyectosEstu" EntitySet="tbProyectosEstus" />
+            <End Role="tbProyectosEstu" EntitySet="tbProyectosEstu" />
           </AssociationSet>
           <AssociationSet Name="FK_tbProyectosProf_tbProyectos" Association="Self.FK_tbProyectosProf_tbProyectos">
             <End Role="tbProyectos" EntitySet="tbProyectos" />
-            <End Role="tbProyectosProf" EntitySet="tbProyectosProfs" />
+            <End Role="tbProyectosProf" EntitySet="tbProyectosProf" />
           </AssociationSet>
           <AssociationSet Name="FK_tbTitulosProf_tbTitulos" Association="Self.FK_tbTitulosProf_tbTitulos">
             <End Role="tbTitulos" EntitySet="tbTitulos" />
-            <End Role="tbTitulosProf" EntitySet="tbTitulosProfs" />
+            <End Role="tbTitulosProf" EntitySet="tbTitulosProf" />
           </AssociationSet>
           <AssociationSet Name="tbArchivosMateDida" Association="Self.tbArchivosMateDida">
-            <End Role="tbMaterialesDida" EntitySet="tbMaterialesDidas" />
+            <End Role="tbMaterialesDida" EntitySet="tbMaterialesDida" />
             <End Role="tbArchivos" EntitySet="tbArchivos" />
           </AssociationSet>
           <AssociationSet Name="tbAutoresMateDida" Association="Self.tbAutoresMateDida">
             <End Role="tbAutores" EntitySet="tbAutores" />
-            <End Role="tbMaterialesDida" EntitySet="tbMaterialesDidas" />
+            <End Role="tbMaterialesDida" EntitySet="tbMaterialesDida" />
           </AssociationSet>
           <AssociationSet Name="tbCapacitacionesEmpr" Association="Self.tbCapacitacionesEmpr">
             <End Role="tbCapacitaciones" EntitySet="tbCapacitaciones" />
@@ -2594,18 +2616,18 @@
           </AssociationSet>
           <AssociationSet Name="tbEmpresasMateDida" Association="Self.tbEmpresasMateDida">
             <End Role="tbEmpresas" EntitySet="tbEmpresas" />
-            <End Role="tbMaterialesDida" EntitySet="tbMaterialesDidas" />
+            <End Role="tbMaterialesDida" EntitySet="tbMaterialesDida" />
           </AssociationSet>
           <AssociationSet Name="tbEspecialidadExperienciaProfesor" Association="Self.tbEspecialidadExperienciaProfesor">
-            <End Role="tbEspecialidadesPorExpe" EntitySet="tbEspecialidadesPorExpes" />
+            <End Role="tbEspecialidadesPorExpe" EntitySet="tbEspecialidadesPorExpe" />
             <End Role="tbProfesores" EntitySet="tbProfesores" />
           </AssociationSet>
           <AssociationSet Name="tbEspecialidadTituloProfesor" Association="Self.tbEspecialidadTituloProfesor">
-            <End Role="tbEspecialidadesTitu" EntitySet="tbEspecialidadesTitus" />
+            <End Role="tbEspecialidadesTitu" EntitySet="tbEspecialidadesTitu" />
             <End Role="tbProfesores" EntitySet="tbProfesores" />
           </AssociationSet>
           <AssociationSet Name="tbExperienciasProf" Association="Self.tbExperienciasProf">
-            <End Role="tbExperienciasAcad" EntitySet="tbExperienciasAcads" />
+            <End Role="tbExperienciasAcad" EntitySet="tbExperienciasAcad" />
             <End Role="tbProfesores" EntitySet="tbProfesores" />
           </AssociationSet>
           <AssociationSet Name="tbHorariosCapa" Association="Self.tbHorariosCapa">
@@ -2613,7 +2635,7 @@
             <End Role="tbHorarios" EntitySet="tbHorarios" />
           </AssociationSet>
           <AssociationSet Name="tbHorariosCursLibr" Association="Self.tbHorariosCursLibr">
-            <End Role="tbCursosLibr" EntitySet="tbCursosLibrs" />
+            <End Role="tbCursosLibr" EntitySet="tbCursosLibr" />
             <End Role="tbHorarios" EntitySet="tbHorarios" />
           </AssociationSet>
           <AssociationSet Name="tbHorariosGrupCurs" Association="Self.tbHorariosGrupCurs">
@@ -2642,9 +2664,20 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BDPortafolioUcrModelStoreContainer" CdmEntityContainer="BDPortafolioUcrEntities">
+        <EntityContainerMapping StorageEntityContainer="BDPortafolioUcrModelStoreContainer" CdmEntityContainer="BDPortafolioUcrContext">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbArchivos">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbArchivo">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbArchivos">
               <MappingFragment StoreEntitySet="tbArchivos">
                 <ScalarProperty Name="idArchivo" ColumnName="idArchivo" />
                 <ScalarProperty Name="archivo" ColumnName="archivo" />
@@ -2652,14 +2685,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbAutores">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbAutore">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbAutores">
               <MappingFragment StoreEntitySet="tbAutores">
                 <ScalarProperty Name="idAutor" ColumnName="idAutor" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbBolsasEmpls">
+          <EntitySetMapping Name="tbBolsasEmpl">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbBolsasEmpl">
               <MappingFragment StoreEntitySet="tbBolsasEmpl">
                 <ScalarProperty Name="idBolsaEmpleo" ColumnName="idBolsaEmpleo" />
@@ -2670,7 +2703,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbCapacitaciones">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCapacitacione">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCapacitaciones">
               <MappingFragment StoreEntitySet="tbCapacitaciones">
                 <ScalarProperty Name="idCapacitacion" ColumnName="idCapacitacion" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -2685,7 +2718,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbConvenios">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbConvenio">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbConvenios">
               <MappingFragment StoreEntitySet="tbConvenios">
                 <ScalarProperty Name="idConvenio" ColumnName="idConvenio" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
@@ -2695,7 +2728,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbCorreos">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCorreo">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCorreos">
               <MappingFragment StoreEntitySet="tbCorreos">
                 <ScalarProperty Name="idCorreo" ColumnName="idCorreo" />
                 <ScalarProperty Name="idPersona" ColumnName="idPersona" />
@@ -2705,7 +2738,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbCurriculums">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCurriculum">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCurriculums">
               <MappingFragment StoreEntitySet="tbCurriculums">
                 <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
                 <ScalarProperty Name="curriculum" ColumnName="curriculum" />
@@ -2713,7 +2746,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbCursos">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCurso">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCursos">
               <MappingFragment StoreEntitySet="tbCursos">
                 <ScalarProperty Name="idCurso" ColumnName="idCurso" />
                 <ScalarProperty Name="sigla" ColumnName="sigla" />
@@ -2729,7 +2762,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbCursosLibrs">
+          <EntitySetMapping Name="tbCursosLibr">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCursosLibr">
               <MappingFragment StoreEntitySet="tbCursosLibr">
                 <ScalarProperty Name="idCursosLibres" ColumnName="idCursosLibres" />
@@ -2745,7 +2778,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbDirecciones">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbDireccione">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbDirecciones">
               <MappingFragment StoreEntitySet="tbDirecciones">
                 <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
                 <ScalarProperty Name="tipoPersona" ColumnName="tipoPersona" />
@@ -2758,7 +2791,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbEmpresas">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbEmpresa">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbEmpresas">
               <MappingFragment StoreEntitySet="tbEmpresas">
                 <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -2767,7 +2800,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbEspecialidadesPorExpes">
+          <EntitySetMapping Name="tbEspecialidadesPorExpe">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbEspecialidadesPorExpe">
               <MappingFragment StoreEntitySet="tbEspecialidadesPorExpe">
                 <ScalarProperty Name="idEspecialidad" ColumnName="idEspecialidad" />
@@ -2779,7 +2812,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbEspecialidadesTitus">
+          <EntitySetMapping Name="tbEspecialidadesTitu">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbEspecialidadesTitu">
               <MappingFragment StoreEntitySet="tbEspecialidadesTitu">
                 <ScalarProperty Name="idEspecialidad" ColumnName="idEspecialidad" />
@@ -2790,7 +2823,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbEstudiantes">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbEstudiante">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbEstudiantes">
               <MappingFragment StoreEntitySet="tbEstudiantes">
                 <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
                 <ScalarProperty Name="carnet" ColumnName="carnet" />
@@ -2806,7 +2839,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbExperienciasAcads">
+          <EntitySetMapping Name="tbExperienciasAcad">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbExperienciasAcad">
               <MappingFragment StoreEntitySet="tbExperienciasAcad">
                 <ScalarProperty Name="idExperienciaLabo" ColumnName="idExperienciaLabo" />
@@ -2816,7 +2849,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbGruposCurs">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbGruposCur">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbGruposCurs">
               <MappingFragment StoreEntitySet="tbGruposCurs">
                 <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
                 <ScalarProperty Name="idCurso" ColumnName="idCurso" />
@@ -2828,7 +2861,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbHerramientas">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbHerramienta">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbHerramientas">
               <MappingFragment StoreEntitySet="tbHerramientas">
                 <ScalarProperty Name="idHerramienta" ColumnName="idHerramienta" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -2837,7 +2870,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbHerramientasProys">
+          <EntitySetMapping Name="tbHerramientasProy">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbHerramientasProy">
               <MappingFragment StoreEntitySet="tbHerramientasProy">
                 <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
@@ -2847,7 +2880,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbHorarios">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbHorario">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbHorarios">
               <MappingFragment StoreEntitySet="tbHorarios">
                 <ScalarProperty Name="idHorario" ColumnName="idHorario" />
                 <ScalarProperty Name="dia" ColumnName="dia" />
@@ -2856,7 +2889,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbMaterialesDidas">
+          <EntitySetMapping Name="tbMaterialesDida">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbMaterialesDida">
               <MappingFragment StoreEntitySet="tbMaterialesDida">
                 <ScalarProperty Name="idMaterialDida" ColumnName="idMaterialDida" />
@@ -2869,7 +2902,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbMiembros">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbMiembro">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbMiembros">
               <MappingFragment StoreEntitySet="tbMiembros">
                 <ScalarProperty Name="idMiembro" ColumnName="idMiembro" />
                 <ScalarProperty Name="carnet" ColumnName="carnet" />
@@ -2881,7 +2914,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbObservacionesProfs">
+          <EntitySetMapping Name="tbObservacionesProf">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbObservacionesProf">
               <MappingFragment StoreEntitySet="tbObservacionesProf">
                 <ScalarProperty Name="idObservacion" ColumnName="idObservacion" />
@@ -2892,7 +2925,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbPeriodosLaboProfs">
+          <EntitySetMapping Name="tbPeriodosLaboProf">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbPeriodosLaboProf">
               <MappingFragment StoreEntitySet="tbPeriodosLaboProf">
                 <ScalarProperty Name="idPeriodo" ColumnName="idPeriodo" />
@@ -2903,7 +2936,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbProfesores">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbProfesore">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbProfesores">
               <MappingFragment StoreEntitySet="tbProfesores">
                 <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -2921,7 +2954,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbProyectos">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbProyecto">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbProyectos">
               <MappingFragment StoreEntitySet="tbProyectos">
                 <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -2933,7 +2966,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbProyectosEmpresas">
+          <EntitySetMapping Name="tbProyectosEmpresa">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbProyectosEmpresa">
               <MappingFragment StoreEntitySet="tbProyectosEmpresa">
                 <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
@@ -2942,7 +2975,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbProyectosEstus">
+          <EntitySetMapping Name="tbProyectosEstu">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbProyectosEstu">
               <MappingFragment StoreEntitySet="tbProyectosEstu">
                 <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
@@ -2952,7 +2985,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbProyectosProfs">
+          <EntitySetMapping Name="tbProyectosProf">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbProyectosProf">
               <MappingFragment StoreEntitySet="tbProyectosProf">
                 <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
@@ -2961,7 +2994,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbPuestosProfs">
+          <EntitySetMapping Name="tbPuestosProf">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbPuestosProf">
               <MappingFragment StoreEntitySet="tbPuestosProf">
                 <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
@@ -2972,7 +3005,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbTelefonos">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbTelefono">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbTelefonos">
               <MappingFragment StoreEntitySet="tbTelefonos">
                 <ScalarProperty Name="idTelefono" ColumnName="idTelefono" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
@@ -2982,7 +3015,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbTitulos">
-            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbTitulo">
+            <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbTitulos">
               <MappingFragment StoreEntitySet="tbTitulos">
                 <ScalarProperty Name="idTitulo" ColumnName="idTitulo" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -2992,7 +3025,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbTitulosProfs">
+          <EntitySetMapping Name="tbTitulosProf">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbTitulosProf">
               <MappingFragment StoreEntitySet="tbTitulosProf">
                 <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
@@ -3150,7 +3183,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />

@@ -18,7 +18,7 @@ namespace prgGestionDeCompañias
         public int idProyecto { get; set; }
         public int horasInvertidas { get; set; }
     
-        public virtual tbEmpresa tbEmpresa { get; set; }
-        public virtual tbProyecto tbProyecto { get; set; }
+        public virtual tbEmpresas tbEmpresas { get; set; }
+        public virtual tbProyectos tbProyectos { get; set; }
     }
 }
