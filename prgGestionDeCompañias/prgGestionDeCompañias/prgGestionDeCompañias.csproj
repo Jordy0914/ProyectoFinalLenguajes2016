@@ -173,6 +173,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaterialDidacticoController.cs" />
+    <Compile Include="Controllers\tbCorreosController.cs" />
+    <Compile Include="Controllers\tbDireccionesController.cs" />
+    <Compile Include="Controllers\tbEmpresasController.cs" />
+    <Compile Include="Controllers\tbTelefonosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +196,7 @@
       <DependentUpon>ModeloPortafolioUCR.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\empresasModel.cs" />
     <Compile Include="Models\materialDidacticoModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -370,6 +375,26 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\MaterialDidactico\AgregarMaterial.cshtml" />
+    <Content Include="Views\tbEmpresas\Create.cshtml" />
+    <Content Include="Views\tbEmpresas\Delete.cshtml" />
+    <Content Include="Views\tbEmpresas\Details.cshtml" />
+    <Content Include="Views\tbEmpresas\Edit.cshtml" />
+    <Content Include="Views\tbEmpresas\Index.cshtml" />
+    <Content Include="Views\tbDirecciones\Create.cshtml" />
+    <Content Include="Views\tbDirecciones\Delete.cshtml" />
+    <Content Include="Views\tbDirecciones\Details.cshtml" />
+    <Content Include="Views\tbDirecciones\Edit.cshtml" />
+    <Content Include="Views\tbDirecciones\Index.cshtml" />
+    <Content Include="Views\tbCorreos\Create.cshtml" />
+    <Content Include="Views\tbCorreos\Delete.cshtml" />
+    <Content Include="Views\tbCorreos\Details.cshtml" />
+    <Content Include="Views\tbCorreos\Edit.cshtml" />
+    <Content Include="Views\tbCorreos\Index.cshtml" />
+    <Content Include="Views\tbTelefonos\Create.cshtml" />
+    <Content Include="Views\tbTelefonos\Delete.cshtml" />
+    <Content Include="Views\tbTelefonos\Details.cshtml" />
+    <Content Include="Views\tbTelefonos\Edit.cshtml" />
+    <Content Include="Views\tbTelefonos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
