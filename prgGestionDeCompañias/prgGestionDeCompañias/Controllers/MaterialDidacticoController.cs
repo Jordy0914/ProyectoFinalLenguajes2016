@@ -109,10 +109,11 @@ namespace prgGestionDeCompañias.Controllers
                     // material.contenido = material.archivo.ContentType;
                     // archivos.archivo = material.archivo.ContentType;
 
-                //////////////////////  Nombre del Archivo /////////////////////////////
+             //////////////////////  Nombre del Archivo ///////////////////////////////////
+
                     materiales.nombreArch = material.archivo.FileName;
 
-                ////////////////////// Datos del material didactico /////////////////////////
+           ////////////////////// Datos del material didactico /////////////////////////
                     int cod = Convert.ToInt32(material.idMaterialDidactico);
                     materiales.idMaterialDida = cod;
                     materiales.titulo = material.titulo;
@@ -121,11 +122,11 @@ namespace prgGestionDeCompañias.Controllers
                     materiales.pais = material.pais;
 
 
-                   ////////////////// Datos del el autor////////////////////////////
+         ////////////////// Datos del el autor//////////////////////////////////////////////////////
                     autores.nombre = material.autor;
                     autores.idAutor = Convert.ToInt32(material.idAutor);
                     
-
+        /////////////////////////// agrega la informacion a las tablas ////////////////////////////
                     db.tbMaterialesDida.Add(materiales);
                     db.tbArchivos.Add(archivos);
                     db.tbAutores.Add(autores);
