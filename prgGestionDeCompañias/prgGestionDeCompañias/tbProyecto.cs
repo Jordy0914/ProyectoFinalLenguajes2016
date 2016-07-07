@@ -12,18 +12,18 @@ namespace prgGestionDeCompañias
     using System;
     using System.Collections.Generic;
     
-    public partial class tbProyectos
+    public partial class tbProyecto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbProyectos()
+        public tbProyecto()
         {
-            this.tbHerramientasProy = new HashSet<tbHerramientasProy>();
-            this.tbProyectosEmpresa = new HashSet<tbProyectosEmpresa>();
-            this.tbProyectosEstu = new HashSet<tbProyectosEstu>();
-            this.tbProyectosProf = new HashSet<tbProyectosProf>();
-            this.tbProfesores = new HashSet<tbProfesores>();
-            this.tbMiembros = new HashSet<tbMiembros>();
-            this.tbProfesores1 = new HashSet<tbProfesores>();
+            this.tbHerramientasProys = new HashSet<tbHerramientasProy>();
+            this.tbProyectosEmpresas = new HashSet<tbProyectosEmpresa>();
+            this.tbProyectosEstus = new HashSet<tbProyectosEstu>();
+            this.tbProyectosProfs = new HashSet<tbProyectosProf>();
+            this.tbProfesores = new HashSet<tbProfesore>();
+            this.tbMiembros = new HashSet<tbMiembro>();
+            this.tbProfesores1 = new HashSet<tbProfesore>();
         }
     
         public int idProyecto { get; set; }
@@ -32,20 +32,21 @@ namespace prgGestionDeCompañias
         public string estado { get; set; }
         public string tipo { get; set; }
         public byte[] informacion { get; set; }
+        public string nombreDocumento { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbHerramientasProy> tbHerramientasProy { get; set; }
+        public virtual ICollection<tbHerramientasProy> tbHerramientasProys { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProyectosEmpresa> tbProyectosEmpresa { get; set; }
+        public virtual ICollection<tbProyectosEmpresa> tbProyectosEmpresas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProyectosEstu> tbProyectosEstu { get; set; }
+        public virtual ICollection<tbProyectosEstu> tbProyectosEstus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProyectosProf> tbProyectosProf { get; set; }
+        public virtual ICollection<tbProyectosProf> tbProyectosProfs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProfesores> tbProfesores { get; set; }
+        public virtual ICollection<tbProfesore> tbProfesores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbMiembros> tbMiembros { get; set; }
+        public virtual ICollection<tbMiembro> tbMiembros { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProfesores> tbProfesores1 { get; set; }
+        public virtual ICollection<tbProfesore> tbProfesores1 { get; set; }
     }
 }

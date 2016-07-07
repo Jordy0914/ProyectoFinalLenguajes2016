@@ -17,7 +17,7 @@ namespace prgGestionDeCompañias
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbCursosLibr()
         {
-            this.tbHorarios = new HashSet<tbHorarios>();
+            this.tbHorarios = new HashSet<tbHorario>();
         }
     
         public int idCursosLibres { get; set; }
@@ -28,9 +28,10 @@ namespace prgGestionDeCompañias
         public string lugar { get; set; }
         public int cupo { get; set; }
         public byte[] programa { get; set; }
+        public string nombrePrograma { get; set; }
     
-        public virtual tbProfesores tbProfesores { get; set; }
+        public virtual tbProfesore tbProfesore { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbHorarios> tbHorarios { get; set; }
+        public virtual ICollection<tbHorario> tbHorarios { get; set; }
     }
 }

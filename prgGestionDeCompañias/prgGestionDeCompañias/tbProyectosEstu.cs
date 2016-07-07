@@ -19,8 +19,8 @@ namespace prgGestionDeCompañias
         public int idProfesor { get; set; }
         public int horasInve { get; set; }
     
-        public virtual tbEstudiantes tbEstudiantes { get; set; }
-        public virtual tbProfesores tbProfesores { get; set; }
-        public virtual tbProyectos tbProyectos { get; set; }
+        public virtual tbEstudiante tbEstudiante { get; set; }
+        public virtual tbProfesore tbProfesore { get; set; }
+        public virtual tbProyecto tbProyecto { get; set; }
     }
 }

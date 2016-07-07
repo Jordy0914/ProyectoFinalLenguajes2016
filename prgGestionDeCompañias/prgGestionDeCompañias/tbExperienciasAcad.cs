@@ -17,14 +17,14 @@ namespace prgGestionDeCompañias
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbExperienciasAcad()
         {
-            this.tbProfesores = new HashSet<tbProfesores>();
+            this.tbProfesores = new HashSet<tbProfesore>();
         }
     
         public int idExperienciaLabo { get; set; }
-        public Nullable<int> tiempo { get; set; }
+        public int tiempo { get; set; }
         public string tipoCarg { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProfesores> tbProfesores { get; set; }
+        public virtual ICollection<tbProfesore> tbProfesores { get; set; }
     }
 }

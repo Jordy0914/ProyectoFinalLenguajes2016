@@ -12,38 +12,34 @@ namespace prgGestionDeCompañias
     using System;
     using System.Collections.Generic;
     
-    public partial class tbCursos
+    public partial class tbCapacitacione
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbCursos()
+        public tbCapacitacione()
         {
-            this.tbGruposCurs = new HashSet<tbGruposCurs>();
-            this.tbCursos1 = new HashSet<tbCursos>();
-            this.tbCursos2 = new HashSet<tbCursos>();
-            this.tbCursos11 = new HashSet<tbCursos>();
-            this.tbCursos3 = new HashSet<tbCursos>();
+            this.tbCorreos = new HashSet<tbCorreo>();
+            this.tbTelefonos = new HashSet<tbTelefono>();
+            this.tbEmpresas = new HashSet<tbEmpresa>();
+            this.tbHorarios = new HashSet<tbHorario>();
         }
     
-        public int idCurso { get; set; }
-        public string sigla { get; set; }
+        public int idCapacitacion { get; set; }
         public string nombre { get; set; }
-        public string lugar { get; set; }
-        public string ciclo { get; set; }
-        public int creditos { get; set; }
-        public byte[] programa { get; set; }
-        public string estado { get; set; }
-        public int totalHoras { get; set; }
-        public string modalidad { get; set; }
+        public string descripcion { get; set; }
+        public string ubicacion { get; set; }
+        public string idPersona { get; set; }
+        public System.DateTime fechaInic { get; set; }
+        public System.DateTime fechaFin { get; set; }
+        public int inversion { get; set; }
+        public string tipoCertificado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbGruposCurs> tbGruposCurs { get; set; }
+        public virtual ICollection<tbCorreo> tbCorreos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCursos> tbCursos1 { get; set; }
+        public virtual ICollection<tbTelefono> tbTelefonos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCursos> tbCursos2 { get; set; }
+        public virtual ICollection<tbEmpresa> tbEmpresas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCursos> tbCursos11 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCursos> tbCursos3 { get; set; }
+        public virtual ICollection<tbHorario> tbHorarios { get; set; }
     }
 }

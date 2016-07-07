@@ -12,44 +12,44 @@ namespace prgGestionDeCompañias
     using System;
     using System.Collections.Generic;
     
-    public partial class tbEmpresas
+    public partial class tbEmpresa
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbEmpresas()
+        public tbEmpresa()
         {
-            this.tbBolsasEmpl = new HashSet<tbBolsasEmpl>();
-            this.tbCorreos = new HashSet<tbCorreos>();
-            this.tbDirecciones = new HashSet<tbDirecciones>();
-            this.tbProyectosEmpresa = new HashSet<tbProyectosEmpresa>();
-            this.tbPuestosProf = new HashSet<tbPuestosProf>();
-            this.tbTelefonos = new HashSet<tbTelefonos>();
-            this.tbCapacitaciones = new HashSet<tbCapacitaciones>();
-            this.tbConvenios = new HashSet<tbConvenios>();
-            this.tbMaterialesDida = new HashSet<tbMaterialesDida>();
+            this.tbBolsasEmpls = new HashSet<tbBolsasEmpl>();
+            this.tbCorreos = new HashSet<tbCorreo>();
+            this.tbDirecciones = new HashSet<tbDireccione>();
+            this.tbProyectosEmpresas = new HashSet<tbProyectosEmpresa>();
+            this.tbPuestosProfs = new HashSet<tbPuestosProf>();
+            this.tbTelefonos = new HashSet<tbTelefono>();
+            this.tbCapacitaciones = new HashSet<tbCapacitacione>();
+            this.tbConvenios = new HashSet<tbConvenio>();
+            this.tbMaterialesDidas = new HashSet<tbMaterialesDida>();
         }
     
         public int idEmpresa { get; set; }
         public string nombre { get; set; }
         public string descripcionGene { get; set; }
         public byte[] foto { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbBolsasEmpl> tbBolsasEmpl { get; set; }
+        public virtual ICollection<tbBolsasEmpl> tbBolsasEmpls { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCorreos> tbCorreos { get; set; }
+        public virtual ICollection<tbCorreo> tbCorreos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbDirecciones> tbDirecciones { get; set; }
+        public virtual ICollection<tbDireccione> tbDirecciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProyectosEmpresa> tbProyectosEmpresa { get; set; }
+        public virtual ICollection<tbProyectosEmpresa> tbProyectosEmpresas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbPuestosProf> tbPuestosProf { get; set; }
+        public virtual ICollection<tbPuestosProf> tbPuestosProfs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbTelefonos> tbTelefonos { get; set; }
+        public virtual ICollection<tbTelefono> tbTelefonos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCapacitaciones> tbCapacitaciones { get; set; }
+        public virtual ICollection<tbCapacitacione> tbCapacitaciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbConvenios> tbConvenios { get; set; }
+        public virtual ICollection<tbConvenio> tbConvenios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbMaterialesDida> tbMaterialesDida { get; set; }
+        public virtual ICollection<tbMaterialesDida> tbMaterialesDidas { get; set; }
     }
 }

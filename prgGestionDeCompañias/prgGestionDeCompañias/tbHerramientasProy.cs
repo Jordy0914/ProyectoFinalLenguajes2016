@@ -18,7 +18,7 @@ namespace prgGestionDeCompañias
         public int idHerramienta { get; set; }
         public int horasInvertidas { get; set; }
     
-        public virtual tbHerramientas tbHerramientas { get; set; }
-        public virtual tbProyectos tbProyectos { get; set; }
+        public virtual tbHerramienta tbHerramienta { get; set; }
+        public virtual tbProyecto tbProyecto { get; set; }
     }
 }

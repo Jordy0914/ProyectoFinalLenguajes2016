@@ -19,7 +19,7 @@ namespace prgGestionDeCompañias
         public string puesto { get; set; }
         public string tiempoLabo { get; set; }
     
-        public virtual tbEmpresas tbEmpresas { get; set; }
-        public virtual tbProfesores tbProfesores { get; set; }
+        public virtual tbEmpresa tbEmpresa { get; set; }
+        public virtual tbProfesore tbProfesore { get; set; }
     }
 }

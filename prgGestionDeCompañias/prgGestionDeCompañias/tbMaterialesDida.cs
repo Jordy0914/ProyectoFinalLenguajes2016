@@ -17,9 +17,9 @@ namespace prgGestionDeCompañias
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbMaterialesDida()
         {
-            this.tbArchivos = new HashSet<tbArchivos>();
-            this.tbAutores = new HashSet<tbAutores>();
-            this.tbEmpresas = new HashSet<tbEmpresas>();
+            this.tbArchivos = new HashSet<tbArchivo>();
+            this.tbAutores = new HashSet<tbAutore>();
+            this.tbEmpresas = new HashSet<tbEmpresa>();
         }
     
         public int idMaterialDida { get; set; }
@@ -30,10 +30,10 @@ namespace prgGestionDeCompañias
         public string pais { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbArchivos> tbArchivos { get; set; }
+        public virtual ICollection<tbArchivo> tbArchivos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbAutores> tbAutores { get; set; }
+        public virtual ICollection<tbAutore> tbAutores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbEmpresas> tbEmpresas { get; set; }
+        public virtual ICollection<tbEmpresa> tbEmpresas { get; set; }
     }
 }

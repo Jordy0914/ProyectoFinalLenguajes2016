@@ -20,6 +20,6 @@ namespace prgGestionDeCompañias
         public string observador { get; set; }
         public System.DateTime fecha { get; set; }
     
-        public virtual tbProfesores tbProfesores { get; set; }
+        public virtual tbProfesore tbProfesore { get; set; }
     }
 }

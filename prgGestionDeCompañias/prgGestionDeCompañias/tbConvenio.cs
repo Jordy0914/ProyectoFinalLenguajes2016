@@ -12,12 +12,12 @@ namespace prgGestionDeCompañias
     using System;
     using System.Collections.Generic;
     
-    public partial class tbConvenios
+    public partial class tbConvenio
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbConvenios()
+        public tbConvenio()
         {
-            this.tbEmpresas = new HashSet<tbEmpresas>();
+            this.tbEmpresas = new HashSet<tbEmpresa>();
         }
     
         public int idConvenio { get; set; }
@@ -26,6 +26,6 @@ namespace prgGestionDeCompañias
         public string estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbEmpresas> tbEmpresas { get; set; }
+        public virtual ICollection<tbEmpresa> tbEmpresas { get; set; }
     }
 }

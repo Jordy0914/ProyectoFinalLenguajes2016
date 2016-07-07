@@ -12,34 +12,33 @@ namespace prgGestionDeCompañias
     using System;
     using System.Collections.Generic;
     
-    public partial class tbProfesores
+    public partial class tbProfesore
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbProfesores()
+        public tbProfesore()
         {
-            this.tbCorreos = new HashSet<tbCorreos>();
-            this.tbCursosLibr = new HashSet<tbCursosLibr>();
-            this.tbDirecciones = new HashSet<tbDirecciones>();
-            this.tbEspecialidadesProf = new HashSet<tbEspecialidadesProf>();
-            this.tbEstudiosProf = new HashSet<tbEstudiosProf>();
-            this.tbObservacionesProf = new HashSet<tbObservacionesProf>();
-            this.tbPeriodosLaboProf = new HashSet<tbPeriodosLaboProf>();
-            this.tbProyectosEstu = new HashSet<tbProyectosEstu>();
-            this.tbProyectosProf = new HashSet<tbProyectosProf>();
-            this.tbPuestosProf = new HashSet<tbPuestosProf>();
-            this.tbTelefonos = new HashSet<tbTelefonos>();
-            this.tbTitulosProf = new HashSet<tbTitulosProf>();
-            this.tbProyectos = new HashSet<tbProyectos>();
-            this.tbExperienciasAcad = new HashSet<tbExperienciasAcad>();
-            this.tbGruposCurs = new HashSet<tbGruposCurs>();
-            this.tbProyectos1 = new HashSet<tbProyectos>();
+            this.tbCorreos = new HashSet<tbCorreo>();
+            this.tbCursosLibrs = new HashSet<tbCursosLibr>();
+            this.tbDirecciones = new HashSet<tbDireccione>();
+            this.tbObservacionesProfs = new HashSet<tbObservacionesProf>();
+            this.tbPeriodosLaboProfs = new HashSet<tbPeriodosLaboProf>();
+            this.tbProyectosEstus = new HashSet<tbProyectosEstu>();
+            this.tbProyectosProfs = new HashSet<tbProyectosProf>();
+            this.tbPuestosProfs = new HashSet<tbPuestosProf>();
+            this.tbTelefonos = new HashSet<tbTelefono>();
+            this.tbTitulosProfs = new HashSet<tbTitulosProf>();
+            this.tbProyectos = new HashSet<tbProyecto>();
+            this.tbEspecialidadesPorExpes = new HashSet<tbEspecialidadesPorExpe>();
+            this.tbEspecialidadesTitus = new HashSet<tbEspecialidadesTitu>();
+            this.tbExperienciasAcads = new HashSet<tbExperienciasAcad>();
+            this.tbGruposCurs = new HashSet<tbGruposCur>();
+            this.tbProyectos1 = new HashSet<tbProyecto>();
         }
     
         public int idProfesor { get; set; }
         public string nombre { get; set; }
-        public string apaellido1 { get; set; }
+        public string apellido1 { get; set; }
         public string apellido2 { get; set; }
-        public string usuario { get; set; }
         public string genero { get; set; }
         public System.DateTime fechaNaci { get; set; }
         public string jornada { get; set; }
@@ -50,36 +49,36 @@ namespace prgGestionDeCompañias
         public byte[] curriculum { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCorreos> tbCorreos { get; set; }
+        public virtual ICollection<tbCorreo> tbCorreos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCursosLibr> tbCursosLibr { get; set; }
+        public virtual ICollection<tbCursosLibr> tbCursosLibrs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbDirecciones> tbDirecciones { get; set; }
+        public virtual ICollection<tbDireccione> tbDirecciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbEspecialidadesProf> tbEspecialidadesProf { get; set; }
+        public virtual ICollection<tbObservacionesProf> tbObservacionesProfs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbEstudiosProf> tbEstudiosProf { get; set; }
+        public virtual ICollection<tbPeriodosLaboProf> tbPeriodosLaboProfs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbObservacionesProf> tbObservacionesProf { get; set; }
+        public virtual ICollection<tbProyectosEstu> tbProyectosEstus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbPeriodosLaboProf> tbPeriodosLaboProf { get; set; }
+        public virtual ICollection<tbProyectosProf> tbProyectosProfs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProyectosEstu> tbProyectosEstu { get; set; }
+        public virtual ICollection<tbPuestosProf> tbPuestosProfs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProyectosProf> tbProyectosProf { get; set; }
+        public virtual ICollection<tbTelefono> tbTelefonos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbPuestosProf> tbPuestosProf { get; set; }
+        public virtual ICollection<tbTitulosProf> tbTitulosProfs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbTelefonos> tbTelefonos { get; set; }
+        public virtual ICollection<tbProyecto> tbProyectos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbTitulosProf> tbTitulosProf { get; set; }
+        public virtual ICollection<tbEspecialidadesPorExpe> tbEspecialidadesPorExpes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProyectos> tbProyectos { get; set; }
+        public virtual ICollection<tbEspecialidadesTitu> tbEspecialidadesTitus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbExperienciasAcad> tbExperienciasAcad { get; set; }
+        public virtual ICollection<tbExperienciasAcad> tbExperienciasAcads { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbGruposCurs> tbGruposCurs { get; set; }
+        public virtual ICollection<tbGruposCur> tbGruposCurs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProyectos> tbProyectos1 { get; set; }
+        public virtual ICollection<tbProyecto> tbProyectos1 { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace prgGestionDeCompañias
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbEspecialidadesTitu()
         {
-            this.tbEspecialidadesProf = new HashSet<tbEspecialidadesProf>();
+            this.tbProfesores = new HashSet<tbProfesore>();
         }
     
         public int idEspecialidad { get; set; }
@@ -26,6 +26,6 @@ namespace prgGestionDeCompañias
         public string institucion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbEspecialidadesProf> tbEspecialidadesProf { get; set; }
+        public virtual ICollection<tbProfesore> tbProfesores { get; set; }
     }
 }

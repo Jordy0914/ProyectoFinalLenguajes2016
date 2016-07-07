@@ -19,6 +19,6 @@ namespace prgGestionDeCompañias
         public System.DateTime fechaIngr { get; set; }
         public System.DateTime fechaSali { get; set; }
     
-        public virtual tbProfesores tbProfesores { get; set; }
+        public virtual tbProfesore tbProfesore { get; set; }
     }
 }
