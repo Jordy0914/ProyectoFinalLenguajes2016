@@ -46,9 +46,9 @@
         </EntityType>
         <EntityType Name="tbCapacitaciones">
           <Key>
-            <PropertyRef Name="idCapacitacion" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="idCapacitacion" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="ubicacion" Type="nvarchar" MaxLength="255" Nullable="false" />
@@ -60,11 +60,11 @@
         </EntityType>
         <EntityType Name="tbCapacitacionesEmpr">
           <Key>
-            <PropertyRef Name="idCapacitacion" />
-            <PropertyRef Name="idEmpresa" />
+            <PropertyRef Name="Capacitacion_id" />
+            <PropertyRef Name="Empresa_id" />
           </Key>
-          <Property Name="idCapacitacion" Type="int" Nullable="false" />
-          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="Capacitacion_id" Type="int" Nullable="false" />
+          <Property Name="Empresa_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tbConvenios">
           <Key>
@@ -554,10 +554,10 @@
           <End Role="tbCapacitacionesEmpr" Type="Self.tbCapacitacionesEmpr" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbCapacitaciones">
-              <PropertyRef Name="idCapacitacion" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="tbCapacitacionesEmpr">
-              <PropertyRef Name="idCapacitacion" />
+              <PropertyRef Name="Capacitacion_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -569,7 +569,7 @@
               <PropertyRef Name="idEmpresa" />
             </Principal>
             <Dependent Role="tbCapacitacionesEmpr">
-              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="Empresa_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -626,7 +626,7 @@
           <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbCapacitaciones">
-              <PropertyRef Name="idCapacitacion" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="tbCorreos">
               <PropertyRef Name="idPersona" />
@@ -926,7 +926,7 @@
           <End Role="tbHorariosCapa" Type="Self.tbHorariosCapa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbCapacitaciones">
-              <PropertyRef Name="idCapacitacion" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="tbHorariosCapa">
               <PropertyRef Name="idCapacitacion" />
@@ -1178,7 +1178,7 @@
           <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbCapacitaciones">
-              <PropertyRef Name="idCapacitacion" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="tbTelefonos">
               <PropertyRef Name="idPersona" />
@@ -1585,9 +1585,9 @@
         </EntityType>
         <EntityType Name="tbCapacitaciones">
           <Key>
-            <PropertyRef Name="idCapacitacion" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="idCapacitacion" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ubicacion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
@@ -2004,7 +2004,7 @@
           <End Role="tbCorreos" Type="Self.tbCorreos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbCapacitaciones">
-              <PropertyRef Name="idCapacitacion" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="tbCorreos">
               <PropertyRef Name="idPersona" />
@@ -2016,7 +2016,7 @@
           <End Role="tbTelefonos" Type="Self.tbTelefonos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbCapacitaciones">
-              <PropertyRef Name="idCapacitacion" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="tbTelefonos">
               <PropertyRef Name="idPersona" />
@@ -2672,7 +2672,7 @@
           <EntitySetMapping Name="tbCapacitaciones">
             <EntityTypeMapping TypeName="BDPortafolioUcrModel.tbCapacitaciones">
               <MappingFragment StoreEntitySet="tbCapacitaciones">
-                <ScalarProperty Name="idCapacitacion" ColumnName="idCapacitacion" />
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
@@ -3018,10 +3018,10 @@
           </AssociationSetMapping>
           <AssociationSetMapping Name="tbCapacitacionesEmpr" TypeName="BDPortafolioUcrModel.tbCapacitacionesEmpr" StoreEntitySet="tbCapacitacionesEmpr">
             <EndProperty Name="tbCapacitaciones">
-              <ScalarProperty Name="idCapacitacion" ColumnName="idCapacitacion" />
+              <ScalarProperty Name="id" ColumnName="Capacitacion_id" />
             </EndProperty>
             <EndProperty Name="tbEmpresas">
-              <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+              <ScalarProperty Name="idEmpresa" ColumnName="Empresa_id" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="tbConveniosEmpr" TypeName="BDPortafolioUcrModel.tbConveniosEmpr" StoreEntitySet="tbConveniosEmpr">
@@ -3082,7 +3082,7 @@
           </AssociationSetMapping>
           <AssociationSetMapping Name="tbHorariosCapa" TypeName="BDPortafolioUcrModel.tbHorariosCapa" StoreEntitySet="tbHorariosCapa">
             <EndProperty Name="tbCapacitaciones">
-              <ScalarProperty Name="idCapacitacion" ColumnName="idCapacitacion" />
+              <ScalarProperty Name="id" ColumnName="idCapacitacion" />
             </EndProperty>
             <EndProperty Name="tbHorarios">
               <ScalarProperty Name="idHorario" ColumnName="idHorario" />
