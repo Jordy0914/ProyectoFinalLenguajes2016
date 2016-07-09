@@ -63,7 +63,7 @@ namespace prgGestionDeCompañias.Models
 
         //[Required]
         //[Display(Name = "Telefono")]
-        public int telefono { get; set; }
+        public string telefono { get; set; }
 
         /*
         [Required]
@@ -129,7 +129,7 @@ namespace prgGestionDeCompañias.Models
         [Required]
         //[StringLength(100)]
         [Display(Name = "Telefono")]
-        public int telefono { get; set; }
+        public string telefono { get; set; }
 
         [Required]
         [StringLength(100)]

@@ -105,28 +105,40 @@ namespace prgGestionDeCompañias.Controllers
 
 //********************** Datos de la Empresa*****************************************************
 
-                    int cod = Convert.ToInt32(empresas.idEmpresa);
+                    int cod = Convert.ToInt32(empresa.idEmpresa);
                     empresas.idEmpresa = cod;
-                    empresas.nombre = empresas.nombre;
+                    empresas.nombre = empresa.nombre;
                     empresas.descripcionGene = empresa.descripcionGene;
-                    direcciones.idDireccion = Convert.ToInt32(empresa.idDireccion);
-                    //direcciones.tipoPersona = empresas.tipoPersona;
-                    direcciones.idPersona = Convert.ToInt32(empresa.idPersona);
+
+                    int codD = Convert.ToInt32(empresa.idDireccion);
+                    direcciones.idDireccion = codD;
+                    direcciones.tipoPersona = empresa.tipoPersona;
+
+                    int idD=Convert.ToInt32(empresa.idPersona);
+                    direcciones.idPersona = idD;
                     direcciones.direccion = empresa.direccion;
                     direcciones.provincia = empresa.provincia;
                     direcciones.canton = empresa.canton;
                     direcciones.distrito = empresa.distrito;
-                    telefonos.idTelefono=  Convert.ToInt32(empresa.idTelefono);
-                    //telefonos.telefono = Convert.ToInt32(empresa.telefono);
-                    // telefonos.idPersona = Convert.ToInt32(empresa.idPersona);
-                    // telefonos.tipoPersona = empresas.tipoPersona;
-                    correos.idCorreo = Convert.ToInt32(empresa.idCorreo);
-                    // correos.idPersona = Convert.ToInt32(empresa.idPersona);
-                    // correos.tipoPersona = empresas.tipoPersona;
-                    correos.correo = empresa.correo;
+
+                    int codT=Convert.ToInt32(empresa.idTelefono);
+                    telefonos.idTelefono = codT;
+                    telefonos.telefono = empresa.telefono;
+
+                    int idT=Convert.ToInt32(empresa.idPersona);
+                    telefonos.idPersona = idT;
+                    telefonos.tipoPers = empresa.tipoPersona;
+
+                   int codC= Convert.ToInt32(empresa.idCorreo);
+                   correos.idCorreo = codC;
+
+                   int idP=  Convert.ToInt32(empresa.idPersona);
+                   correos.idPersona = idP;
+                   correos.tipoPersona = empresa.tipoPersona;
+                   correos.correo = empresa.correo;
 
 //************************* agrega la informacion a las tablas***************************************
-                    db.tbEmpresas.Add(empresas);
+                  //  db.tbEmpresas.Add(empresas);
                     db.tbDirecciones.Add(direcciones);
                     db.tbTelefonos.Add(telefonos);
                     db.tbCorreos.Add(correos);
