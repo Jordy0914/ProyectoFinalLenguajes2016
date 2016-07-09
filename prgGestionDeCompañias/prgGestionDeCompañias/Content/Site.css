@@ -22,3 +22,50 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+
+
+.custom-btn{
+    background:#03A9F4;
+    color: #fff;
+    font-weight:bold;
+    text-transform:uppercase;
+
+    transition: all .4s ease-in;
+}
+
+.custom-btn:hover{
+    color: #fff;
+    background: #2196F3;
+    transition: all .2s ease-in;
+}
+
+.custom-footer-link > a {
+    display: block;
+    text-decoration: none;
+    background: #03A9F4;
+    color: #fff;
+    font-weight: bold;
+    width: 7em;
+    padding: 0.3em 1em;
+    transition: all .4s ease-in;
+}
+
+.custom-footer-link > a:hover{
+    background: #2196F3;
+    transition: all .4s ease-in;
+}
+
+.custom-header {
+    width: 45%;
+    height: 94px;
+    background: url(images/ucr.png) no-repeat;
+    background-size:cover;
+    margin-left: 31px;
+    top:115px;
+    bottom:30px;
+    margin-top:-43px;
+
+}
+
