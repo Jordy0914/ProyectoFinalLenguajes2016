@@ -15,7 +15,7 @@ namespace prgGestionDeCompañias
     public partial class tbTelefonos
     {
         public int idTelefono { get; set; }
-        public int telefono { get; set; }
+        public string telefono { get; set; }
         public int idPersona { get; set; }
         public string tipoPers { get; set; }
     

@@ -25,7 +25,6 @@ namespace prgGestionDeCompañias
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tbArchivos> tbArchivos { get; set; }
         public virtual DbSet<tbAutores> tbAutores { get; set; }
         public virtual DbSet<tbBolsasEmpl> tbBolsasEmpl { get; set; }

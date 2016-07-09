@@ -110,14 +110,14 @@ namespace prgGestionDeCompañias.Controllers
                     empresas.nombre = empresas.nombre;
                     empresas.descripcionGene = empresa.descripcionGene;
                     direcciones.idDireccion = Convert.ToInt32(empresa.idDireccion);
-                    direcciones.tipoPersona = empresas.tipoPersona;
+                    //direcciones.tipoPersona = empresas.tipoPersona;
                     direcciones.idPersona = Convert.ToInt32(empresa.idPersona);
                     direcciones.direccion = empresa.direccion;
                     direcciones.provincia = empresa.provincia;
                     direcciones.canton = empresa.canton;
                     direcciones.distrito = empresa.distrito;
                     telefonos.idTelefono=  Convert.ToInt32(empresa.idTelefono);
-                    telefonos.telefono = Convert.ToInt32(empresa.telefono);
+                    //telefonos.telefono = Convert.ToInt32(empresa.telefono);
                     // telefonos.idPersona = Convert.ToInt32(empresa.idPersona);
                     // telefonos.tipoPersona = empresas.tipoPersona;
                     correos.idCorreo = Convert.ToInt32(empresa.idCorreo);
