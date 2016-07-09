@@ -56,7 +56,7 @@ namespace prgGestionDeCompañias.Controllers
             var maximoArchivo = ((from codArchivo in db.tbArchivos select (int?) codArchivo.idArchivo).Max()) + 1;
           
             
-            if ((maximo == 0) && (maximoAutores == 0)&& (maximoArchivo==0))
+            if ((maximo == 0) && (maximoAutores == 0) && (maximoArchivo==0))
             {
                 maximo = 1;
                 datos.idMaterialDidactico = Convert.ToInt32(1);
@@ -68,19 +68,18 @@ namespace prgGestionDeCompañias.Controllers
                 datos.idArchivo = Convert.ToInt32(1);
 
                 return View(datos);
-            }
+            }//fin del if para comprobar que los codigos sean igual a cero
             else
             {
                 datos.idMaterialDidactico = Convert.ToInt32(maximo);
                 datos.idAutor = Convert.ToInt32(maximoAutores);
                 datos.idArchivo = Convert.ToInt32(maximoArchivo);
                 return View(datos);
-            }
-        }
+            }//fin del else
+
+        }//fin del http get
 
         // POST: MaterialDidactico/Create
-
-
         [HttpPost]
         public ActionResult AgregarMaterial(models.AgregarMaterialDidactico material)
         {
@@ -95,13 +94,13 @@ namespace prgGestionDeCompañias.Controllers
                     var materiales = db.tbMaterialesDida.Create();
                     var archivos = db.tbArchivos.Create();
                     var autores = db.tbAutores.Create();
-                   // var archivoMaterial = db.tbArchivosMateDida;
-                   // var autoresArchivo = db.tbAutoresMateDida;
+                    // var archivoMaterial = db.tbArchivosMateDida;
+                    // var autoresArchivo = db.tbAutoresMateDida;
 
                     byte[] data = new byte[material.archivo.ContentLength];
                     material.archivo.InputStream.Read(data, 0, material.archivo.ContentLength);
 
-                
+          ///////////////////////// Agrega el archivo /////////////////////////////////////////////////      
                     archivos.idArchivo = Convert.ToInt32(material.idArchivo);
                     archivos.archivo = data;
 
@@ -109,11 +108,12 @@ namespace prgGestionDeCompañias.Controllers
                     // material.contenido = material.archivo.ContentType;
                     // archivos.archivo = material.archivo.ContentType;
 
-             //////////////////////  Nombre del Archivo ///////////////////////////////////
+         //////////////////////  Nombre del Archivo ////////////////////////////////////////////////
 
                     materiales.nombreArch = material.archivo.FileName;
 
-           ////////////////////// Datos del material didactico /////////////////////////
+        ////////////////////// Datos del material didactico //////////////////////////////////////
+
                     int cod = Convert.ToInt32(material.idMaterialDidactico);
                     materiales.idMaterialDida = cod;
                     materiales.titulo = material.titulo;
@@ -122,7 +122,8 @@ namespace prgGestionDeCompañias.Controllers
                     materiales.pais = material.pais;
 
 
-         ////////////////// Datos del el autor//////////////////////////////////////////////////////
+        /////////////////////////////// Datos del el autor/////////////////////////////////////////
+
                     autores.nombre = material.autor;
                     autores.idAutor = Convert.ToInt32(material.idAutor);
                     
@@ -130,11 +131,11 @@ namespace prgGestionDeCompañias.Controllers
                     db.tbMaterialesDida.Add(materiales);
                     db.tbArchivos.Add(archivos);
                     db.tbAutores.Add(autores);
-
+       ///////////////////////// Guarda los cambios //////////////////////////////////////////////         
                     db.SaveChanges();
                    
-                    return RedirectToAction("AgregarMaterial", "MaterialDidactico");
-                        //return RedirectToAction("Index"); es que traia por defecto
+                   return RedirectToAction("Index", "Home");
+                    //return RedirectToAction("Index");// es que traia por defecto
 
                }//fin del using
          }//fin del if valid
@@ -147,6 +148,7 @@ namespace prgGestionDeCompañias.Controllers
             return View();
         }//fin del metodo para agregar material didactico
 
+      
         // GET: MaterialDidactico/Edit/5
         public ActionResult Edit(int id)
         {
