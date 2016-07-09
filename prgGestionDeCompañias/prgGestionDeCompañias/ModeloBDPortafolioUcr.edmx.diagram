@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbArchivos" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbAutores" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbBolsasEmpl" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbCapacitaciones" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDPortafolioUcrModel.tbCapacitaciones" Width="2.375" PointX="0.5" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbConvenios" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbCorreos" Width="1.5" PointX="8.25" PointY="19.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BDPortafolioUcrModel.tbCurriculums" Width="1.5" PointX="5.25" PointY="37.25" IsExpanded="true" />
