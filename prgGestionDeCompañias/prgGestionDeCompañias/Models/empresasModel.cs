@@ -25,33 +25,69 @@ namespace prgGestionDeCompañias.Models
         public string descripcionGene { get; set; }
 
         [Required]
+        [Display(Name = "Codigo")]
+        public int idDireccion { get; set; }
+
+        [Required]
+        [StringLength(1000)]
+        [Display(Name = "Tipo Persona")]
+        public string tipoPersona { get; set; }
+
+        [Required]
+        [Display(Name = "Codigo Persona")]
+        public int idPersona { get; set; }
+
+        [Required]
         [StringLength(1000)]
         [Display(Name = "Dirección")]
         public string direccion { get; set; }
 
         [Required]
-        [StringLength(1000)]
+        [StringLength(100)]
         [Display(Name = "Provincia")]
         public string provincia { get; set; }
 
         [Required]
-        [StringLength(1000)]
+        [StringLength(100)]
         [Display(Name = "Cantón")]
         public string canton { get; set; }
 
         [Required]
-        [StringLength(1000)]
+        [StringLength(100)]
         [Display(Name = "Distrito")]
         public string distrito { get; set; }
 
-
         [Required]
-        [StringLength(1000)]
-        [Display(Name = "Telefono")]
+        [Display(Name = "Codigo")]
+        public int idTelefono { get; set; }
+
+        //[Required]
+        //[Display(Name = "Telefono")]
         public int telefono { get; set; }
 
+        /*
+        [Required]
+        [Display(Name = "Codigo Persona")]
+        public int idPersona { get; set; }
         [Required]
         [StringLength(1000)]
+        [Display(Name = "Tipo Persona")]
+        public string tipoPersona { get; set; }
+        */
+        [Required]
+        [Display(Name = "Codigo")]
+        public int idCorreo { get; set; }
+        /*
+        [Required]
+        [Display(Name = "Codigo Persona")]
+        public int idPersona { get; set; }
+         [StringLength(1000)]
+        [Display(Name = "Tipo Persona")]
+        public string tipoPersona { get; set; }
+        */
+
+        [Required]
+        [StringLength(100)]
         [Display(Name = "E-mail")]
         public string correo { get; set; }
     }//Fin de Agregar EmpresaModel
@@ -76,28 +112,29 @@ namespace prgGestionDeCompañias.Models
         public string direccion { get; set; }
 
         [Required]
-        [StringLength(1000)]
+        [StringLength(100)]
         [Display(Name = "Provincia")]
         public string provincia { get; set; }
 
         [Required]
-        [StringLength(1000)]
+        [StringLength(100)]
         [Display(Name = "Cantón")]
         public string canton { get; set; }
 
         [Required]
-        [StringLength(1000)]
+        [StringLength(100)]
         [Display(Name = "Distrito")]
         public string distrito { get; set; }
 
         [Required]
-        [StringLength(1000)]
+        //[StringLength(100)]
         [Display(Name = "Telefono")]
         public int telefono { get; set; }
 
         [Required]
-        [StringLength(1000)]
+        [StringLength(100)]
         [Display(Name = "E-mail")]
         public string correo { get; set; }
     }//Fin de modificar
 }
+ 

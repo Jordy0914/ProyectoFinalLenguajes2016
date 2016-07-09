@@ -11,7 +11,9 @@ namespace prgGestionDeCompañias
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Globalization;
+
     public partial class tbEmpresas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,12 +29,70 @@ namespace prgGestionDeCompañias
             this.tbConvenios = new HashSet<tbConvenios>();
             this.tbMaterialesDida = new HashSet<tbMaterialesDida>();
         }
-    
+
+        [Required]
+        [Display(Name = "Codigo de la Empresa")]
         public int idEmpresa { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [Display(Name = "Nombre")]
         public string nombre { get; set; }
+
+        [Required]
+        [StringLength(1000)]
+        [Display(Name = "Descripcion")]
         public string descripcionGene { get; set; }
+
         public byte[] foto { get; set; }
-    
+
+        [Required]
+        [Display(Name = "Codigo de la Direccion")]
+        public int idDireccion { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [Display(Name = "Tipo de Persona")]
+        public string tipoPersona { get; set; }
+
+        [Required]
+        [StringLength(1000)]
+        [Display(Name = "Direccion")]
+        public string direccion { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [Display(Name = "Provincia")]
+        public string provincia { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [Display(Name = "Cantón")]
+        public string canton { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [Display(Name = "Distrito")]
+        public string distrito { get; set; }
+
+        [Required]
+        [Display(Name = "Codigo del Telefono")]
+        public int idTelefono { get; set; }
+
+        //[Required]
+        ////[StringLength(100)]
+        //[Display(Name = "Telefono")]
+        public int telefono { get; set; }
+
+        [Required]
+        [Display(Name = "Codigo del Correo")]
+        public int idCorreo { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [Display(Name = "Correo")]
+        public string correo { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBolsasEmpl> tbBolsasEmpl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
