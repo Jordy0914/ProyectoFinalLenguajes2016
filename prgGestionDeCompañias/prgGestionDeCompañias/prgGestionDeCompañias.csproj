@@ -192,7 +192,6 @@
       <DependentUpon>ModeloBDPortafolioUcr.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\EmpresasModel.cs" />
     <Compile Include="Models\materialDidacticoModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
