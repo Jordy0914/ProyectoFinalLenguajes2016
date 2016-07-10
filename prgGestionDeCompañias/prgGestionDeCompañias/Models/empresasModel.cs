@@ -8,7 +8,7 @@ using System.Globalization;//biblioteca de configuracion del uso de varios idiom
 
 namespace prgGestionDeCompañias.Models
 {
-    public class AgregarEmpresasModel
+    public class AgregarEmpresas
     {
         [Required]
         [Display(Name = "Codigo")]
@@ -92,7 +92,7 @@ namespace prgGestionDeCompañias.Models
         public string correo { get; set; }
     }//Fin de Agregar EmpresaModel
 
-//######################################################################################
+    //######################################################################################
     public class ModificarEmpresasModel
     {
 
@@ -137,4 +137,3 @@ namespace prgGestionDeCompañias.Models
         public string correo { get; set; }
     }//Fin de modificar
 }
- 
