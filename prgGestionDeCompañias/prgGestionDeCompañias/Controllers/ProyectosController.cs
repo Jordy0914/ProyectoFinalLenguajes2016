@@ -42,10 +42,25 @@ namespace prgGestionDeCompañias.Controllers
             }
         }
 
+
+
         [HttpGet]
         public ActionResult RegistrarProyectos()
         {
-            return View();
+            BDPortafolioUcrContext db = new BDPortafolioUcrContext();
+            Models.RegistrarProyecto data = new Models.RegistrarProyecto();
+            var index = ((from idProyecto in db.tbProyectos select (int?)idProyecto.idProyecto).Max()) + 1;
+            if (index == 0)
+            {
+                index++;
+                data.idProyecto = Convert.ToInt32(index);
+                return View(data);
+            }
+            else
+            {
+                data.idProyecto = Convert.ToInt32(index);
+                return View(data);
+            }
         }
 
         [HttpPost]
