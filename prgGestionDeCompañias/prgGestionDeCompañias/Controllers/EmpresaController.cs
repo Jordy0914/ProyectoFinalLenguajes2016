@@ -47,7 +47,7 @@ namespace prgGestionDeCompañias.Controllers
 
         //************************** GET: Empresa/Create************************************************
         [HttpGet]
-        public ActionResult AgregarEmpresa()
+        public ActionResult AgregarEmpresas()
         {
             BDPortafolioUcrContext db = new BDPortafolioUcrContext();
             Models.AgregarEmpresas datos = new Models.AgregarEmpresas();
@@ -89,7 +89,7 @@ namespace prgGestionDeCompañias.Controllers
 
         //*************************** POST: Empresa/Create***************************************
         [HttpPost]
-        public ActionResult AgregarEmpresa(Models.AgregarEmpresas empresa)
+        public ActionResult AgregarEmpresas(Models.AgregarEmpresas empresa)
         {
             if (ModelState.IsValid)
             {
@@ -101,52 +101,60 @@ namespace prgGestionDeCompañias.Controllers
                     var telefonos = db.tbTelefonos.Create();
                     var correos = db.tbCorreos.Create();
 
-                    // byte[] data = new byte[empresa.foto.ContentLength];
-                    //empresa.foto.InputStream.Read(data, 0, empresa.foto.ContentLength);
+                    byte[] data = new byte[empresa.logo.ContentLength];
+                    empresa.logo.InputStream.Read(data, 0, empresa.logo.ContentLength);
 
-                    //********************** Datos de la Empresa*****************************************************
+      //****************************** Datos de la Empresa    *****************************************************
 
                     int cod = Convert.ToInt32(empresa.idEmpresa);
                     empresas.idEmpresa = cod;
                     empresas.nombre = empresa.nombre;
                     empresas.descripcionGene = empresa.descripcionGene;
+                    empresas.foto = data;
 
-                    int codD = Convert.ToInt32(empresa.idDireccion);
-                    direcciones.idDireccion = codD;
+                    //int codD = Convert.ToInt32(empresa.idDireccion);
+                    //direcciones.idDireccion = codD;
+                    //direcciones.tipoPersona = empresa.tipoPersona;
+        
+                    
+       /////////////////////////////////////////// Infromacion de la direccion ///////////////////////////////
+                    int idD = Convert.ToInt32(empresa.idDireccion);
+                    direcciones.idDireccion = idD;
+                    direcciones.idPersona = cod;
                     direcciones.tipoPersona = empresa.tipoPersona;
-
-                    int idD = Convert.ToInt32(empresa.idPersona);
-                    direcciones.idPersona = idD;
                     direcciones.direccion = empresa.direccion;
                     direcciones.provincia = empresa.provincia;
                     direcciones.canton = empresa.canton;
                     direcciones.distrito = empresa.distrito;
-
+                
+    ////////////////////////// Infromacion de Telefono ///////////////////////////////
                     int codT = Convert.ToInt32(empresa.idTelefono);
                     telefonos.idTelefono = codT;
                     telefonos.telefono = empresa.telefono;
 
-                    int idT = Convert.ToInt32(empresa.idPersona);
-                    telefonos.idPersona = idT;
+                   // int idT = Convert.ToInt32(empresa.idPersona);
+                    telefonos.idPersona = cod;
                     telefonos.tipoPers = empresa.tipoPersona;
+      
+   //////////////////////////// Infromacion de Correo ///////////////////////////////
 
                     int codC = Convert.ToInt32(empresa.idCorreo);
                     correos.idCorreo = codC;
 
-                    int idP = Convert.ToInt32(empresa.idPersona);
-                    correos.idPersona = idP;
+                    //int idP = Convert.ToInt32(empresa.idPersona);
+                    correos.idPersona = cod;
                     correos.tipoPersona = empresa.tipoPersona;
                     correos.correo = empresa.correo;
 
-                    //************************* agrega la informacion a las tablas***************************************
-                    //  db.tbEmpresas.Add(empresas);
-                    db.tbDirecciones.Add(direcciones);
-                   // db.tbTelefonos.Add(telefonos);
-                    //db.tbCorreos.Add(correos);
+    //************************* agrega la informacion a las tablas***************************************
+                    db.tbEmpresas.Add(empresas);
+                   // db.tbDirecciones.Add(direcciones); se comento por que da problemas al insertar por la llaves foraneas
+                  //  db.tbTelefonos.Add(telefonos);
+                 //   db.tbCorreos.Add(correos);
 
                     db.SaveChanges();
 
-                    return RedirectToAction("Agregar Empresa", "Empresa");
+                    return RedirectToAction("Index", "Home");
                 }//fin del using
             }//fin del if valid
 

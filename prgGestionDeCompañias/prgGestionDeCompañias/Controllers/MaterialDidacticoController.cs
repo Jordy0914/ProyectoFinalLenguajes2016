@@ -22,12 +22,12 @@ namespace prgGestionDeCompañias.Controllers
                            select datos;
             //se crea la una coleccion de elementos
 
-            var consultaAutor = from datos in dbContext.tbAutores
-                                orderby datos.idAutor ascending
-                                select datos;
+            //var consultaAutor = from datos in dbContext.tbAutores
+            //                    orderby datos.idAutor ascending
+            //                    select datos;
 
             IEnumerable < tbArchivos > archivos = consulta.ToList();
-            IEnumerable < tbAutores> autores = consultaAutor.ToList();
+            //IEnumerable < tbAutores> autores = consultaAutor.ToList();
 
 
 
@@ -100,7 +100,8 @@ namespace prgGestionDeCompañias.Controllers
                     byte[] data = new byte[material.archivo.ContentLength];
                     material.archivo.InputStream.Read(data, 0, material.archivo.ContentLength);
 
-          ///////////////////////// Agrega el archivo /////////////////////////////////////////////////      
+        ///////////////////////// Agrega el archivo /////////////////////////////////////////////////      
+
                     archivos.idArchivo = Convert.ToInt32(material.idArchivo);
                     archivos.archivo = data;
 

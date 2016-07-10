@@ -13,56 +13,62 @@ namespace prgGestionDeCompañias.Models
     {
 
         [Required]//valida la entrada de datos al campo
-         //  [RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracter invalido")]
+       
          // [StringLength(5)]
         [Editable(allowEdit: false)]
         [Display(Name = "Codigo del Material")]
         public int idMaterialDidactico { get; set; }
 
-
-        //[Required]
-        //[StringLength(100)]
-        //[Display(Name = "Nombre del Archivo")]
-        public string nombreArchivo { get; set; }
-
         [Required]
         [StringLength(100)]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracter invalido")]
         [Display(Name = "Titulo")]
         public string titulo { get; set; }
 
+        [Display(Name = "Codigo del Autor")]
+        public int idAutor { get; set; }
+
         [Required]
         [StringLength(100)]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracter invalido")]
         [Display(Name = "Autor")]
         public string autor { get; set; }
 
         [Required]
         [StringLength(100)]
-        //[RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracter invalido")]
+        // [RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracter invalido")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Fecha de Publicacion")]
         public string fechaPublicacion { get; set; }
 
 
         [Required]
         [StringLength(100)]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracter invalido")]
         [Display(Name = "Cuidad")]
         public string cuidad { get; set; }
 
 
         [Required]
         [StringLength(100)]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracter invalido")]
         [Display(Name = "Pais")]
         public string pais { get; set; }
 
-       
+        [Display(Name = "Codigo del Archivo")]
+        public int idArchivo { get; set; }
+
+        [Required]
+        [Display(Name = "Archivo")]
         public HttpPostedFileBase archivo { get; set; }
+        public string nombreArchivo { get; set; }
+
+
         public byte[] manual { get; set; }
         public string contenido { get; set; }
 
-        [Display(Name = "Codigo del Autor")]
-        public int idAutor{ get; set; }
 
-        [Display(Name = "Codigo del Archivo")]
-        public int idArchivo { get; set; }
+       
 
 
     }//fin de la clase Registrar Material Didactico
