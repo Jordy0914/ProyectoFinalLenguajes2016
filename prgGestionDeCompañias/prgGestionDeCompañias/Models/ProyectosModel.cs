@@ -45,8 +45,8 @@ namespace prgGestionDeCompañias.Models
         [Display(Name = "Tipo:")]
         public string tipo { get; set; }
 
-        //[Required]
-       // [Display(Name = "Información: ")]
+        [Required]
+        [Display(Name = "Documentación(.pdf): ")]
         public HttpPostedFileBase informacion { get; set; }
         //public byte[] informacion { get; set; }
 
