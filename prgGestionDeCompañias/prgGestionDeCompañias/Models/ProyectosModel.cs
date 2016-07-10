@@ -46,15 +46,15 @@ namespace prgGestionDeCompañias.Models
         public string tipo { get; set; }
 
         //[Required]
-        [Display(Name = "Información: ")]
+       // [Display(Name = "Información: ")]
         public HttpPostedFileBase informacion { get; set; }
         //public byte[] informacion { get; set; }
 
-        [Required] //entra en validacion el campo
-        //le indico que es un string de 100, y ademas no le permito caracteres extraños
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracteres inválidos.")]
-        [StringLength(100)]
-        [Display(Name = "Nombre del Documento:")]
-        public string nombreDocumento { get; set; }
+        //[Required] //entra en validacion el campo
+        ////le indico que es un string de 100, y ademas no le permito caracteres extraños
+        //[RegularExpression(@"^[a-zA-Z''-'\s]{1,100}$", ErrorMessage = "Caracteres inválidos.")]
+        //[StringLength(100)]
+        //[Display(Name = "Nombre del Documento:")]
+        //public string nombreDocumento { get; set; }
     }
 }

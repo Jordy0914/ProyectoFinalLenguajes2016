@@ -56,15 +56,19 @@ namespace prgGestionDeCompañias.Controllers
                 using (var db = new BDPortafolioUcrContext())
                 {
                     var proyect = db.tbProyectos.Create();
+
                     proyect.idProyecto = proyecto.idProyecto;
                     proyect.nombre = proyecto.nombre;
                     proyect.descripcion = proyecto.descripcion;
                     proyect.estado = proyecto.estado;
                     proyect.tipo = proyecto.tipo;
+
                     byte[] data = new byte[proyecto.informacion.ContentLength];
                     proyecto.informacion.InputStream.Read(data, 0, proyecto.informacion.ContentLength);
+
                     proyect.informacion = data;
                     proyect.nombreDocumento = proyecto.informacion.FileName;
+
                     db.tbProyectos.Add(proyect);
                     db.SaveChanges();
                     return RedirectToAction("Index", "Home");
