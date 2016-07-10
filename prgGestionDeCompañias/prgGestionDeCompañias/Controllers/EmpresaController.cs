@@ -141,8 +141,8 @@ namespace prgGestionDeCompañias.Controllers
                     //************************* agrega la informacion a las tablas***************************************
                     //  db.tbEmpresas.Add(empresas);
                     db.tbDirecciones.Add(direcciones);
-                    db.tbTelefonos.Add(telefonos);
-                    db.tbCorreos.Add(correos);
+                   // db.tbTelefonos.Add(telefonos);
+                    //db.tbCorreos.Add(correos);
 
                     db.SaveChanges();
 
