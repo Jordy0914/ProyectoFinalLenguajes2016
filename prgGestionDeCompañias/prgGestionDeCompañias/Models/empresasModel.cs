@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.ComponentModel.DataAnnotations;// permite realizar validaciones a nuestra clase a nivel del models
-using System.Globalization;//biblioteca de configuracion del uso de varios idiomas
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 
 namespace prgGestionDeCompañias.Models
@@ -64,8 +64,9 @@ namespace prgGestionDeCompañias.Models
         [Display(Name = "Codigo Telefono")]
         public int idTelefono { get; set; }
 
-        //[Required]
-        //[Display(Name = "Telefono")]
+        [Required]
+        [StringLength(100)]
+        [Display(Name = "Telefono")]
         public string telefono { get; set; }
 
         /*
@@ -130,7 +131,7 @@ namespace prgGestionDeCompañias.Models
         public string distrito { get; set; }
 
         [Required]
-        //[StringLength(100)]
+        [StringLength(100)]
         [Display(Name = "Telefono")]
         public string telefono { get; set; }
 
