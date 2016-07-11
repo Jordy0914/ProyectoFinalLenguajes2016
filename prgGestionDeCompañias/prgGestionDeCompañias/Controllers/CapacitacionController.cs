@@ -20,15 +20,15 @@ namespace prgGestionDeCompañias.Controllers
             return View();
         }
 
-        // GET: Capacitacion/Create
+        // GET: Capacitacion/Insertar
         public ActionResult Insertar()
         {
             return View();
         }
 
-        // POST: Capacitacion/Create
+        // POST: Capacitacion/Insertar
         [HttpPost]
-        public ActionResult Insertar(Models.CapacitacionModels capacitacion)
+        public ActionResult Insertar(Models.CapacitacionModel capacitacion)
         {
             if (ModelState.IsValid)
             {
@@ -54,7 +54,7 @@ namespace prgGestionDeCompañias.Controllers
             {
                 ModelState.AddModelError("", "El registro fue incorrecto");
             }
-        return View();    
+            return View();
         }
 
         // GET: Capacitacion/Edit/5
