@@ -1,0 +1,75 @@
+﻿@model prgGestionDeCompañias.tbProyectos
+
+@{
+    ViewBag.Title = "Eliminar Proyecto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminación</h2>
+
+<h3>¿Está seguro de Eliminar el proyecto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idProyecto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idProyecto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombreDocumento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreDocumento)
+        </dd>
+
+        <dt class="custom-footer-link">
+                @Html.ActionLink("Regresar", "Index")
+        </dt>
+
+        <dd >
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Confirmar" class="btn btn-default custom-btn" />
+            }
+        </dd>
+
+    </dl>
+</div>

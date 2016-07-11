@@ -174,7 +174,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaterialDidacticoController.cs" />
-    <Compile Include="Controllers\ProyectosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -198,6 +197,7 @@
     <Compile Include="Models\materialDidacticoModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Controllers\ProyectoController.cs" />
     <Compile Include="Models\ProyectosModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -372,6 +372,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\MaterialDidactico\AgregarMaterial.cshtml" />
     <Content Include="Views\Empresa\AgregarEmpresas.cshtml" />
+    <Content Include="Views\Proyecto\Create.cshtml" />
+    <Content Include="Views\Proyecto\Delete.cshtml" />
+    <Content Include="Views\Proyecto\Details.cshtml" />
+    <Content Include="Views\Proyecto\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
