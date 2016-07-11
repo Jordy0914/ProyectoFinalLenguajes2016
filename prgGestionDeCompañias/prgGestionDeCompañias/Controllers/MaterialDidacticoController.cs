@@ -12,29 +12,24 @@ namespace prgGestionDeCompañias.Controllers
     public class MaterialDidacticoController : Controller
     {
         // GET: MaterialDidactico
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Listado()
 
         {
             BDPortafolioUcrContext dbContext = new BDPortafolioUcrContext();
             //realizo la consulta
-            var consulta = from datos in dbContext.tbArchivos
-                           orderby datos.idArchivo ascending
+            var consulta = from datos in dbContext.tbMaterialesDida
+                           orderby datos.idMaterialDida ascending
                            select datos;
             //se crea la una coleccion de elementos
 
-            //var consultaAutor = from datos in dbContext.tbAutores
-            //                    orderby datos.idAutor ascending
-            //                    select datos;
-
-            IEnumerable < tbArchivos > archivos = consulta.ToList();
-            //IEnumerable < tbAutores> autores = consultaAutor.ToList();
-
-
-
-            return View(archivos);      
+            IEnumerable < tbMaterialesDida > material = consulta.ToList();
+        
+            return View(material);      
         }
 
         // GET: MaterialDidactico/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
             return View();
@@ -135,7 +130,7 @@ namespace prgGestionDeCompañias.Controllers
        ///////////////////////// Guarda los cambios //////////////////////////////////////////////         
                     db.SaveChanges();
                    
-                   return RedirectToAction("Index", "Home");
+                   return RedirectToAction("Listado", "MaterialDidactico");
                     //return RedirectToAction("Index");// es que traia por defecto
 
                }//fin del using
@@ -173,6 +168,7 @@ namespace prgGestionDeCompañias.Controllers
         }
 
         // GET: MaterialDidactico/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             return View();
@@ -209,7 +205,7 @@ namespace prgGestionDeCompañias.Controllers
                 var materiales = db.tbMaterialesDida.Create();
 
             data = (Byte[])archivos.archivo.ToArray();
-                nombre = materiales.nombreArch;
+            nombre = materiales.nombreArch;
           }
 
             return File(data,"Text",nombre);

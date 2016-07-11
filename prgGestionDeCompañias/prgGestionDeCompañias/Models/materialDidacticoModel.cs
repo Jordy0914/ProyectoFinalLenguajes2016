@@ -13,9 +13,6 @@ namespace prgGestionDeCompañias.Models
     {
 
         [Required]//valida la entrada de datos al campo
-       
-         // [StringLength(5)]
-        [Editable(allowEdit: false)]
         [Display(Name = "Codigo del Material")]
         public int idMaterialDidactico { get; set; }
 
