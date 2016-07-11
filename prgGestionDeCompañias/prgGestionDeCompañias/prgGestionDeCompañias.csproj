@@ -171,6 +171,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CapacitacionController.cs" />
+    <Compile Include="Controllers\ConveniosController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -196,6 +197,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CapacitacionModel.cs" />
+    <Compile Include="Models\ConveniosModels.cs" />
     <Compile Include="Models\empresasModel.cs" />
     <Compile Include="Models\materialDidacticoModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -381,6 +383,11 @@
     <Content Include="Views\ProyectosEmpresas\Edit.cshtml" />
     <Content Include="Views\ProyectosEmpresas\Index.cshtml" />
     <Content Include="Views\Capacitacion\Insertar.cshtml" />
+    <Content Include="Views\Convenios\Create.cshtml" />
+    <Content Include="Views\Convenios\Delete.cshtml" />
+    <Content Include="Views\Convenios\Details.cshtml" />
+    <Content Include="Views\Convenios\Edit.cshtml" />
+    <Content Include="Views\Convenios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
