@@ -11,6 +11,8 @@ namespace prgGestionDeCompañias
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class tbConvenios
     {
@@ -19,12 +21,27 @@ namespace prgGestionDeCompañias
         {
             this.tbEmpresas = new HashSet<tbEmpresas>();
         }
-    
+
+        [Required]
+        [Display(Name = "idConvenio:")]
         public int idConvenio { get; set; }
+
+        [Required]
+        [StringLength(500)]
+        [RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
+        [Display(Name = "Descripcion:")]
         public string descripcion { get; set; }
+
+
+        [Required(ErrorMessage = "seleccione la fecha")]
+        [Display(Name = "Fecha creacion")]
         public System.DateTime fechaCrea { get; set; }
+
+        [Required(ErrorMessage = "seleccione el estado")]
+        [StringLength(500)]
+        [Display(Name = "Estado")]
         public string estado { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEmpresas> tbEmpresas { get; set; }
     }
