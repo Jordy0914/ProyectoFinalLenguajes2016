@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 namespace prgGestionDeCompañias.Models
 {
@@ -23,35 +25,35 @@ namespace prgGestionDeCompañias.Models
         public string Descripcion { get; set; }
 
 
-        [Display(Name = "Logo de la empresa")]
+        [Display(Name = "Ubicación")]
         public string Ubicacion { get; set; }
 
 
         [Required]
-        [Display(Name = "Codigo Direccion")]
+        [Display(Name = "Codigo de Persona")]
         public string IdPersona { get; set; }
 
 
         [Required]
         [StringLength(1000)]
-        [Display(Name = "Tipo Persona")]
+        [Display(Name = "Fecha Inicio")]
         public System.DateTime FechaInic { get; set; }
 
 
         [Required]
         [StringLength(1000)]
-        [Display(Name = "Dirección")]
+        [Display(Name = "Fecha Final")]
         public System.DateTime FechaFin { get; set; }
 
         [Required]
         [StringLength(100)]
-        [Display(Name = "Provincia")]
+        [Display(Name = "Inversion")]
         public int Inversion { get; set; }
 
 
         [Required]
         [StringLength(100)]
-        [Display(Name = "Cantón")]
+        [Display(Name = "Tipo de Certificado")]
         public string TipoCertificado { get; set; }
 
     }
