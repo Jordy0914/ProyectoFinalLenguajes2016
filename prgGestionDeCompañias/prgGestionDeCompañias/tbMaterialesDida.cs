@@ -6,7 +6,8 @@
 //     Los cambios manuales en este archivo se sobrescribirán si se regenera el código.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;// permite realizar validaciones a nuestra clase a nivel del models
+using System.Globalization;//biblioteca de configuracion del uso de varios idiomas
 namespace prgGestionDeCompañias
 {
     using System;
@@ -21,12 +22,18 @@ namespace prgGestionDeCompañias
             this.tbAutores = new HashSet<tbAutores>();
             this.tbEmpresas = new HashSet<tbEmpresas>();
         }
-    
+
+        [Display(Name = "Codigo del Material")]
         public int idMaterialDida { get; set; }
+        [Display(Name = "Archivo")]
         public string nombreArch { get; set; }
+        [Display(Name = "Titulo")]
         public string titulo { get; set; }
+        [Display(Name = "Fecha de Publicidad")]
         public System.DateTime fechaPubl { get; set; }
+        [Display(Name = "Cuidad")]
         public string ciudad { get; set; }
+        [Display(Name = "Pais")]
         public string pais { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

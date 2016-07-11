@@ -1,0 +1,67 @@
+﻿@model IEnumerable<prgGestionDeCompañias.tbMaterialesDida>
+
+@{
+    ViewBag.Title = "Listado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado Material Didactico</h2>
+
+<p>
+   
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idMaterialDida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreArch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaPubl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ciudad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pais)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idMaterialDida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreArch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaPubl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ciudad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pais)
+        </td>
+        <td>
+           
+        </td>
+       
+    </tr>
+
+}
+    
+</table>
+<div>
+    @Html.ActionLink("Volver a la pagina principal", "Index", "Home")
+</div>

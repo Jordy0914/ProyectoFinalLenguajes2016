@@ -372,6 +372,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\MaterialDidactico\AgregarMaterial.cshtml" />
     <Content Include="Views\Empresa\AgregarEmpresas.cshtml" />
+    <Content Include="Views\MaterialDidactico\Listado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
